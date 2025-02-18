@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="680.0" prefWidth="961.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionBoutiqueONLINE.controllers.ListeProduitsController">
+    <children>
+        <!-- ScrollPane pour permettre le défilement -->
+        <Button onAction="#ajouterProduitAction" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-min-width: 120; -fx-min-height: 30;" text="Ajouter un produit " />
+
+        <ScrollPane layoutX="1.0" layoutY="49.0" prefHeight="625.0" prefWidth="935.0" style="-fx-background-color: transparent;">
+            <content>
+                <!-- TableView à l'intérieur du ScrollPane -->
+                <TableView fx:id="produitTable" prefHeight="623.0" prefWidth="924.0">
+                    <columns>
+                        <!-- Colonne Nom -->
+                        <TableColumn fx:id="nomColumn" prefWidth="171.99996334314346" text="Nom">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nomProduit" />
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <!-- Colonne Prix -->
+                        <TableColumn fx:id="prixColumn" prefWidth="78.4000244140625" text="Prix en TND">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="prixProduit" />
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <!-- Colonne Quantité -->
+                        <TableColumn fx:id="quantiteColumn" prefWidth="155.20004272460938" text="Quantité">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="quantiteProduit" />
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <!-- Colonne Image -->
+                        <TableColumn fx:id="imageColumn" prefWidth="231.20001220703125" text="Image">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="imageProduit" />
+                            </cellValueFactory>
+                        </TableColumn>
+
+
+                        <!-- Colonne Actions (Update et Delete) -->
+                        <TableColumn fx:id="actionsColumn" prefWidth="289.5999755859375" text="Actions">
+                            <!-- Cette colonne sera gérée dans le contrôleur -->
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

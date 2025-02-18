@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="261.0" style="-fx-background-color: #CECAC4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionBoutiqueONLINE.controllers.DetailsProduitController">
+    <children>
+        <ScrollPane layoutX="0.0" layoutY="-8.0" prefHeight="598.0" prefWidth="452.0" style="-fx-background-color: #CECAC4;">
+            <content>
+                <VBox alignment="CENTER" prefHeight="597.0" prefWidth="442.0" spacing="10" style="-fx-background-color: #CECAC4; -fx-padding: 20;">
+                    <!-- Image centrée -->
+                    <ImageView fx:id="ImageViewProduit" fitHeight="200" fitWidth="200" />
+
+                    <!-- Nom centré -->
+                    <Label style="-fx-text-fill: #10888D;" text="Nom:">
+                  <font>
+                     <Font name="Copperplate Gothic Bold" size="14.0" />
+                  </font></Label>
+                    <Label fx:id="NomLabel" style="-fx-text-fill: #000000;" />
+
+                    <!-- Prix centré -->
+                    <Label style="-fx-text-fill: #10888D;" text="Prix:">
+                  <font>
+                     <Font name="Copperplate Gothic Bold" size="14.0" />
+                  </font></Label>
+                    <Label fx:id="PrixLabel" style="-fx-text-fill: #000000;" />
+
+                    <!-- Quantité centrée -->
+                    <Label style="-fx-text-fill: #10888D;" text="Quantité:">
+                  <font>
+                     <Font name="Copperplate Gothic Bold" size="14.0" />
+                  </font></Label>
+                    <Label fx:id="QuantiteLabel" style="-fx-text-fill: #000000;" />
+
+                    <!-- Description centrée -->
+                    <Label style="-fx-text-fill: #10888D;" text="Description:">
+                  <font>
+                     <Font name="Copperplate Gothic Bold" size="14.0" />
+                  </font></Label>
+                    <Label fx:id="DescriptionLabel" style="-fx-text-fill: #000000; -fx-text-alignment: center;" wrapText="true" />
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

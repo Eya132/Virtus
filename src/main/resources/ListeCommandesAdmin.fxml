@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionBoutiqueONLINE.controllers.ListeCommandesAdminController" spacing="10">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+
+    <TableView fx:id="tableCommandes" prefWidth="800" prefHeight="400">
+        <columns>
+            <!-- Colonne pour l'ID de l'utilisateur -->
+            <TableColumn fx:id="colIdUser" text="ID Utilisateur">
+                <cellValueFactory>
+                    <PropertyValueFactory property="idUser" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour l'ID de la commande -->
+            <TableColumn fx:id="colIdCommande" text="ID Commande">
+                <cellValueFactory>
+                    <PropertyValueFactory property="idCommande" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour le statut de la commande -->
+            <TableColumn fx:id="colStatus" text="Statut">
+                <cellValueFactory>
+                    <PropertyValueFactory property="statusCommande" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour la quantité commandée -->
+            <TableColumn fx:id="colQuantite" text="Quantité">
+                <cellValueFactory>
+                    <PropertyValueFactory property="quantiteCommande" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour le nom du produit -->
+            <TableColumn fx:id="colNomProduit" text="Nom du Produit">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nomProduit" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour l'image du produit -->
+            <TableColumn fx:id="colImageProduit" text="Image du Produit">
+                <cellValueFactory>
+                    <PropertyValueFactory property="imageProduit" />
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour les actions (Traiter et Supprimer) -->
+            <TableColumn fx:id="colActions" text="Actions">
+                <!-- La fabrique de cellules sera définie dans le contrôleur -->
+            </TableColumn>
+        </columns>
+    </TableView>
+</VBox>

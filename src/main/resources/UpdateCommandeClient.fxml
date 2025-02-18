@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="619.0" prefWidth="453.0" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionBoutiqueONLINE.controllers.UpdateCommandeClientController">
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+
+    <ImageView fx:id="ImageViewProduit" fitHeight="232.0" fitWidth="323.0" />
+    <Label text="Nom du Produit:" textFill="#10888d">
+      <font>
+         <Font name="Copperplate Gothic Bold" size="14.0" />
+      </font></Label>
+    <TextField fx:id="NomProduitTextField" editable="false" />
+    <Label text="Prix du Produit:" textFill="#10888d">
+      <font>
+         <Font name="Copperplate Gothic Bold" size="13.0" />
+      </font></Label>
+    <TextField fx:id="PrixProduitTextField" editable="false" />
+    <Label text="Description du Produit:" textFill="#10888d">
+      <font>
+         <Font name="Copperplate Gothic Bold" size="13.0" />
+      </font></Label>
+    <TextField fx:id="DescriptionProduitTextField" editable="false" />
+    <Label text="Quantité:" textFill="#10888d">
+      <font>
+         <Font name="Copperplate Gothic Bold" size="13.0" />
+      </font></Label>
+    <TextField fx:id="QuantiteTextField" />
+    <HBox spacing="10">
+        <Button onAction="#UpdateAction" text="Mettre à jour" textFill="WHITE" style="-fx-background-color: #4CAF50">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="11.0" />
+         </font></Button>
+        <Button onAction="#annulerAction" text="Annuler" textFill="WHITE" style="-fx-background-color: #FF0000">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="11.0" />
+         </font></Button>
+    </HBox>
+</VBox>

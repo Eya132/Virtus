@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionBoutiqueONLINE.controllers.AjouterProduitController">
+    <children>
+        <!-- Champ pour le nom du produit -->
+        <Label layoutX="50.0" layoutY="40.0" text="Nom du produit:" style="-fx-text-fill: #10888D;" />
+        <TextField fx:id="NomTextField" layoutX="180.0" layoutY="40.0" style="-fx-border-color: #F45E0C;" />
+
+        <!-- Champ pour le prix -->
+        <Label layoutX="50.0" layoutY="90.0" text="Prix en TND:" style="-fx-text-fill: #10888D;" />
+        <TextField fx:id="PrixTextField" layoutX="180.0" layoutY="90.0" style="-fx-border-color: #F45E0C;" />
+
+        <!-- Champ pour la quantité -->
+        <Label layoutX="50.0" layoutY="140.0" text="Quantité:" style="-fx-text-fill: #10888D;" />
+        <TextField fx:id="QuantiteTextField" layoutX="180.0" layoutY="140.0" style="-fx-border-color: #F45E0C;" />
+
+        <!-- Champ pour la description -->
+        <Label layoutX="50.0" layoutY="190.0" text="Description:" style="-fx-text-fill: #10888D;" />
+        <TextField fx:id="DescriptionTextField" layoutX="180.0" layoutY="190.0" style="-fx-border-color: #F45E0C;" />
+
+        <!-- StackPane pour l'image et le symbole (+) -->
+        <StackPane layoutX="400.0" layoutY="40.0">
+            <!-- ImageView pour afficher l'image du produit -->
+            <ImageView fx:id="ImageViewProduit" fitWidth="120" fitHeight="120" style="-fx-border-color: #F45E0C;" />
+
+            <!-- Label pour afficher le symbole (+) -->
+            <Label text="+" style="-fx-text-fill: #F45E0C; -fx-font-size: 24px; -fx-font-weight: bold;" />
+        </StackPane>
+
+        <!-- Bouton pour ajouter une image -->
+        <Button fx:id="AjouterImageButton" layoutX="400.0" layoutY="180.0" text="Ajouter Image" onAction="#AjouterImageAction" style="-fx-background-color: #F45E0C; -fx-text-fill: #FFFFFF;" />
+
+        <!-- Bouton pour ajouter le produit -->
+        <Button layoutX="180.0" layoutY="250.0" text="Ajouter Produit" onAction="#AjoutAction" style="-fx-background-color: #10888D; -fx-text-fill: #FFFFFF;" />
+    </children>
+</AnchorPane>
