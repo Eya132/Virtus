@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.layout.HBox?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionRegime.controller.Regime.ModifierRegimeController" spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <Label text="Modifier un Régime" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Objectif:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="objectifComboBox" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Calories:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="caloriesTextField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Protéines:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="proteinesTextField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Glucides:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="glucidesTextField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Lipides:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="lipidesTextField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Date Début:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="dateDebutTextField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <Label text="Date Fin:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <TextField fx:id="dateFinTextField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <Label text="Statut:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <TextField fx:id="statusTextField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Modifier" fx:id="modifierRegimeButton" onAction="#modifierRegimeAction"/>
+        <Button text="Annuler" fx:id="annulerButton" onAction="#handleAnnulerButton"/>
+    </HBox>
+</VBox>

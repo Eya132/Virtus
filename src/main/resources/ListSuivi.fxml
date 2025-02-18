@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane stylesheets="/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionRegime.controller.Suivi.ListeSuiviController">
+    <!-- Top Section: Title -->
+    <top>
+        <HBox alignment="CENTER" prefHeight="41.0" prefWidth="638.0">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Liste des Suivis" />
+        </HBox>
+    </top>
+
+    <!-- Center Section: TableView -->
+    <center>
+        <TableView fx:id="suiviTable">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="utilisateurIdColumn" prefWidth="85.5999755859375" text="Utilisateur ID" />
+                <TableColumn fx:id="regimeIdColumn" prefWidth="82.4000244140625" text="Régime ID" />
+                <TableColumn fx:id="poidsColumn" prefWidth="72.80000305175781" text="Poids" />
+                <TableColumn fx:id="tourDeTailleColumn" prefWidth="108.800048828125" text="Tour de Taille" />
+                <TableColumn fx:id="imcColumn" text="IMC" />
+                <TableColumn fx:id="dateSuiviColumn" prefWidth="127.99993896484375" text="Date de Suivi" />
+            </columns>
+        </TableView>
+    </center>
+
+    <!-- Bottom Section: Buttons -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER">
+            <Button text="Ajouter"  onAction="#handleAjouterSuivi" />
+            <Button text="Modifier"   />
+            <Button text="Supprimer" />
+        </HBox>
+    </bottom>
+</BorderPane>

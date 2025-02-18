@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>GestionBoutique</artifactId>
+    <artifactId>GestionRegime</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -17,30 +17,31 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>20.0.2</version>
+            <version>8.0.28</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>20.0.2</version>
         </dependency>
-    </dependencies>
-    <build>
+      <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>20.0.2</version>
+      </dependency>
+
+
+     </dependencies>
+     <build>
         <plugins>
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>GestionBoutiqueONLINE.controllers.Home</mainClass>
+                    <mainClass>GestionRegime.controller.TestHome</mainClass>
                 </configuration>
             </plugin>
         </plugins>
-    </build>
-
+      </build>
 </project>

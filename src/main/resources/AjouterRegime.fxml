@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionRegime.controller.Regime.AjouterRegimeController" spacing="10" alignment="CENTER">
+   <Label text="Ajouter un Régime" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+   <Label text="Objectif"/>
+   <ComboBox fx:id="objectifComboBox" promptText="Sélectionnez un objectif"/>
+
+   <Label text="Calories Journalières"/>
+   <TextField fx:id="caloriesTextField" promptText="Calories"/>
+
+   <Label text="Protéines (g)"/>
+   <TextField fx:id="proteinesTextField" promptText="Protéines"/>
+
+   <Label text="Glucides (g)"/>
+   <TextField fx:id="glucidesTextField" promptText="Glucides"/>
+
+   <Label text="Lipides (g)"/>
+   <TextField fx:id="lipidesTextField" promptText="Lipides"/>
+
+   <Label text="Date Début (AAAA-MM-JJ)"/>
+   <TextField fx:id="dateDebutTextField" promptText="Date Début"/>
+
+   <Label text="Date Fin (AAAA-MM-JJ)"/>
+   <TextField fx:id="dateFinTextField" promptText="Date Fin"/>
+
+   <Label text="Statut"/>
+   <TextField fx:id="statusTextField" promptText="Statut"/>
+
+   <Button text="Ajouter Régime" fx:id="ajouterRegimeButton" onAction="#ajouterRegimeAction"/>
+   <Button text="Voir la Liste" fx:id="voirListButton" onAction="#handleVoirListeButton"/>
+</VBox>
