@@ -1,0 +1,117 @@
+/* Définition des styles de base */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #f4f7fa;
+    -fx-padding: 20px;
+}
+
+/* Style pour le titre */
+.label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, #BDC3C7, 5, 2, 0, 1);
+}
+
+/* Style pour la TableView */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, #BDC3C7, 5, 0, 0, 5);
+    -fx-padding: 10px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+}
+
+/* Style des colonnes */
+.table-column {
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-padding: 5px;
+}
+
+/* Style des cellules de la TableView */
+.table-view .table-cell {
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+}
+
+/* Survol des lignes */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #ecf0f1;
+    -fx-cursor: hand;
+}
+
+/* Alternance de couleur des lignes */
+.table-view .table-row-cell:nth-child(odd) {
+    -fx-background-color: #f9f9f9;
+}
+
+/* Style des boutons */
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #2980b9, 5, 0, 0, 3);
+    -fx-transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.button:pressed {
+    -fx-background-color: #1c4e88;
+}
+
+/* Style de la colonne des actions */
+.table-column .button {
+    -fx-background-color: #ff4500;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 15px;
+    -fx-border-radius: 5px;
+}
+
+.table-column .button:hover {
+    -fx-background-color: #e74c3c;
+}
+
+.table-column .button:pressed {
+    -fx-background-color: #c0392b;
+}
+
+/* Style de la boîte de dialogue */
+.dialog-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 8px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, #BDC3C7, 5, 0, 0, 3);
+}
+
+/* Style de l'alert */
+.alert {
+    -fx-font-size: 14px;
+    -fx-text-fill: #e74c3c;
+}
+
+/* Personnalisation du VBox pour la disposition */
+.vbox {
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+}
+
+/* Padding et bordure pour la TableView */
+.table-view {
+    -fx-padding: 10px;
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, #BDC3C7, 5, 0, 0, 5);
+}
+

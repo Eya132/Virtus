@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
+<?import javafx.collections.FXCollections?>
+
+<?import java.lang.Integer?>
+<?import java.lang.String?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestion_match.controller.PremierPageController" stylesheets="@styles/styles.css">
+    <children>
+        <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="50">
+            <!-- Phrase incitative -->
+            <Label text="Prêt à relever le défi ? Planifie ton prochain match dès maintenant !" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            <!-- Planificateur ID -->
+            <TextField fx:id="lbIdPlanificateur" promptText="ID du planificateur"/>
+            <!-- Date du match -->
+            <DatePicker fx:id="datePicker" promptText="Date du match" />
+
+            <!-- Heure du match -->
+            <TextField fx:id="lbHeure" promptText="Heure du match (HH:mm)" />
+
+            <!-- Heure de fin calculée -->
+            <TextField fx:id="lbHeureFin" promptText="Heure de fin (calculée)" editable="false" />
+
+            <!-- Champ pour choisir le sport -->
+            <ComboBox fx:id="lbTypeSport" promptText="Choisir le sport">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Tennis"/>
+                        <String fx:value="Ping-Pong"/>
+                        <String fx:value="Padel"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <!-- ComboBox pour choisir la localisation -->
+            <ComboBox fx:id="comboLocalisation" promptText="Localisation"/>
+
+            <!-- ComboBox pour choisir le terrain -->
+            <ComboBox fx:id="comboTerrain" promptText="Terrain" />
+
+            <!-- ComboBox pour le nombre de personnes (2 ou 4) -->
+            <ComboBox fx:id="comboNbPersonnes" promptText="Nombre de personnes">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Integer fx:value="2"/>
+                        <Integer fx:value="4"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <!-- Description -->
+            <TextArea fx:id="lbdescription" promptText="Description" wrapText="true" />
+
+            <!-- Boutons -->
+            <HBox spacing="10" alignment="CENTER">
+                <Button fx:id="btnAjouterMatch" text="Ajouter Match" onAction="#createEntity" />
+                <Button text="Annuler" onAction="#clearFields" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

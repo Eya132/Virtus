@@ -1,0 +1,107 @@
+/* Style général de la racine */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: #f9f9f9;
+    -fx-alignment: center;
+}
+
+/* Section de filtre */
+.anchor-pane {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20px;
+    -fx-border-radius: 10px;
+    -fx-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des ComboBox et TextField */
+.combo-box, .text-field {
+    -fx-background-color: #f1f1f1;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 8px;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-text-fill: #333333;
+}
+
+/* Style au focus des ComboBox et TextField */
+.combo-box:focused, .text-field:focused {
+    -fx-border-color: #ff4500;
+    -fx-background-color: white;
+}
+
+/* Style du bouton de filtre */
+.button {
+    -fx-background-color: #ff4500;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 25px;
+    -fx-effect: dropshadow(gaussian, #000000, 5, 0.5, 0, 2);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+/* Effet hover du bouton */
+.button:hover {
+    -fx-background-color: #e04300;
+    -fx-effect: dropshadow(gaussian, #000000, 8, 0.5, 0, 2);
+}
+
+/* Effet lorsqu'on presse le bouton */
+.button:pressed {
+    -fx-background-color: #cc3a00;
+    -fx-effect: dropshadow(gaussian, #000000, 10, 0.5, 0, 2);
+}
+
+/* Style du ListView */
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-font-size: 14px;
+}
+
+/* Style des éléments de la ListView */
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+/* Style des titres et sous-titres */
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ff4500;
+    -fx-alignment: center;
+}
+
+/* Style des labels */
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Espacement entre les éléments */
+.hbox {
+    -fx-spacing: 15px;
+    -fx-alignment: center;
+}
+
+/* Padding des éléments */
+.anchor-pane > * {
+    -fx-padding: 10px;
+}
+
+/* Shadow pour les éléments au survol */
+.anchor-pane:hover, .list-view:hover {
+    -fx-effect: dropshadow(gaussian, #000000, 4, 0.5, 0, 2);
+}

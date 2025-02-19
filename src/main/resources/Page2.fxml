@@ -1,0 +1,23 @@
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="gestion_match.controller.ListMatchController" stylesheets="@styles/styles1.css">
+    <children>
+        <!-- Filter Section -->
+        <AnchorPane layoutX="20.0" layoutY="20.0" prefWidth="480.0" prefHeight="100.0">
+            <!-- Filter by Sport -->
+            <ComboBox fx:id="sportFilterComboBox" layoutX="20.0" layoutY="20.0" prefWidth="150.0" />
+
+            <!-- Filter by Location -->
+            <TextField fx:id="locationFilterTextField" layoutX="180.0" layoutY="20.0" prefWidth="150.0" promptText="Location" />
+
+            <!-- Filter Button -->
+            <Button fx:id="filterButton" layoutX="350.0" layoutY="20.0" text="Filter" onAction="#filterMatches" />
+        </AnchorPane>
+
+        <!-- ListView to display the matches -->
+        <ListView fx:id="matchListView" layoutX="20.0" layoutY="140.0" prefWidth="300.0" prefHeight="400.0" />
+    </children>
+</AnchorPane>
