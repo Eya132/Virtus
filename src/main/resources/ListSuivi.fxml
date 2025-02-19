@@ -34,8 +34,8 @@
     <bottom>
         <HBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER">
             <Button text="Ajouter"  onAction="#handleAjouterSuivi" />
-            <Button text="Modifier"   />
-            <Button text="Supprimer" />
+            <Button text="Modifier" onAction="#handleModifierSuivi" />
+            <Button text="Supprimer" onAction="#handleSupprimerSuivi" />
         </HBox>
     </bottom>
 </BorderPane>

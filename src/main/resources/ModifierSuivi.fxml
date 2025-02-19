@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionRegime.controller.Suivi.ModifierSuiviController" spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <GridPane hgap="10" vgap="10">
+        <!-- Poids -->
+        <Label text="Poids (kg):" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="poidsTextField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <!-- Tour de taille -->
+        <Label text="Tour de taille (cm):" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="tourDeTailleTextField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- IMC -->
+        <Label text="IMC:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="imcTextField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <!-- Date de suivi -->
+        <Label text="Date de suivi (yyyy-MM-dd HH:mm:ss):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="dateSuiviTextField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Boutons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="modifierSuiviButton" text="Modifier" onAction="#modifierSuiviAction"/>
+        <Button fx:id="annulerButton" text="Annuler" onAction="#handleAnnulerButton"/>
+    </HBox>
+</VBox>

@@ -70,6 +70,35 @@ public class ListeSuiviController {
     }
 
     @FXML
+    private void handleModifierSuivi() {
+        Suivi selectedSuivi = suiviTable.getSelectionModel().getSelectedItem();
+
+        if (selectedSuivi == null) {
+            System.out.println("❌ Erreur: Aucun suivi sélectionné !");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierSuivi.fxml"));
+            Parent root = loader.load();
+
+            // Récupération du contrôleur et passage des données
+            ModifierSuiviController modifierController = loader.getController();
+            modifierController.setSuiviToUpdate(selectedSuivi);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Modifier un suivi");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("❌ Erreur lors du chargement de l'interface ModifierSuivi : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
     private void handleAjouterSuivi() {
         try {
             // Charger le fichier FXML de l'interface AjouterSuivi
@@ -92,5 +121,29 @@ public class ListeSuiviController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void handleSupprimerSuivi() {
+        Suivi selectedSuivi = suiviTable.getSelectionModel().getSelectedItem();
+        if (selectedSuivi == null) {
+            System.out.println("❌ Aucun suivi sélectionné !");
+            return;
+        }
 
+        // Confirmation de suppression (optionnel)
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation de suppression");
+        alert.setHeaderText("Êtes-vous sûr de vouloir supprimer ce suivi ?");
+        alert.setContentText("Cette action est irréversible.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Supprimer le suivi de la base de données
+            suiviService.deleteSuivi(selectedSuivi);
+
+            // Recharger les données dans la TableView
+            loadSuiviData();
+
+            System.out.println("✅ Suivi supprimé avec succès !");
+        }
+    }
 }
