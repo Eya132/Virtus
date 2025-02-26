@@ -10,7 +10,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // Charger le fichier FXML
-        Parent root = FXMLLoader.load(getClass().getResource("/DashboardCard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
 
         // Configurer la scène
         Scene scene = new Scene(root);
