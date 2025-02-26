@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" stylesheets="@Styles/Style1.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+
+    <!-- Barre de recherche et filtrage -->
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Rechercher par nom" />
+        <DatePicker fx:id="filterDatePicker" promptText="Filtrer par date" />
+        <Button onAction="#handleSearch" prefHeight="52.0" prefWidth="120.0" text="Rechercher" />
+        <Button onAction="#handleFilterByDate" text="Filtrer par date" />
+    </HBox>
+
+    <!-- Tableau des événements -->
+    <TableView fx:id="eventTable">
+        <columns>
+            <TableColumn fx:id="nameColumn" prefWidth="150" text="Titre" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="150" text="Description" />
+            <TableColumn fx:id="dateColumn" prefWidth="100" text="Date" />
+            <TableColumn fx:id="lieuColumn" prefWidth="150" text="Lieu" />
+            <TableColumn fx:id="capaciteColumn" prefWidth="100" text="Capacité" /> <!-- Nouvelle colonne -->
+        </columns>
+    </TableView>
+
+    <!-- Boutons d'actions -->
+    <HBox spacing="10">
+        <Button onAction="#handleAddEvent" text="Ajouter" />
+        <Button onAction="#handleEditEvent" text="Modifier" />
+        <Button onAction="#handleDeleteEvent" text="Supprimer" />
+        <Button onAction="#handleDownloadPDF" text="Télécharger PDF" />
+    </HBox>
+</VBox>

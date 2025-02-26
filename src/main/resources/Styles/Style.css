@@ -1,0 +1,67 @@
+/* styles.css */
+
+/* Style général de la page */
+.root {
+    -fx-background-color: #F4F4F4; /* Fond clair */
+    -fx-font-family: 'Poppins', sans-serif;
+}
+
+/* Titre de la page */
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFA500; /* Orange */
+    -fx-padding: 20px;
+}
+
+/* Conteneur des cartes */
+.card-container {
+    -fx-padding: 20px; /* Espace autour du conteneur */
+}
+
+/* Carte d'événement */
+.event-card {
+    -fx-background-color: white;
+    -fx-border-color: #40E0D0; /* Turquoise */
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 15px; /* Espace à l'intérieur de la carte */
+    -fx-spacing: 10px; /* Espace entre les éléments de la carte */
+    -fx-pref-width: 250px; /* Largeur fixe pour chaque carte */
+    -fx-margin: 10px; /* Espace autour de chaque carte */
+}
+
+/* Titre de l'événement */
+.event-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Texte sombre */
+}
+
+/* Date de l'événement */
+.event-date {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666; /* Texte gris */
+}
+
+/* Bouton "Participer" */
+.participate-button {
+    -fx-background-color: #FFA500; /* Orange */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-margin-bottom: 50px;
+}
+
+.participate-button:hover {
+    -fx-background-color: #FF8C00; /* Orange plus foncé au survol */
+}
+
+.participate-button:pressed {
+    -fx-background-color: #FF4500; /* Orange encore plus foncé au clic */
+}

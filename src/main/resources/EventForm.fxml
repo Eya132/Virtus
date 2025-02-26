@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="450.0" prefWidth="450.0" spacing="10" stylesheets="@Styles/Style1.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="Controller.EventForm">
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+
+    <!-- Champ pour le titre -->
+    <Label text="Titre de l'événement" />
+    <TextField fx:id="titreField" promptText="Entrez le titre" />
+
+    <!-- Champ pour la description -->
+    <Label text="Description" />
+    <TextArea fx:id="descriptionField" prefHeight="45.0" prefWidth="254.0" promptText="Entrez la description" />
+
+    <!-- Champ pour la date -->
+    <Label text="Date" />
+    <DatePicker fx:id="datePicker" promptText="Sélectionnez une date" />
+
+    <!-- Champ pour le lieu -->
+    <Label text="Lieu" />
+    <TextField fx:id="lieuField" promptText="Entrez le lieu" />
+
+    <!-- Champ pour l'ID utilisateur -->
+    <Label text="ID Utilisateur" />
+    <TextField fx:id="iduserField" promptText="Entrez l'ID utilisateur" />
+
+    <!-- Champ pour la capacité -->
+    <Label text="Capacité" />
+    <TextField fx:id="capaciteField" promptText="Entrez la capacité" />
+
+    <!-- Champ pour l'image -->
+    <Label text="Image" />
+    <TextField fx:id="imageUrlField" editable="false" promptText="URL de l'image" />
+    <Button onAction="#handleUploadImage" text="Upload Image" />
+    <ImageView fx:id="imagePreview" fitHeight="80" fitWidth="80" preserveRatio="true" />
+
+    <!-- Boutons pour sauvegarder ou annuler -->
+    <HBox spacing="10">
+        <Button onAction="#handleSave" text="Sauvegarder" />
+        <Button onAction="#handleCancel" text="Annuler" />
+    </HBox>
+</VBox>

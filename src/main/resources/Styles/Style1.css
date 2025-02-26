@@ -1,0 +1,118 @@
+/* Police moderne */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Couleurs */
+.root {
+    -fx-primary-color: #FFA500; /* Orange */
+    -fx-secondary-color: #40E0D0; /* Turquoise */
+    -fx-background-color: #F4F4F4; /* Fond clair */
+    -fx-text-color: #333333; /* Texte sombre */
+    -fx-font-family: 'Poppins', sans-serif;
+}
+
+/* Titres de page */
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-primary-color;
+    -fx-padding: 10px;
+}
+
+/* Boutons */
+.button {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #FF8C00; /* Orange plus foncé au survol */
+}
+
+.button:pressed {
+    -fx-background-color: #FF4500; /* Orange encore plus foncé au clic */
+}
+
+/* Tableau */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: -fx-secondary-color;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.table-view .column-header {
+    -fx-background-color: -fx-secondary-color;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-text-fill: -fx-text-color;
+    -fx-font-size: 13px;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #F8F8F8; /* Lignes alternées */
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+
+/* Champs de texte */
+.text-field, .text-area, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: -fx-secondary-color;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .text-area:focused, .date-picker:focused {
+    -fx-border-color: -fx-primary-color;
+    -fx-border-width: 2px;
+}
+
+/* ImageView */
+.image-view {
+    -fx-border-color: -fx-secondary-color;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+/* HBox et VBox */
+.hbox, .vbox {
+    -fx-spacing: 10px;
+    -fx-padding: 10px;
+}
+
+/* Alertes */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-border-color: -fx-secondary-color;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.dialog-pane .button {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: #FF8C00;
+}
+
+.dialog-pane .button:pressed {
+    -fx-background-color: #FF4500;
+}
