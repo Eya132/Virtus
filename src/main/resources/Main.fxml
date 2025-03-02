@@ -13,8 +13,7 @@
     <HBox spacing="10">
         <TextField fx:id="searchField" promptText="Rechercher par nom" />
         <DatePicker fx:id="filterDatePicker" promptText="Filtrer par date" />
-        <Button onAction="#handleSearch" prefHeight="52.0" prefWidth="120.0" text="Rechercher" />
-        <Button onAction="#handleFilterByDate" text="Filtrer par date" />
+
     </HBox>
 
     <!-- Tableau des événements -->
@@ -25,6 +24,8 @@
             <TableColumn fx:id="dateColumn" prefWidth="100" text="Date" />
             <TableColumn fx:id="lieuColumn" prefWidth="150" text="Lieu" />
             <TableColumn fx:id="capaciteColumn" prefWidth="100" text="Capacité" /> <!-- Nouvelle colonne -->
+
+
         </columns>
     </TableView>
 

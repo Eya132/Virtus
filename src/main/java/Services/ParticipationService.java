@@ -81,4 +81,12 @@ public class ParticipationService {
         }
         return participations;
     }
+    // Dans ParticipationService
+    public boolean hasUserParticipated(int eventId, int userId) {
+        // Vérifier si un utilisateur avec userId a déjà participé à l'événement eventId
+        // Retourne true si l'utilisateur a déjà participé, false sinon
+        return getParticipationsByEvent(eventId).stream()
+                .anyMatch(participation -> participation.getIduser() == userId);
+    }
+
 }

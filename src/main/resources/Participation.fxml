@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ParticipationController">
+    <children>
+        <VBox spacing="10" alignment="CENTER" prefWidth="600" prefHeight="400">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Liste des Participations" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <TableView fx:id="participationTable">
+                <columns>
+                    <TableColumn fx:id="idParticipationColumn" text="ID Participation" prefWidth="200"/>
+                    <TableColumn fx:id="idUserColumn" text="ID Utilisateur" prefWidth="200"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
 </AnchorPane>

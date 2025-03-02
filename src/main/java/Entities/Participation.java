@@ -14,11 +14,13 @@ public class Participation {
         this.idevent = new SimpleIntegerProperty();
     }
 
+
     public Participation(int idparticipation, int iduser, int idevent) {
         this.idparticipation = new SimpleIntegerProperty(idparticipation);
         this.iduser = new SimpleIntegerProperty(iduser);
         this.idevent = new SimpleIntegerProperty(idevent);
-    }
+
+}
 
     public int getIdparticipation() {
         return idparticipation.get();
