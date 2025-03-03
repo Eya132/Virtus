@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionRegime.controller.Regime.AjouterRegimeController" spacing="20" alignment="CENTER" style="-fx-background-color: #FFFFFF; -fx-padding: 20;">
+   <!-- Titre -->
+   <Label text="Ajouter un Régime" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #0c666a; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 5,0,0,1 );"/>
+
+   <!-- Formulaire avec bordure -->
+   <BorderPane style="-fx-border-color: #0c666a; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-padding: 10;">
+      <center>
+         <GridPane hgap="10" vgap="10" alignment="CENTER">
+            <!-- Objectif -->
+            <Label text="Objectif:" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="objectifComboBox" promptText="Sélectionnez un objectif" style="-fx-background-color: #FFFFFF; -fx-border-color: #0c666a; -fx-border-radius: 5; -fx-padding: 5;" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <!-- Calories Journalières -->
+            <Label text="Calories Journalières:" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="caloriesTextField" promptText="Calories" style="-fx-background-color: #FFFFFF; -fx-border-color: #0c666a; -fx-border-radius: 5; -fx-padding: 5;" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <!-- Protéines -->
+            <Label text="Protéines (g):" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="proteinesTextField" promptText="Protéines" style="-fx-background-color: #FFFFFF; -fx-border-color: #0c666a; -fx-border-radius: 5; -fx-padding: 5;" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <!-- Glucides -->
+            <Label text="Glucides (g):" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="glucidesTextField" promptText="Glucides" style="-fx-background-color: #FFFFFF; -fx-border-color: #0c666a; -fx-border-radius: 5; -fx-padding: 5;" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <!-- Lipides -->
+            <Label text="Lipides (g):" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="lipidesTextField" promptText="Lipides" style="-fx-background-color: #FFFFFF; -fx-border-color: #0c666a; -fx-border-radius: 5; -fx-padding: 5;" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <!-- Date Début -->
+            <Label text="Date Début:" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dateDebutPicker" style="-fx-background-color: #FFFFFF; -fx-border-color: #0c666a; -fx-border-radius: 5; -fx-padding: 5;" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <!-- Date Fin -->
+            <Label text="Date Fin:" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dateFinPicker" style="-fx-background-color: #FFFFFF; -fx-border-color: #0c666a; -fx-border-radius: 5; -fx-padding: 5;" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+            <!-- Statut -->
+            <Label text="Statut:" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <TextField fx:id="statusTextField" promptText="Statut" style="-fx-background-color: #FFFFFF; -fx-border-color: #0c666a; -fx-border-radius: 5; -fx-padding: 5;" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+         </GridPane>
+      </center>
+   </BorderPane>
+
+   <!-- Boutons alignés horizontalement -->
+   <HBox spacing="10" alignment="CENTER">
+      <Button text="Ajouter Régime" fx:id="ajouterRegimeButton" onAction="#ajouterRegimeAction" style="-fx-background-color: #c74c0a; -fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-border-radius: 5; -fx-padding: 10 20; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 5,0,0,1 );"/>
+      <Button text="Voir la Liste" fx:id="voirListButton" onAction="#handleVoirListeButton" style="-fx-background-color: #3d8b40; -fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-border-radius: 5; -fx-padding: 10 20; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 5,0,0,1 );"/>
+   </HBox>
+</VBox>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionRegime.controller.Regime.ListeRegimeController" spacing="20" alignment="CENTER" style="-fx-background-color: #FFFFFF; -fx-padding: 20;">
+   <!-- Titre -->
+   <Label text="Liste des Régimes Alimentaires" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #0c666a; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 5,0,0,1 );"/>
+
+   <!-- TableView avec bordure -->
+   <BorderPane style="-fx-border-color: #0c666a; -fx-border-width: 2px; -fx-border-radius: 5px; -fx-padding: 10;">
+      <center>
+         <TableView fx:id="regimeTable" style="-fx-background-color: #FFFFFF; -fx-border-color: #0c666a; -fx-border-radius: 5;">
+            <columns>
+               <TableColumn fx:id="idColumn" text="ID" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;"/>
+               <TableColumn fx:id="objectifColumn" text="Objectif" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;"/>
+               <TableColumn fx:id="caloriesColumn" text="Calories" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;"/>
+               <TableColumn fx:id="proteinesColumn" text="Protéines" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;"/>
+               <TableColumn fx:id="glucidesColumn" text="Glucides" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;"/>
+               <TableColumn fx:id="lipidesColumn" text="Lipides" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;"/>
+               <TableColumn fx:id="dateDebutColumn" text="Date Début" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;"/>
+               <TableColumn fx:id="dateFinColumn" text="Date Fin" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;"/>
+               <TableColumn fx:id="statusColumn" text="Statut" style="-fx-font-size: 14px; -fx-text-fill: #3d8b40;"/>
+            </columns>
+         </TableView>
+      </center>
+   </BorderPane>
+
+   <!-- Boutons alignés horizontalement -->
+   <HBox spacing="10" alignment="CENTER">
+      <Button text="Modifier" onAction="#handleModifierRegimeButton" style="-fx-background-color: #c74c0a; -fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-border-radius: 5; -fx-padding: 10 20; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 5,0,0,1 );"/>
+      <Button text="Supprimer" onAction="#handleSupprimerRegimeButton" style="-fx-background-color: #3d8b40; -fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-border-radius: 5; -fx-padding: 10 20; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 5,0,0,1 );"/>
+      <Button text="Exporter en PDF" fx:id="exportPDFButton" onAction="#handleExportPDF" style="-fx-background-color: #0c666a; -fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-border-radius: 5; -fx-padding: 10 20; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 5,0,0,1 );"/>
+      <Button text="Voir Statistiques" onAction="#handleVoirStatistiquesGlobales" style="-fx-background-color: #0c666a; -fx-text-fill: #FFFFFF; -fx-font-weight: bold; -fx-border-radius: 5; -fx-padding: 10 20; -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 5,0,0,1 );"/>
+   </HBox>
+</VBox>

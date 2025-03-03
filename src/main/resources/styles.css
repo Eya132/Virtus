@@ -1,0 +1,126 @@
+/* Style général de la fenêtre */
+.root {
+    -fx-background-color: #FFFFFF; /* Fond blanc */
+    -fx-font-family: 'Arial'; /* Police par défaut */
+}
+
+/* Style du titre */
+.label {
+    -fx-text-fill: #10888D; /* Couleur turquoise pour le texte */
+    -fx-font-size: 20px; /* Taille de la police */
+    -fx-font-weight: bold; /* Texte en gras */
+}
+
+/* Style de la TableView */
+.table-view {
+    -fx-background-color: #FFFFFF; /* Fond blanc */
+    -fx-border-color: #10888D; /* Bordure turquoise */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 5px; /* Coins arrondis */
+    -fx-padding: 10px; /* Espacement intérieur */
+}
+
+/* Style des en-têtes de colonnes */
+.table-view .column-header-background {
+    -fx-background-color: #10888D; /* Fond turquoise pour les en-têtes */
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+    -fx-font-weight: bold; /* Texte en gras */
+}
+
+.table-view .column-header {
+    -fx-background-color: #10888D; /* Fond turquoise pour chaque en-tête */
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-border-color: #0e777b; /* Bordure turquoise plus foncée entre les colonnes */
+    -fx-border-width: 0 1px 0 0; /* Bordure uniquement à droite */
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+    -fx-font-weight: bold; /* Texte en gras */
+}
+
+/* Style des lignes de la TableView */
+.table-row-cell {
+    -fx-background-color: #FFFFFF; /* Fond blanc par défaut */
+    -fx-border-color: #10888D; /* Bordure turquoise entre les lignes */
+    -fx-border-width: 0 0 1px 0; /* Bordure uniquement en bas */
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f0f8ff; /* Fond bleu clair pour les lignes impaires */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #10888D; /* Fond turquoise pour la ligne sélectionnée */
+    -fx-text-fill: #FFFFFF; /* Texte blanc pour la ligne sélectionnée */
+}
+
+/* Style des boutons */
+.button {
+    -fx-background-color: #10888D; /* Fond turquoise */
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-border-radius: 5px; /* Coins arrondis */
+    -fx-background-radius: 5px; /* Coins arrondis */
+    -fx-padding: 10px 20px; /* Espacement intérieur */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1); /* Ombre légère */
+}
+
+.button:hover {
+    -fx-background-color: #0e777b; /* Fond turquoise plus foncé au survol */
+}
+
+.button:pressed {
+    -fx-background-color: #0c666a; /* Fond turquoise encore plus foncé au clic */
+}
+
+/* Style de la section du bas (boutons) */
+HBox {
+    -fx-background-color: #f0f8ff; /* Fond bleu clair */
+    -fx-padding: 10px; /* Espacement intérieur */
+    -fx-spacing: 10px; /* Espacement entre les boutons */
+    -fx-alignment: center; /* Centrer les boutons */
+}
+
+/* Style supplémentaire pour les boutons d'action (ajouter, modifier, supprimer) */
+.button-action {
+    -fx-background-color: #4CAF50; /* Fond vert */
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+}
+
+.button-action:hover {
+    -fx-background-color: #45a049; /* Fond vert plus foncé au survol */
+}
+
+.button-action:pressed {
+    -fx-background-color: #3d8b40; /* Fond vert encore plus foncé au clic */
+}
+
+/* Style pour les boutons d'annulation */
+.button-cancel {
+    -fx-background-color: #F45E0C; /* Fond orange */
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+}
+
+.button-cancel:hover {
+    -fx-background-color: #e0550b; /* Fond orange plus foncé au survol */
+}
+
+.button-cancel:pressed {
+    -fx-background-color: #c74c0a; /* Fond orange encore plus foncé au clic */
+}
+
+/* Style pour les boutons d'information */
+.button-info {
+    -fx-background-color: #c74c0a;; /* Fond turquoise */
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+}
+
+.button-info:hover {
+    -fx-background-color: #c74c0a;; /* Fond turquoise plus foncé au survol */
+}
+
+.button-info:pressed {
+    -fx-background-color: #c74c0a;; /* Fond turquoise encore plus foncé au clic */
+}

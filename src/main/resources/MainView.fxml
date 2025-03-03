@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionRegime.controller.MainController">
+    <!-- Top: Navbar -->
+    <top>
+        <HBox style="-fx-background-color: #0c666a; -fx-padding: 10; -fx-spacing: 10;">
+            <Button text="Liste des Joueurs" onAction="#switchToPlayerList" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+            <Button text="Liste des Régimes" onAction="#switchToRegimeList" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+            <Button text="Statistiques" onAction="#switchToStatistics" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+        </HBox>
+    </top>
+
+    <!-- Center: Tableau des Joueurs -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <Label text="Liste des Joueurs" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #0c666a;" />
+            <TableView fx:id="playerTable">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" />
+                    <TableColumn fx:id="nameColumn" text="Nom" />
+                    <TableColumn fx:id="ageColumn" text="Âge" />
+                    <TableColumn fx:id="actionColumn" text="Actions" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Right: Chatbot du Nutritionniste -->
+    <right>
+        <VBox spacing="10" style="-fx-padding: 20; -fx-background-color: #f4f4f4;">
+            <Label text="Chat Nutritionniste" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #0c666a;" />
+            <ListView fx:id="chatArea" style="-fx-pref-height: 300px; -fx-pref-width: 250px;" />
+            <TextField fx:id="inputField" promptText="Entrez votre message..." />
+            <Button text="Envoyer" onAction="#sendMessage" style="-fx-background-color: #0c666a; -fx-text-fill: white; -fx-font-weight: bold;" />
+        </VBox>
+    </right>
+</BorderPane>
