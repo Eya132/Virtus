@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.ColumnConstraints?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pidev3a8.controllers.Admin.AjouterUser" stylesheets="/css/styles.css">
+    <!-- Déclarer le ToggleGroup ici -->
+    <fx:define>
+        <ToggleGroup fx:id="genderGroup" />
+    </fx:define>
+
+    <!-- Bouton de retour -->
+    <Button fx:id="backButton" onAction="#goBack" style="-fx-background-color: transparent; -fx-border-color: transparent;" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10">
+        <graphic>
+            <FontAwesomeIconView fx:id="iconView" glyphName="ARROW_LEFT" size="24"/>
+        </graphic>
+    </Button>
+
+    <!-- ScrollPane pour le formulaire -->
+    <ScrollPane AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="50">
+        <GridPane fx:id="formGrid" alignment="CENTER" hgap="10" prefHeight="800" prefWidth="600" vgap="10">
+            <padding>
+                <Insets bottom="20" left="5" right="20" top="40" />
+            </padding>
+
+            <!-- Titre du formulaire -->
+            <Text styleClass="title" text="Ajouter un Utilisateur" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+
+            <!-- Champ Email -->
+            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <!-- Champ Mot de passe -->
+            <Label text="Mot de passe:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <!-- Champ Nom -->
+            <Label text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <!-- Champ Prénom -->
+            <Label text="Prénom:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="prenomField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <!-- Champ Date de naissance -->
+            <Label text="Date de naissance:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <DatePicker fx:id="dobPicker" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <!-- Champ Genre -->
+            <Label text="Genre:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                <RadioButton fx:id="maleRadio" text="Homme" toggleGroup="$genderGroup" />
+                <RadioButton fx:id="femaleRadio" text="Femme" toggleGroup="$genderGroup" />
+            </HBox>
+
+            <!-- Champ Téléphone -->
+            <Label text="Téléphone:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+            <!-- Champ Description -->
+            <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+            <TextArea fx:id="descriptionArea" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+            <!-- Champ Distance maximale -->
+            <Label text="Distance maximale:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+            <TextField fx:id="maxDistanceField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+            <!-- Champ Adresse -->
+            <Label text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+            <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+
+            <!-- Champ Rôle -->
+            <Label text="Rôle:" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+            <ComboBox fx:id="roleCombo" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+
+            <!-- Champ Niveau -->
+            <Label text="Niveau:" GridPane.columnIndex="0" GridPane.rowIndex="12" />
+            <ComboBox fx:id="niveauCombo" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+
+            <!-- Champ Expérience -->
+            <Label text="Expérience:" GridPane.columnIndex="0" GridPane.rowIndex="13" />
+            <ComboBox fx:id="experienceCombo" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+
+            <!-- Champ Salaire -->
+            <Label text="Salaire:" GridPane.columnIndex="0" GridPane.rowIndex="14" />
+            <TextField fx:id="salaryField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+
+            <!-- Champ Premium -->
+            <Label text="Premium:" GridPane.columnIndex="0" GridPane.rowIndex="15" />
+            <CheckBox fx:id="premiumCheck" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+
+            <!-- Champ Pièce jointe -->
+            <Label text="Pièce jointe:" GridPane.columnIndex="0" GridPane.rowIndex="17" />
+            <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="17" fx:id="pieceJointeBox">
+                <Button text="Sélectionner une pièce jointe" onAction="#handleSelectPieceJointe" />
+                <TextField fx:id="pieceJointeField" prefHeight="50.0" prefWidth="350.0" promptText="Pièce jointe" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;">
+                    <font>
+                        <Font size="16" />
+                    </font>
+                </TextField>
+            </HBox>
+
+            <!-- Champ Image -->
+            <Label text="Photo de profil:" GridPane.columnIndex="0" GridPane.rowIndex="16" />
+            <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="16">
+                <ImageView fx:id="imageView" fitHeight="100" fitWidth="100" />
+                <Button text="Sélectionner une image" onAction="#AjouterImageAction" />
+            </HBox>
+
+            <!-- Bouton Ajouter Utilisateur -->
+            <Button fx:id="addUserButton" onAction="#AjouterUser" text="Ajouter Utilisateur" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+
+            <!-- Configuration des colonnes et des lignes -->
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </ScrollPane>
+</AnchorPane>

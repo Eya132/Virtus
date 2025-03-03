@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+    console.log("Chargement du script JavaScript...");
+
+    // Initialiser la carte
+    var map = L.map('map').setView([36.8625, 10.1956], 12);
+    console.log("Carte Leaflet initialisée avec succès.");
+
+    // Ajouter une couche de tuiles OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Ajouter un marqueur par défaut
+    var marker = L.marker([36.8065, 10.1815]).addTo(map);
+    marker.bindPopup("Hello! This is Tunisia.").openPopup();
+    console.log("Marqueur ajouté aux coordonnées : ", marker.getLatLng());
+
+    // Gestion du clic sur la carte
+    map.on('click', function(event) {
+        var latlng = event.latlng;
+        console.log("Coordonnées cliquées :", latlng.lat, latlng.lng);
+
+        // Envoyer les coordonnées à JavaFX
+        if (window.java) {
+            console.log("Envoi des coordonnées à JavaFX...");
+            window.java.setSelectedLocation(latlng.lat, latlng.lng);
+        } else {
+            console.error("window.java n'est pas défini !");
+        }
+
+        // Fermer la fenêtre après la sélection
+        window.close();
+    });
+</script>
+</body>
+</html>

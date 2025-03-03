@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.pidev3a8.controllers.Admin.ListUser" fx:id="rootPane" stylesheets="css/style1.css">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <top>
+        <VBox spacing="10">
+            <HBox alignment="TOP_RIGHT" spacing="10">
+                <padding>
+                    <Insets top="10" right="20" bottom="10"/>
+                </padding>
+                <Button fx:id="btnStats" text="Statistiques"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 15px;"/>
+                <Button fx:id="btnAddUser" text="Ajouter Utilisateur"
+                        style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 15px;"/>
+            </HBox>
+
+            <HBox spacing="10" style="-fx-padding: 10;">
+                <TextField fx:id="searchField" promptText="Rechercher par nom ou email" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 5 10 5 10; -fx-font-size: 14;"/>
+                <Button text="Rechercher" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-padding: 5 20 5 20; -fx-font-size: 14;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" VBox.vgrow="ALWAYS">
+            <TableView fx:id="userTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" />
+                    <TableColumn fx:id="nomColumn" text="Nom" />
+                    <TableColumn fx:id="prenomColumn" text="Prénom" />
+                    <TableColumn fx:id="roleColumn" text="Rôle" />
+                    <TableColumn fx:id="photoColumn" text="Photo" />
+
+                    <TableColumn fx:id="actionColumn" text="Action">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="dummy" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="10"/>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,197 @@
+/* ============================ */
+/* 🌟 Global Styles 🌟 */
+/* ============================ */
+
+.root {
+    -fx-background-color: #f8f9fa; /* Couleur de fond douce */
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* ============================ */
+/* 📌 TableView Styling 📌 */
+/* ============================ */
+
+.table-view {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 8px; /* Bords arrondis */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 8, 0, 0, 2); /* Ombre subtile */
+}
+
+/* 🎯 En-têtes de colonnes */
+.table-view .column-header-background {
+    -fx-background-color: #0078D7; /* Bleu professionnel */
+    -fx-border-radius: 8px 8px 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* 📝 Style des cellules */
+.table-view .table-cell {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 13px;
+    -fx-padding: 12px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1px 0;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* 🏓 Lignes alternées */
+.table-row-cell:odd {
+    -fx-background-color: #f5f5f5;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #ffffff;
+}
+
+/* 🔥 Effet au survol */
+.table-row-cell:hover {
+    -fx-background-color: #e3f2fd; /* Bleu clair */
+    -fx-cursor: hand;
+}
+
+/* 🎯 Sélection */
+.table-row-cell:selected {
+    -fx-background-color: #0078D7;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* ============================ */
+/* 🎨 Boutons 🎨 */
+/* ============================ */
+
+.button {
+    -fx-background-color: #28a745; /* Vert moderne */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: #218838;
+    -fx-cursor: hand;
+}
+
+/* ============================ */
+/* 📦 VBox & Containers 📦 */
+/* ============================ */
+
+.vbox {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 10px;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+}
+
+/* 🖼️ Images */
+.image-view {
+    -fx-border-color: #ddd;
+    -fx-border-width: 2px;
+    -fx-border-radius: 75px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 0);
+}
+
+/* ============================ */
+/* ✅ Sidebar et autres ✅ */
+/* ============================ */
+
+.sidebar {
+    -fx-background-color: #343a40;
+}
+
+.bt {
+    -fx-background-color: transparent;
+}
+
+.bt:hover {
+    -fx-background-color: darkseagreen;
+}
+/* styles.css */
+
+/* Style général pour les boutons du navbar */
+.navbar-button {
+    -fx-background-color: transparent; /* Fond transparent */
+    -fx-text-fill: white; /* Texte blanc */
+    -fx-font-size: 16px; /* Taille de police */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-padding: 10px 20px; /* Espacement interne */
+    -fx-border-radius: 5px; /* Coins arrondis */
+    -fx-cursor: hand; /* Curseur en forme de main */
+}
+
+/* Style pour les boutons sélectionnés */
+.navbar-button:selected {
+    -fx-background-color: #606060; /* Fond gris foncé */
+    -fx-text-fill: white; /* Texte blanc */
+}
+
+/* Style pour les boutons au survol */
+.navbar-button:hover {
+    -fx-background-color: #505050; /* Fond gris légèrement plus clair */
+    -fx-text-fill: white; /* Texte blanc */
+}
+.title-text {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-fill: #333;
+    -fx-padding: 10px;
+}
+
+.styled-list-view {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+}
+
+.list-cell {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+}
+
+.list-cell:hover {
+    -fx-background-color: #e6f7ff;
+}
+
+/* styles.css */
+.text-field {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 14;
+}
+
+.text-field:focused {
+    -fx-border-color: #4CAF50;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-padding: 5 20 5 20;
+    -fx-font-size: 14;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}

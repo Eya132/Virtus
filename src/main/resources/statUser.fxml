@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+
+
+<?import javafx.scene.control.ToggleGroup?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.pidev3a8.controllers.Admin.StatUser">
+
+
+    <children>
+
+        <!-- PieChart pour afficher les statistiques sur l'âge des utilisateurs -->
+        <PieChart fx:id="agePieChart" layoutX="10.0" layoutY="10.0" prefHeight="380.0" prefWidth="580.0" />
+
+        <!-- Bouton pour exporter en PDF -->
+        <Button fx:id="btnExportPDF" text="Exporter en PDF" layoutX="450.0" layoutY="350.0" onAction="#exporterEnPDF" />
+
+        <!-- Bouton pour retourner à la liste des utilisateurs -->
+
+        <Button fx:id="retour" onAction="#goBack" style="-fx-background-color: transparent; -fx-border-color: transparent;" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10">
+            <graphic>
+                <FontAwesomeIconView fx:id="iconView" glyphName="ARROW_LEFT" size="24"/>
+            </graphic>
+        </Button>
+    </children>
+</AnchorPane>

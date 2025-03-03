@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+
+<?import javafx.scene.layout.HBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<ScrollPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.pidev3a8.controllers.Admin.AfficherUser"
+            stylesheets="css/styles.css"
+            fitToWidth="true"
+            fitToHeight="true">
+
+    <content>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+
+            <HBox alignment="TOP_LEFT">
+                <Button fx:id="backButton" onAction="#goBack"
+                        style="-fx-background-color: transparent; -fx-border-color: transparent;">
+                    <graphic>
+                        <FontAwesomeIconView fx:id="iconView" />
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <Label text="Détails de l'utilisateur" style="-fx-font-size: 18;" />
+            <Label fx:id="idLabel" text="ID: " />
+            <Label fx:id="nomLabel" text="Nom: " />
+            <Label fx:id="prenomLabel" text="Prénom: " />
+            <Label fx:id="emailLabel" text="Email: " />
+            <Label fx:id="roleLabel" text="Rôle: " />
+            <Label fx:id="dateNaissanceLabel" text="Date de naissance: " />
+            <Label fx:id="sexeLabel" text="Sexe: " />
+            <Label fx:id="telephoneLabel" text="Téléphone: " />
+            <Label fx:id="descriptionLabel" text="Description: " />
+            <Label fx:id="adresseLabel" text="Adresse: " />
+            <Label fx:id="salaireLabel" text="Salaire: " />
+            <Label fx:id="niveauJoueurLabel" text="Niveau joueur: " />
+            <Label fx:id="experienceLabel" text="Expérience: " />
+            <Label fx:id="photoLabel" text="Photo: " />
+            <ImageView fx:id="photoImageView" fitHeight="150" fitWidth="150" preserveRatio="true" />
+
+        </VBox>
+    </content>
+</ScrollPane>

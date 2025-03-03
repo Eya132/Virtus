@@ -1,0 +1,347 @@
+.title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 0 0 20 0;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.text-field, .password-field, .text-area, .combo-box, .date-picker {
+    -fx-background-color: #f2f2f2;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 4px;
+    -fx-padding: 5px;
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+/* Style de base pour le TableView */
+/* Style de base pour le TableView */
+.table-view {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #e0e0e0; /* Bordure grise légère */
+    -fx-border-width: 1px;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 1); /* Ombre légère */
+}
+
+/* Style des en-têtes de colonnes */
+.table-view .column-header-background {
+    -fx-background-color: #2c3e50; /* Fond bleu foncé */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0; /* Pas de bordure arrondie */
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-color: #34495e; /* Bordure entre les colonnes */
+    -fx-border-width: 0 1px 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10px;
+}
+
+/* Style des cellules */
+.table-view .table-cell {
+    -fx-text-fill: #2c3e50; /* Texte bleu foncé */
+    -fx-font-size: 13px;
+    -fx-padding: 10px;
+    -fx-border-color: #e0e0e0; /* Bordure grise légère entre les cellules */
+    -fx-border-width: 0 0 1px 0;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Style des lignes impaires */
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9; /* Fond gris très clair */
+}
+
+/* Style des lignes paires */
+.table-row-cell:even {
+    -fx-background-color: #ffffff; /* Fond blanc */
+}
+
+/* Style des lignes au survol */
+.table-row-cell:hover {
+    -fx-background-color: #ecf0f1; /* Fond gris clair au survol */
+    -fx-cursor: hand; /* Curseur en forme de main */
+}
+
+/* Style des lignes sélectionnées */
+.table-row-cell:selected {
+    -fx-background-color: #3498db; /* Fond bleu clair */
+    -fx-text-fill: white; /* Texte blanc */
+}
+
+/* Style des bordures des cellules */
+.table-view .table-cell {
+    -fx-border-color: #e0e0e0; /* Bordure grise légère */
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* Style du VBox contenant le TableView */
+.vbox {
+    -fx-background-color: #f4f6f7; /* Fond gris très clair */
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+}
+
+/* Style des boutons (si vous en ajoutez plus tard) */
+.button {
+    -fx-background-color: #3498db; /* Fond bleu clair */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1); /* Ombre légère */
+}
+
+.button:hover {
+    -fx-background-color: #2980b9; /* Fond bleu plus foncé au survol */
+    -fx-cursor: hand; /* Curseur en forme de main */
+}
+/* Style général de la fenêtre */
+.root {
+    -fx-background-color: #f4f4f4; /* Couleur de fond */
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+/* Style du VBox principal */
+.vbox {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0); /* Ombre portée */
+    -fx-padding: 20px;
+}
+
+/* Style de l'ImageView (photo de l'utilisateur) */
+.image-view {
+    -fx-border-color: #ddd; /* Bordure grise */
+    -fx-border-width: 2px;
+    -fx-border-radius: 75px; /* Bordure arrondie pour un effet cercle */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 0); /* Ombre portée */
+}
+
+/* Style des labels (titres) */
+.label-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Couleur de texte sombre */
+}
+
+/* Style des labels (valeurs) */
+.label-value {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555; /* Couleur de texte gris */
+    -fx-padding: 5px 0;
+}
+
+/* Style du HBox contenant l'image */
+.hbox {
+    -fx-alignment: center;
+    -fx-padding: 0 0 20px 0; /* Espacement en bas */
+}
+
+/* Style pour les séparateurs (optionnel) */
+.separator {
+    -fx-padding: 10px 0;
+}
+
+/* Style pour les boutons (optionnel) */
+.button {
+    -fx-background-color: #4CAF50; /* Couleur verte */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 0); /* Ombre portée */
+}
+
+.button:hover {
+    -fx-background-color: #45a049; /* Couleur verte plus foncée au survol */
+}
+/* styles.css */
+
+/* Style général de la fenêtre */
+.root {
+    -fx-background-color: #f4f4f4;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* Style des labels */
+.label {
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+/* Style des champs de texte */
+.text-field, .password-field, .text-area, .comboBox, .date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused, .comboBox:focused, .date-picker:focused {
+    -fx-border-color: #0078d7;
+    -fx-border-width: 2px;
+}
+
+/* Style des boutons */
+.button {
+    -fx-background-color: #0078d7;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #005bb5;
+}
+
+.button:pressed {
+    -fx-background-color: #004080;
+}
+
+/* Style de la ScrollPane */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Style de la ImageView */
+.image-view {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);
+}
+
+/* Style de la CheckBox */
+.check-box {
+    -fx-text-fill: #333333;
+}
+
+.check-box .box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 3px;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #0078d7;
+}
+
+/* Style du TextArea */
+.text-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+}
+
+.text-area .content {
+    -fx-background-color: #ffffff;
+}
+
+/* Style du DatePicker */
+.date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #0078d7;
+    -fx-background-radius: 5px;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-background-color: #005bb5;
+}
+
+.date-picker .arrow {
+    -fx-background-color: #ffffff;
+}
+.parent {
+    -fx-background-color: #fff
+}
+.sidebar {
+    -fx-background-color: gray
+}
+.bt {
+    -fx-background-color: transparent
+}
+.bt:hover {
+    -fx-background-color: darkseagreen
+}
+.box {
+
+}
+
+.root {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 20;
+}
+
+.title-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.text-field {
+    -fx-pref-width: 300px;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+}
+
+.error-message {
+    -fx-text-fill: red;
+    -fx-font-size: 12px;
+}

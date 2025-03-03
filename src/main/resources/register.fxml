@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.animation.FadeTransition?>
+<?import javafx.util.Duration?>
+<?import javafx.scene.input.MouseEvent?>
+<?import javafx.scene.effect.BlurType?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.web.WebView?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="css/styles.css" fx:controller="edu.pidev3a8.controllers.Auth.Register">
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <VBox alignment="CENTER" spacing="25" prefWidth="500" BorderPane.alignment="CENTER">
+                <Rectangle arcWidth="20" arcHeight="20" width="450" height="600" fill="WHITE">
+                    <effect>
+                        <DropShadow radius="10" color="#00000080" />
+                    </effect>
+                </Rectangle>
+                <VBox alignment="CENTER" spacing="20" layoutX="25" layoutY="25" prefWidth="400">
+                    <Text fill="#404040" strokeType="OUTSIDE" strokeWidth="0.0" text="📝 User Registration" wrappingWidth="300">
+                        <font>
+                            <Font name="System Bold" size="32.0" />
+                        </font>
+                    </Text>
+
+                    <!-- Champ pour sélectionner une image -->
+                    <!-- Champ pour sélectionner une image -->
+                    <HBox alignment="CENTER" spacing="10">
+                        <Button fx:id="selectImageButton" mnemonicParsing="false" text="Select Image" onAction="#handleSelectImage">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <Button fx:id="openCameraButton" mnemonicParsing="false" text="Open Camera" onAction="#handleOpenCamera">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <ImageView fx:id="userImageView" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" />
+                    </HBox>
+
+                    <TextField fx:id="email" prefHeight="50.0" prefWidth="350.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;">
+                        <font>
+                            <Font size="16" />
+                        </font>
+                    </TextField>
+                    <TextField fx:id="nom" prefHeight="50.0" prefWidth="350.0" promptText="Nom" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;">
+                        <font>
+                            <Font size="16" />
+                        </font>
+                    </TextField>
+                    <TextField fx:id="prenom" prefHeight="50.0" prefWidth="350.0" promptText="Prenom" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;">
+                        <font>
+                            <Font size="16" />
+                        </font>
+                    </TextField>
+                    <TextField fx:id="telephone" prefHeight="50.0" prefWidth="350.0" promptText="Telephone" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;">
+                        <font>
+                            <Font size="16" />
+                        </font>
+                    </TextField>
+                    <HBox>
+                        <TextField fx:id="adresse" prefHeight="50.0" prefWidth="350.0" promptText="Adresse" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;">
+                            <font>
+                                <Font size="16" />
+                            </font>
+                        </TextField>
+                        <Button text="Sélectionner sur la carte" onAction="#handleOpenMap" />
+                    </HBox>
+                    <WebView fx:id="mapWebView" prefWidth="600" prefHeight="400" visible="false"/>
+                    <HBox alignment="CENTER" spacing="5">
+                        <DatePicker fx:id="dateNaissancePicker" prefHeight="50.0" prefWidth="175.0" promptText="Date de Naissance" />
+                        <ComboBox fx:id="sexeComboBox" prefHeight="50.0" prefWidth="175.0" promptText="Sexe" />
+                    </HBox>
+                    <StackPane alignment="CENTER">
+                        <PasswordField fx:id="passwordField" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;" visible="true">
+                            <font>
+                                <Font size="16" />
+                            </font>
+                        </PasswordField>
+                        <TextField fx:id="passwordTextField" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;" visible="false">
+                            <font>
+                                <Font size="16" />
+                            </font>
+                        </TextField>
+                    </StackPane>
+                    <StackPane alignment="CENTER">
+                        <PasswordField fx:id="confirmPasswordField" prefHeight="50.0" prefWidth="300.0" promptText="Confirm Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;" visible="true">
+                            <font>
+                                <Font size="16" />
+                            </font>
+                        </PasswordField>
+                        <TextField fx:id="confirmPasswordTextField" prefHeight="50.0" prefWidth="300.0" promptText="Confirm Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;" visible="false">
+                            <font>
+                                <Font size="16" />
+                            </font>
+                        </TextField>
+                    </StackPane>
+                    <Text fx:id="passwordError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match" visible="false">
+                        <font>
+                            <Font size="14" />
+                        </font>
+                    </Text>
+                    <Button fx:id="togglePasswordButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" >
+                        <graphic>
+                            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="/icones/eye.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Button>
+                    <HBox alignment="CENTER" spacing="20">
+                        <VBox fx:id="joueurCard" alignment="CENTER" spacing="10" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-padding: 20;" onMouseClicked="#selectJoueur">
+                            <effect>
+                                <DropShadow radius="5" color="#00000080" />
+                            </effect>
+                            <Text fill="#404040" strokeType="OUTSIDE" strokeWidth="0.0" text="Joueur" wrappingWidth="100">
+                                <font>
+                                    <Font name="System Bold" size="20.0" />
+                                </font>
+                            </Text>
+                            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="/icones/tennis-player.png"/>
+                                </image>
+                            </ImageView>
+                        </VBox>
+                        <VBox fx:id="nutritionnisteCard" alignment="CENTER" spacing="10" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-padding: 20;" onMouseClicked="#selectNutritionniste">
+                            <effect>
+                                <DropShadow radius="5" color="#00000080" />
+                            </effect>
+                            <Text fill="#404040" strokeType="OUTSIDE" strokeWidth="0.0" text="Nutritionniste" wrappingWidth="100">
+                                <font>
+                                    <Font name="System Bold" size="20.0" />
+                                </font>
+                            </Text>
+                            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="/icones/nutritionniste.png"/>
+                                </image>
+                            </ImageView>
+                        </VBox>
+                    </HBox>
+                    <ComboBox fx:id="niveauComboBox" prefHeight="50.0" prefWidth="350.0" promptText="Niveau" visible="false"  />
+                    <ComboBox fx:id="experienceComboBox" prefHeight="50.0" prefWidth="350.0" promptText="Experience" visible="false" />
+                    <HBox alignment="CENTER" spacing="10" visible="false" fx:id="pieceJointeBox">
+                        <Button fx:id="selectPieceJointeButton" mnemonicParsing="false" text="Select Piece Jointe" onAction="#handleSelectPieceJointe">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <TextField fx:id="pieceJointeTextField" prefHeight="50.0" prefWidth="350.0" promptText="Piece Jointe" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px; -fx-padding: 10px;">
+                            <font>
+                                <Font size="16" />
+                            </font>
+                        </TextField>
+                    </HBox>
+
+                    <CheckBox fx:id="termsCheckBox" text="En m'inscrivant, j'accepte les conditions générales et la politique de protection de données" style="-fx-text-fill: #404040; -fx-font-size: 14;">
+                        <font>
+                            <Font size="14" />
+                        </font>
+                    </CheckBox>
+                    <Text fx:id="confirmationMessage" fill="GREEN" visible="false" />
+
+
+
+                    <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
+                            style="-fx-background-color: linear-gradient(to right, #404040, #606060);
+               -fx-background-radius: 25px; -fx-text-fill: white; -fx-font-size: 16;"
+                            onAction="#handleRegister">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                        Register
+                    </Button>
+
+                    <HBox alignment="CENTER" spacing="10">
+                        <Text fill="#404040" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?">
+                            <font>
+                                <Font size="14" />
+                            </font>
+                        </Text>
+
+                        <Button fx:id="LoginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0"
+                                style="-fx-background-color: transparent; -fx-text-fill: #404040; -fx-font-size: 14; -fx-underline: true;"
+                                onAction="#handleLoginButtonAction">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            Login
+                        </Button>
+
+
+
+
+
+                    </HBox>
+                    <Text fx:id="errorMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Erreur d'inscription" visible="false">
+                        <font>
+                            <Font size="14" />
+                        </font>
+                    </Text>
+                </VBox>
+                <padding>
+                    <Insets top="40" right="40" bottom="40" left="40" />
+                </padding>
+            </VBox>
+        </ScrollPane>
+    </center>
+    <left>
+        <AnchorPane prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: linear-gradient(to bottom, #404040, #202020);" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" spacing="10" layoutX="50" layoutY="200">
+                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="🚀 MATCHMATE" wrappingWidth="400">
+                        <font>
+                            <Font name="System Bold" size="54.0" />
+                        </font>
+                    </Text>
+                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Train smart. Eat right. Shop better." wrappingWidth="400">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </Text>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </left>
+</BorderPane>

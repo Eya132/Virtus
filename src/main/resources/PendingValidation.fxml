@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.pidev3a8.controllers.Admin.PendingValidationController">
+    <children>
+        <Text text="Veuillez vérifier votre compte de nouveau" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        <Text text="Votre compte a été créé, mais votre diplôme n'a pas été reconnu." style="-fx-font-size: 18px;" />
+        <Button text="Retour à l'accueil" onAction="#handleReturnToHome" />
+    </children>
+</VBox>

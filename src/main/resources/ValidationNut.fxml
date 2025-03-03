@@ -1,0 +1,12 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.text.Text?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.pidev3a8.controllers.Admin.ValidationNut"
+      stylesheets="@/css/style1.css">
+    <children>
+        <Text fx:id="welcomeText" text="Bienvenue sur le tableau de bord nutritionniste !"
+              styleClass="title-text"/>
+        <ListView fx:id="validationListView" styleClass="styled-list-view"/>
+    </children>
+</VBox>

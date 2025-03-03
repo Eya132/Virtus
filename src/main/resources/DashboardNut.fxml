@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.pidev3a8.controllers.Dashbord.DashboardNut">
+    <children>
+        <Text text="Bienvenue !" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        <Text text="Votre compte a été validé avec succès." style="-fx-font-size: 18px;" />
+    </children>
+</VBox>

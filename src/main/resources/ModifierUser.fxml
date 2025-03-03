@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="edu.pidev3a8.controllers.Admin.UpdateUser" stylesheets="css/styles.css">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <top>
+        <HBox alignment="TOP_LEFT">
+            <Button fx:id="backButton" onAction="#goBack" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+                <graphic>
+                    <FontAwesomeIconView fx:id="iconView" />
+                </graphic>
+            </Button>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <VBox spacing="10" fillWidth="true">
+                <!-- Champ ID -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="ID:" style="-fx-min-width: 100;"/>
+                    <TextField fx:id="idField" editable="false" style="-fx-background-color: lightgray;" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <!-- Nom et Prénom -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Nom:" style="-fx-min-width: 100;"/>
+                    <TextField fx:id="nomField" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Prénom:" style="-fx-min-width: 100;"/>
+                    <TextField fx:id="prenomField" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <!-- Email et Mot de passe -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Email:" style="-fx-min-width: 100;"/>
+                    <TextField fx:id="emailField" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Mot de passe:" style="-fx-min-width: 100;"/>
+                    <PasswordField fx:id="passwordField" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <!-- Date de naissance et Sexe -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Date de naissance:" style="-fx-min-width: 100;"/>
+                    <DatePicker fx:id="dateNaissancePicker" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Sexe:" style="-fx-min-width: 100;"/>
+                    <ComboBox fx:id="sexeComboBox" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <!-- Téléphone et Adresse -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Téléphone:" style="-fx-min-width: 100;"/>
+                    <TextField fx:id="telephoneField" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Adresse:" style="-fx-min-width: 100;"/>
+                    <TextField fx:id="adresseField" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <!-- Rôle et Niveau joueur -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Rôle:" style="-fx-min-width: 100;"/>
+                    <ComboBox fx:id="roleComboBox" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Niveau joueur:" style="-fx-min-width: 100;"/>
+                    <ComboBox fx:id="niveauComboBox" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <!-- Expérience et Salaire -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Expérience:" style="-fx-min-width: 100;"/>
+                    <ComboBox fx:id="experienceComboBox" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Salaire:" style="-fx-min-width: 100;"/>
+                    <TextField fx:id="salaireField" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <!-- Premium et Description -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Premium:" style="-fx-min-width: 100;"/>
+                    <CheckBox fx:id="premiumCheckBox"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Description:" style="-fx-min-width: 100;"/>
+                    <TextArea fx:id="descriptionField" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+                </HBox>
+
+                <!-- Distance max et Photo -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Distance max:" style="-fx-min-width: 100;"/>
+                    <TextField fx:id="maxDistanceField" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Photo:" style="-fx-min-width: 100;"/>
+                    <ImageView fx:id="photoView" fitWidth="100" fitHeight="100" preserveRatio="true"/>
+                    <Button text="Choisir une photo" fx:id="choosePhotoButton" onAction="#choosePhoto"/>
+                </HBox>
+
+                <!-- Bouton de mise à jour -->
+                <Button text="Mettre à jour" fx:id="updateButton" onAction="#updateUser" alignment="CENTER" style="-fx-min-width: 200;"/>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
