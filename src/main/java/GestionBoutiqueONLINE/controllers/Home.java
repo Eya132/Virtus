@@ -19,7 +19,10 @@ public class Home extends Application {
     public void start(Stage stage)  {
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/ListeCommandesAdmin.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/ListeProduits.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/ListeCommandesAdmin.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/ClientProduit.fxml"));
+
             Scene scene = new Scene(root);//objet qui presente le fichier fxml
             stage.setScene(scene);//presenter cette scene
             //stage.setFullScreen(true);

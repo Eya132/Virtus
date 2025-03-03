@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class DetailsProduitsClientController {
 
-
     @FXML
     private Label nomLabel;
 
@@ -30,16 +29,25 @@ public class DetailsProduitsClientController {
     private Label descriptionLabel;
 
     @FXML
+    private Label refLabel;
+
+    @FXML
     private Label stockLabel;
 
     private Produit produit; // Pour stocker le produit actuel
+    private String deviseActuelle = "TND"; // Devise par défaut
 
-    public void afficherDetails(Produit produit) {
+    public void afficherDetails(Produit produit, String devise, int prix) {
         this.produit = produit; // Stocker le produit
+        this.deviseActuelle = devise; // Stocker la devise actuelle
+
         nomLabel.setText(produit.getNomProduit());
         imageView.setImage(new Image(produit.getImageProduit()));
-        prixLabel.setText(String.format("%d TND", produit.getPrixProduit())); // Prix en TND
         descriptionLabel.setText(produit.getDescriptionProduit());
+        refLabel.setText(produit.getRefProduit());
+
+        // Afficher le prix tel quel avec la devise
+        prixLabel.setText(String.format("%d %s", prix, deviseActuelle));
 
         // Indicateur de stock
         if (produit.getQuantiteProduit() > 0) {
@@ -83,6 +91,7 @@ public class DetailsProduitsClientController {
         alert.setHeaderText(message);
         alert.showAndWait();
     }
+
     @FXML
     void AnnulerAction() {
         nomLabel.getScene().getWindow().hide();

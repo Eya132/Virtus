@@ -7,6 +7,11 @@ public class Commande {
         EN_ATTENTE, VALIDÉE, ANNULÉE
     }
 
+    public Commande(int idProduit, int quantiteCommande) {
+        this.idProduit = idProduit;
+        this.quantiteCommande = quantiteCommande;
+    }
+
     private int idCommande;
     private LocalDateTime dateCommande;
     private int quantiteCommande;

@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Spinner?>
 <VBox prefHeight="570.0" prefWidth="459.0" spacing="10" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionBoutiqueONLINE.controllers.AjouterCommandeClientController">
     <children>
         <!-- Nom du produit -->
@@ -22,11 +23,13 @@
 
         <!-- Quantité à commander -->
         <Label style="-fx-font-weight: bold;" text="Quantité : ">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
-        <TextField fx:id="quantiteField" prefHeight="26.0" prefWidth="330.0" />
+
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Label>
+        <!-- Remplacement du TextField par un Spinner -->
+        <Spinner fx:id="quantiteSpinner" prefWidth="330.0" />
 
         <!-- Bouton pour valider la commande -->
         <Button onAction="#validerCommande" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-min-width: 120; -fx-min-height: 30;" text="Valider la commande" />

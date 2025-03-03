@@ -21,6 +21,9 @@ public class DetailsProduitController {
     private Label DescriptionLabel;
 
     @FXML
+    private Label RefLabel;
+
+    @FXML
     private ImageView ImageViewProduit;
 
     public void afficherDetails(Produit produit) {
@@ -28,6 +31,8 @@ public class DetailsProduitController {
         PrixLabel.setText(String.valueOf(produit.getPrixProduit()) + " TND");
         QuantiteLabel.setText("Stock: " + produit.getQuantiteProduit());
         DescriptionLabel.setText(produit.getDescriptionProduit());
+        RefLabel.setText(produit.getRefProduit());
+
         if (produit.getImageProduit() != null) {
             ImageViewProduit.setImage(new Image(produit.getImageProduit()));
         }

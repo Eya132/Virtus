@@ -9,6 +9,7 @@ public class Produit {
     private int prixProduit;
     private int quantiteProduit;
     private String imageProduit;
+    private String refProduit;
 
     public Produit() {}
 
@@ -20,13 +21,31 @@ public class Produit {
         this.imageProduit = imageProduit;
     }
 
-    public Produit(int idProduit, String nomProduit, String descriptionProduit, int prixProduit, int quantiteProduit, String imageProduit) {
+    public Produit(String nomProduit, String descriptionProduit, int prixProduit, int quantiteProduit, String imageProduit, String refProduit) {
+        this.nomProduit = nomProduit;
+        this.descriptionProduit = descriptionProduit;
+        this.prixProduit = prixProduit;
+        this.quantiteProduit = quantiteProduit;
+        this.imageProduit = imageProduit;
+        this.refProduit = refProduit;
+    }
+
+    public Produit(int idProduit, String nomProduit, String descriptionProduit, int prixProduit, int quantiteProduit, String imageProduit, String refProduit) {
         this.idProduit = idProduit;
         this.nomProduit = nomProduit;
         this.descriptionProduit = descriptionProduit;
         this.prixProduit = prixProduit;
         this.quantiteProduit = quantiteProduit;
         this.imageProduit = imageProduit;
+        this.refProduit = refProduit;
+    }
+
+    public String getRefProduit() {
+        return refProduit;
+    }
+
+    public void setRefProduit(String refProduit) {
+        this.refProduit = refProduit;
     }
 
     public String getImageProduit() {
@@ -76,6 +95,9 @@ public class Produit {
     public void setQuantiteProduit(int quantiteProduit) {
         this.quantiteProduit = quantiteProduit;
     }
+    public int getPrixCalcule() {
+        return this.prixProduit * this.quantiteProduit;
+    }
 
     @Override
     public String toString() {
@@ -87,6 +109,7 @@ public class Produit {
                 ", quantiteProduit=" + quantiteProduit +
                 ", descriptionProduit='" + descriptionProduit +
                 ", imageProduit='" + imageProduit + '\'' +
+                ", refProduit='" + refProduit + '\'' +
                 '}';
     }
 }

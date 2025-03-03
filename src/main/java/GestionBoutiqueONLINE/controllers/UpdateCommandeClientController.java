@@ -78,23 +78,53 @@ public class UpdateCommandeClientController {
 
     @FXML
     void UpdateAction() {
+
         String quantiteText = QuantiteTextField.getText();
         Produit produit = produitService.getProduitById(commande.getIdProduit());
+
+        // Vérifier si la quantité est vide
         if (quantiteText.isEmpty()) {
             afficherAlerte("Erreur", "❌ Veuillez saisir une quantité.");
             return;
         }
-        int quantite = Integer.parseInt(quantiteText);
-        if (quantite <= 0) {
+
+        int nouvelleQuantite = Integer.parseInt(quantiteText);
+
+        // Vérifier si la quantité est valide
+        if (nouvelleQuantite <= 0) {
             afficherAlerte("Erreur", "❌ La quantité doit être supérieure à zéro.");
             return;
+        } else if (nouvelleQuantite > produit.getQuantiteProduit() + commande.getQuantiteCommande()) {
+            afficherAlerte("Erreur", "❌ Vous ne pouvez pas commander plus que " + (produit.getQuantiteProduit() + commande.getQuantiteCommande()));
+            return;
         }
-        else if (quantite > produit.getQuantiteProduit()) {
-            afficherAlerte("Erreur", "❌ Vous ne pouvez pas commander plus que " + produit.getQuantiteProduit());}
-        else{commande.setQuantiteCommande(quantite);
+
+        // Récupérer la quantité initiale de la commande
+        int quantiteInitiale = commande.getQuantiteCommande();
+
+        // Calculer la différence entre la quantité initiale et la nouvelle quantité
+        int differenceQuantite = quantiteInitiale - nouvelleQuantite;
+
+        // Mettre à jour la commande avec la nouvelle quantité
+        commande.setQuantiteCommande(nouvelleQuantite);
         commandeService.updateCommande(commande.getIdCommande(), commande);
+
+        // Mettre à jour la quantité du produit en fonction de la différence
+        int nouvelleQuantiteProduit = produit.getQuantiteProduit() + differenceQuantite;
+        produit.setQuantiteProduit(nouvelleQuantiteProduit);
+        produitService.updateProduit(produit.getIdProduit(), produit);
+
+        // Vérifier si la quantité du produit est devenue 0
+        if (nouvelleQuantiteProduit == 0) {
+            afficherAlerte("Information", "⚠️ La quantité du produit est maintenant épuisée. Vous ne pouvez plus modifier cette commande.");
+        }
+
+        // Afficher un message de succès
         afficherAlerte("Succès", "✅ Commande mise à jour avec succès !");
-        QuantiteTextField.getScene().getWindow().hide();}
+
+        // Fermer la fenêtre après la mise à jour
+        QuantiteTextField.getScene().getWindow().hide();
+
     }
 
     private void afficherAlerte(String titre, String message) {

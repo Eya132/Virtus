@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +14,18 @@
         <Label fx:id="nomLabel" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
         <!-- Image du produit -->
-        <ImageView fx:id="imageView" fitHeight="213.0" fitWidth="305.0" preserveRatio="true" />
+        <ImageView fx:id="imageView" fitHeight="234.0" fitWidth="337.0" preserveRatio="true">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin></ImageView>
+        <HBox spacing="10">
+            <Label style="-fx-font-weight: bold;" text="Réference du Produit : ">
+                <font>
+                    <Font name="Copperplate Gothic Bold" size="18.0" />
+                </font>
+            </Label>
+            <Label fx:id="refLabel" />
+        </HBox>
 
         <!-- Prix du produit en TND -->
         <HBox spacing="10">
@@ -24,6 +36,7 @@
             </Label>
             <Label fx:id="prixLabel" />
         </HBox>
+
 
         <!-- Description du produit -->
         <HBox spacing="10">
@@ -45,11 +58,11 @@
             <Label fx:id="stockLabel" />
         </HBox>
         <HBox spacing="10">
-            <Button onAction="#commanderProduit" text="Commander" textFill="WHITE" style="-fx-background-color: #4CAF50">
+            <Button onAction="#commanderProduit" style="-fx-background-color: #4CAF50" text="Commander" textFill="WHITE">
                 <font>
                     <Font name="Copperplate Gothic Bold" size="11.0" />
                 </font></Button>
-            <Button onAction="#AnnulerAction" text="Annuler" textFill="WHITE" style="-fx-background-color: #FF0000">
+            <Button onAction="#AnnulerAction" style="-fx-background-color: #FF0000" text="Annuler" textFill="WHITE">
                 <font>
                     <Font name="Copperplate Gothic Bold" size="11.0" />
                 </font></Button>

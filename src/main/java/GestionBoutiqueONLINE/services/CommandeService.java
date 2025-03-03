@@ -1,6 +1,7 @@
 package GestionBoutiqueONLINE.services;
 
 import GestionBoutiqueONLINE.entities.Commande;
+import GestionBoutiqueONLINE.entities.Produit;
 import GestionBoutiqueONLINE.interfaces.ICommande;
 import GestionBoutiqueONLINE.tools.MyConnection;
 
@@ -8,8 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CommandeService implements ICommande<Commande> {
 
@@ -51,7 +51,6 @@ public class CommandeService implements ICommande<Commande> {
         } catch (SQLException e) {
             System.out.println("❌ Erreur lors de la suppression de la commande : " + e.getMessage());
         }
-
 
 
     }
@@ -101,7 +100,9 @@ public class CommandeService implements ICommande<Commande> {
             System.out.println("❌ Erreur lors de la récupération des commandes : " + e.getMessage());
         }
 
-        return result;    }
+        return result;
+    }
+
     public List<Commande> getCommandesByUserId(int idUser) {
         List<Commande> commandes = new ArrayList<>();
         String requete = "SELECT * FROM commande WHERE idUser = ?";  // Requête pour récupérer les commandes de l'utilisateur
@@ -133,6 +134,28 @@ public class CommandeService implements ICommande<Commande> {
         }
 
         return commandes;  // Retourner la liste des commandes récupérées
+    }
+
+    private Map<String, Integer> getProduitsLesPlusCommandes() {
+        Map<String, Integer> produitsCommandes = new HashMap<>();
+        try {
+            String query = "SELECT p.nomProduit, SUM(c.quantiteCommande) as totalQuantite " +
+                    "FROM commande c " +
+                    "JOIN produit p ON c.idProduit = p.idProduit " +
+                    "GROUP BY p.nomProduit " +
+                    "ORDER BY totalQuantite DESC";
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                String nomProduit = rs.getString("nomProduit");
+                int totalQuantite = rs.getInt("totalQuantite");
+                produitsCommandes.put(nomProduit, totalQuantite);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des produits les plus commandés : " + e.getMessage());
+        }
+        return produitsCommandes;
     }
 
 

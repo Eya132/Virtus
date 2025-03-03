@@ -19,7 +19,7 @@ public class MyConnection {
         return instance;
     }
 
-    private MyConnection() {           //private pour limiter la connextion  creation d'un patren d'instanciation Singleton
+    private MyConnection() {     //private pour limiter la connextion  creation d'un patron d'instanciation Singleton
         try {
             cnx= DriverManager.getConnection(url, login, pwd);
             System.out.println("connection established");

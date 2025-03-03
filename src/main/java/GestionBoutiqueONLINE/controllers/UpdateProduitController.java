@@ -117,6 +117,14 @@ public class UpdateProduitController {
             return;
         }
 
+        // Vérifier l'unicité du produit (en excluant le produit actuel)
+        ProduitService produitService = new ProduitService();
+        if (produitService.produitExisteDeja(produit.getNomProduit(),produit.getIdProduit()))
+        {
+            afficherAlerte("Erreur", "❌ Un produit avec ce nom existe déjà.");
+            return;
+        }
+
         int prix = Integer.parseInt(prixText);
         int quantite = Integer.parseInt(quantiteText);
 
@@ -128,7 +136,6 @@ public class UpdateProduitController {
         produit.setImageProduit(imagePath);
 
         // Mettre à jour le produit dans la base de données
-        ProduitService produitService = new ProduitService();
         produitService.updateProduit(produit.getIdProduit(), produit);
 
         // Affichage d'un message de succès

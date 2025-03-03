@@ -76,19 +76,19 @@
                 @Override
                 public TableCell<Commande, Void> call(TableColumn<Commande, Void> param) {
                     return new TableCell<>() {
-                        private final Button traiterButton = new Button("Traiter");
+                        //private final Button traiterButton = new Button("Traiter");
                         private final Button supprimerButton = new Button("Supprimer");
 
                         {
                             // Style des boutons
-                            traiterButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+                            //traiterButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
                             supprimerButton.setStyle("-fx-background-color: #F44336; -fx-text-fill: white;");
 
                             // Actions des boutons
-                            traiterButton.setOnAction(event -> {
+                            /*traiterButton.setOnAction(event -> {
                                 Commande commande = getTableView().getItems().get(getIndex());
                                 traiterCommande(commande);
-                            });
+                            });*/
 
                             supprimerButton.setOnAction(event -> {
                                 Commande commande = getTableView().getItems().get(getIndex());
@@ -102,7 +102,7 @@
                             if (empty) {
                                 setGraphic(null);
                             } else {
-                                setGraphic(new HBox(10, traiterButton, supprimerButton));
+                                setGraphic(new HBox(10, supprimerButton));
                             }
                         }
                     };
@@ -117,7 +117,7 @@
             List<Commande> commandes = commandeService.getAllDataCommande();
             tableCommandes.getItems().setAll(commandes);
         }
-
+/*
         private void traiterCommande(Commande commande) {
             try {
                 // Charger le fichier FXML de l'interface de traitement de commande
@@ -132,18 +132,21 @@
                 Stage stage = new Stage();
                 stage.setTitle("Traiter la Commande");
                 stage.setScene(new Scene(root));
+                stage.setOnHidden(e -> chargerCommandes());
+
                 stage.show();
             } catch (IOException e) {
                 System.err.println("Erreur lors du chargement de l'interface de traitement de commande : " + e.getMessage());
                 e.printStackTrace();
             }
-        }
+        }*/
 
         private void supprimerCommande(Commande commande) {
             CommandeService commandeService = new CommandeService();
             commandeService.deleteCommande(commande.getIdCommande());
             tableCommandes.getItems().remove(commande);  // Retirer la commande de la TableView
             System.out.println("Commande supprimée : " + commande.getIdCommande());
+            chargerCommandes();
     }
 
     }

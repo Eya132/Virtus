@@ -3,6 +3,7 @@ package GestionBoutiqueONLINE.tests;
 import GestionBoutiqueONLINE.entities.Commande;
 import GestionBoutiqueONLINE.entities.Produit;
 import GestionBoutiqueONLINE.services.CommandeService;
+import GestionBoutiqueONLINE.services.EmailService;
 import GestionBoutiqueONLINE.services.ProduitService;
 import GestionBoutiqueONLINE.tools.MyConnection;
 
@@ -12,22 +13,22 @@ public class MainClass {
 
     public static void main(String[] args) {
         MyConnection nc = MyConnection.getInstance();
-        ProduitService ps = new ProduitService();
+        //ProduitService ps = new ProduitService();
 
         // 🔹 Ajout d'un produit
-        Produit p1 = new Produit("Raquette Pro", "Raquette de tennis haut de gamme", 200, 10,"image.png");
-        Produit p2 = new Produit("Raquette rouge", "padel one", 370, 20,"sabee.jpg");
-        Produit p4 = new Produit("cb", "dgh", 370, 20,"hbib.png");
+        //Produit p1 = new Produit("Raquette Pro", "Raquette de tennis haut de gamme", 200, 10,"image.png");
+        //Produit p2 = new Produit("Raquette rouge", "padel one", 370, 20,"sabee.jpg");
+       // Produit p4 = new Produit("cb", "dgh", 370, 20,"hbib.png");
 
-        Produit update =new Produit();
+        //Produit update =new Produit();
         //update.setNomProduit("amen");
         //update.setDescriptionProduit("amen");
         //update.setQuantiteProduit(20);
         //update.setPrixProduit(1000);
         //ps.updateProduit(9,update);
-        ps.addProduit(p4);
-        ps.addProduit(p2);
-        System.out.println(ps.getAllDataProduit());
+        //ps.addProduit(p4);
+        //ps.addProduit(p2);
+        //System.out.println(ps.getAllDataProduit());
          //Produit produisupp = new Produit();
          //produisupp.setIdProduit(7);
          //ps.deleteProduit(produisupp);
@@ -51,7 +52,6 @@ public class MainClass {
 
 
         //System.out.println(commandeService.getAllDataCommande());
-
 
 
     }

@@ -49,7 +49,10 @@ public class ConsulterCommandeClientController {
     @FXML
     private TableColumn<Commande, Void> colActions;
 
+
+
     private ProduitService produitService = new ProduitService();
+    private CommandeService commandeService = new CommandeService();
 
     public void initialize() {
         // Initialisation des colonnes de la TableView
@@ -85,11 +88,14 @@ public class ConsulterCommandeClientController {
                 return new TableCell<>() {
                     private final Button modifierButton = new Button("Modifier");
                     private final Button supprimerButton = new Button("Supprimer");
+                    private final Button factureButton = new Button("Obtenir facture");
 
                     {
                         // Style des boutons
                         modifierButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
                         supprimerButton.setStyle("-fx-background-color: #F44336; -fx-text-fill: white;");
+                        factureButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;"); // Style du bouton facture
+
 
                         // Action pour le bouton Modifier
                         modifierButton.setOnAction(event -> {
@@ -102,6 +108,13 @@ public class ConsulterCommandeClientController {
                             Commande commande = getTableView().getItems().get(getIndex());
                             supprimerCommande(commande);
                         });
+
+                        factureButton.setOnAction(event -> {
+                            Commande commande = getTableView().getItems().get(getIndex());
+                            afficherFacture(commande); // Appeler la méthode pour afficher la facture
+                        });
+
+
                     }
 
                     @Override
@@ -110,17 +123,35 @@ public class ConsulterCommandeClientController {
                         if (empty) {
                             setGraphic(null);
                         } else {
-                            setGraphic(new HBox(10, modifierButton, supprimerButton));
+                            setGraphic(new HBox(10, modifierButton, supprimerButton,factureButton));
                         }
                     }
                 };
             }
         });
-
         // Charger les commandes de l'utilisateur
         CommandeService commandeService = new CommandeService();
-        List<Commande> commandes = commandeService.getCommandesByUserId(19);  // Remplacez "1" par l'ID dynamique de l'utilisateur connecté
+        List<Commande> commandes = commandeService.getCommandesByUserId(19);
         tableCommandes.getItems().setAll(commandes);  // Ajouter les commandes à la TableView
+
+    }
+
+   public void retourMain()
+    {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ClientProduit.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) tableCommandes.getScene().getWindow();
+            stage.setTitle("Grille des produits");
+            stage.setScene(scene);
+
+            stage.setOnHidden(e -> chargerCommandes());
+        } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de l'interface d'ajout de produit : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void modifierCommande(Commande commande) {
@@ -129,7 +160,7 @@ public class ConsulterCommandeClientController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateCommandeClient.fxml"));
             if(loader.getLocation()==null)
             {
-                System.err.println("ASBAAAAAAA");
+                System.err.println("hedhaa mel loader");
                 return;
             }
 
@@ -137,7 +168,7 @@ public class ConsulterCommandeClientController {
             UpdateCommandeClientController updateController = loader.getController();
             if(updateController==null)
             {
-                System.err.println("HEDHA CONTROLERR");
+                System.err.println("HEDHA CONTROLLERR");
                     return;
             }
             updateController.setCommande(commande);
@@ -146,6 +177,7 @@ public class ConsulterCommandeClientController {
             Stage stage = new Stage();
             stage.setTitle("Modifier la Commande");
             stage.setScene(new Scene(root));
+            stage.setOnHidden(e -> chargerCommandes());
             stage.show();
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement de l'interface de modification de commande : " + e.getMessage());
@@ -161,7 +193,29 @@ public class ConsulterCommandeClientController {
         System.out.println("Commande supprimée : " + commande.getIdCommande());
     }
 
+    private void chargerCommandes() {
+        List<Commande> commandes = commandeService.getAllDataCommande();
+        tableCommandes.getItems().setAll(commandes);
+    }
+    private void afficherFacture(Commande commande) {
+        try {
+            // Charger l'interface de la facture
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FactureClient.fxml"));
+            Parent root = loader.load();
 
+            // Passer la commande au contrôleur de la facture
+            FactureClientController factureController = loader.getController();
+            factureController.afficherFacture(commande);
+
+            // Afficher la fenêtre de la facture
+            Stage stage = new Stage();
+            stage.setTitle("Facture");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'affichage de la facture : " + e.getMessage());
+        }
+    }
 
 
 

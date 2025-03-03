@@ -89,6 +89,7 @@ public class AjouterProduitController {
         String prixText = PrixTextField.getText();
         String quantiteText = QuantiteTextField.getText();
 
+
         // Validation du nom
         if (!validerNom(nom)) {
             afficherAlerte("Erreur de saisie", "❌Le nom ne doit pas commencer par des symboles ni contenir uniquement des symboles.");
@@ -103,7 +104,16 @@ public class AjouterProduitController {
 
         // Vérifier qu'une image a été sélectionnée
         if (imagePath == null || imagePath.isEmpty()) {
-            afficherAlerte("Erreur", " ❌ Veuillez ajouter une image pour le produit.");
+            afficherAlerte("Erreur", "❌ Veuillez ajouter une image pour le produit.");
+            return;
+        }
+
+        // Vérifier l'unicité du produit
+        ProduitService produitService = new ProduitService();
+        String refProduit = produitService.generateRefProduit(nom);
+
+        if (produitService.produitExisteDeja(refProduit)) {
+            afficherAlerte("Erreur", "❌ Un produit avec cette référence existe déjà.");
             return;
         }
 
@@ -111,12 +121,11 @@ public class AjouterProduitController {
         int quantite = Integer.parseInt(quantiteText);
 
         // Création du produit
-        Produit produit = new Produit(nom, description, prix, quantite, imagePath);
-        ProduitService produitService = new ProduitService();
+        Produit produit = new Produit(nom, description, prix, quantite, imagePath, refProduit);
         produitService.addProduit(produit);
 
         // Affichage d'un message de succès
-        afficherAlerte("Succès", "Produit ajouté avec succès !");
+        afficherAlerte("Succès", "✅ Produit ajouté avec succès !");
 
         // Redirection vers la liste des produits
         try {
