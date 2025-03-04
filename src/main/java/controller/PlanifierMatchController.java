@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import services.MatchService;
-
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -129,8 +129,17 @@ public class PlanifierMatchController {
                 throw new IllegalArgumentException("Veuillez remplir tous les champs obligatoires.");
             }
 
+            // Récupérer la date sélectionnée
+            LocalDate selectedDate = datePicker.getValue();
+
+            // Vérifier si la date est dans le passé
+            if (selectedDate.isBefore(LocalDate.now())) {
+                showWarningAlert("Date invalide", "La date sélectionnée est dans le passé. Veuillez choisir une date future.");
+                return; // Arrêter l'exécution de la méthode si la date est dans le passé
+            }
+
             // Récupérer les valeurs des champs
-            String date = datePicker.getValue().toString();
+            String date = selectedDate.toString();
             String heure = heureField.getText();
             String localisation = localisationComboBox.getValue();
             String terrain = terrainComboBox.getValue();

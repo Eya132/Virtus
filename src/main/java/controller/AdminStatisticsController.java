@@ -3,8 +3,13 @@ package controller;
 import Entites.Match1;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -93,5 +98,22 @@ public class AdminStatisticsController implements Initializable {
 
         // Ajouter la série au BarChart
         mostActiveLocalisationsChart.getData().add(series);
+    }
+    @FXML
+    private void handleTermineButtonAction(ActionEvent event) {
+        try {
+            // Charger la nouvelle vue (admin_calendar.fxml)
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin_calendar.fxml"));
+            Parent root = loader.load();
+
+            // Obtenir la scène actuelle à partir de l'événement
+            Scene scene = ((Node) event.getSource()).getScene();
+
+            // Mettre à jour la scène avec la nouvelle vue
+            scene.setRoot(root);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Erreur lors du chargement de la page admin_calendar.fxml");
+        }
     }
 }

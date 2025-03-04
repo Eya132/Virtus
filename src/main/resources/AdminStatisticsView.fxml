@@ -5,6 +5,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -50,5 +51,10 @@
                 </yAxis>
             </BarChart>
         </VBox>
+    </HBox>
+
+    <!-- Bouton Terminé -->
+    <HBox alignment="CENTER">
+        <Button text="Terminé" styleClass="button" onAction="#handleTermineButtonAction" />
     </HBox>
 </VBox>

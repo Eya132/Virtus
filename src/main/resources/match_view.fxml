@@ -4,13 +4,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.UserDashboardController" stylesheets="@styles/style3.css">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.UserDashboardController" stylesheets="@styles/style3.css" spacing="10" alignment="TOP_CENTER">
     <children>
         <!-- Title -->
-        <Label text="Tableau de bord de l'utilisateur" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 10;" />
+        <Label text="Tableau de bord de l'utilisateur" styleClass="title-label" />
 
         <!-- Match Table -->
-        <TableView fx:id="matchTable" prefHeight="500" prefWidth="800">
+        <TableView fx:id="matchTable" prefHeight="400" prefWidth="700">
             <columns>
                 <TableColumn fx:id="dateColumn" text="Date" />
                 <TableColumn fx:id="heureColumn" text="Heure" />
@@ -20,7 +20,7 @@
                 <TableColumn fx:id="actionColumn" text="Actions">
                     <!-- Add Action Buttons to the Column -->
                     <cellFactory>
-
+                        <!-- Vous pouvez ajouter des boutons ici si nécessaire -->
                     </cellFactory>
                 </TableColumn>
             </columns>

@@ -73,3 +73,24 @@
 #exportExcelButton:hover {
     -fx-background-color: #138496; /* Couleur de fond au survol */
 }
+/* Style pour le bouton Terminé */
+.button {
+    -fx-background-color: #007bff; /* Couleur de fond bleue */
+    -fx-text-fill: white; /* Couleur du texte blanc */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-font-weight: bold; /* Texte en gras */
+    -fx-padding: 10px 20px; /* Espacement intérieur */
+    -fx-border-radius: 10px; /* Coins arrondis */
+    -fx-cursor: hand; /* Curseur de la souris */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); /* Ombre légère */
+}
+
+/* Effet au survol pour le bouton Terminé */
+.button:hover {
+    -fx-background-color: #0056b3; /* Couleur de fond plus foncée au survol */
+}
+
+/* Effet lorsque le bouton est pressé */
+.button:pressed {
+    -fx-background-color: #004080; /* Couleur de fond encore plus foncée */
+}

@@ -2,31 +2,31 @@
 .root {
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-background-color: #f4f7fa; /* Couleur de fond douce */
-    -fx-padding: 20px;
+    -fx-padding: 10px; /* Espacement interne réduit */
 }
 
 /* Style pour les titres */
-.label {
-    -fx-font-size: 24px;
+.title-label {
+    -fx-font-size: 20px; /* Taille de police réduite */
     -fx-font-weight: bold;
     -fx-text-fill: #2c3e50; /* Couleur de texte sombre */
-    -fx-padding: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 1); /* Ombre bleue */
+    -fx-padding: 5px; /* Espacement interne réduit */
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 3, 0, 0, 1); /* Ombre bleue plus subtile */
 }
 
 /* Style pour la TableView */
 .table-view {
     -fx-background-color: #ffffff; /* Fond blanc */
     -fx-border-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 5); /* Ombre bleue */
-    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.3), 3, 0, 0, 3); /* Ombre bleue plus subtile */
+    -fx-padding: 5px; /* Espacement interne réduit */
     -fx-border-color: #3498db; /* Bordure bleue */
     -fx-border-width: 1px;
 }
 
 /* Style des colonnes de la TableView */
 .table-column {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px; /* Taille de police réduite */
     -fx-alignment: center;
     -fx-padding: 5px;
     -fx-text-fill: #2c3e50; /* Couleur de texte sombre */
@@ -34,8 +34,8 @@
 
 /* Style des cellules de la TableView */
 .table-view .table-cell {
-    -fx-padding: 8px;
-    -fx-font-size: 14px;
+    -fx-padding: 6px; /* Espacement interne réduit */
+    -fx-font-size: 12px; /* Taille de police réduite */
     -fx-alignment: center;
     -fx-text-fill: #2c3e50; /* Couleur de texte sombre */
 }
@@ -59,12 +59,12 @@
 .button {
     -fx-background-color: #3498db; /* Fond bleu */
     -fx-text-fill: white; /* Texte blanc */
-    -fx-font-size: 14px;
+    -fx-font-size: 12px; /* Taille de police réduite */
     -fx-font-weight: bold;
     -fx-border-radius: 5px;
-    -fx-padding: 10px 20px;
+    -fx-padding: 8px 16px; /* Espacement interne réduit */
     -fx-cursor: hand; /* Curseur en forme de main */
-    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 3); /* Ombre bleue */
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.3), 3, 0, 0, 2); /* Ombre bleue plus subtile */
     -fx-transition: background-color 0.3s ease; /* Transition fluide */
 }
 
@@ -108,48 +108,18 @@
 .dialog-pane {
     -fx-background-color: #ffffff; /* Fond blanc */
     -fx-border-radius: 8px;
-    -fx-padding: 15px;
-    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 3); /* Ombre bleue */
+    -fx-padding: 10px; /* Espacement interne réduit */
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.3), 3, 0, 0, 2); /* Ombre bleue plus subtile */
 }
 
 /* Style de l'alerte */
 .alert {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px; /* Taille de police réduite */
     -fx-text-fill: #3498db; /* Texte bleu */
 }
 
 /* Style du VBox pour la disposition */
 .vbox {
-    -fx-spacing: 20px; /* Espacement entre les éléments */
-    -fx-alignment: center; /* Alignement au centre */
-}
-
-/* Style du SplitPane */
-.split-pane {
-    -fx-background-color: #f4f7fa; /* Fond doux */
-}
-
-/* Style du PieChart */
-.pie-chart {
-    -fx-background-color: #ffffff; /* Fond blanc */
-    -fx-border-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 5); /* Ombre bleue */
-}
-
-/* Style du BarChart */
-.bar-chart {
-    -fx-background-color: #ffffff; /* Fond blanc */
-    -fx-border-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 5); /* Ombre bleue */
-}
-
-/* Style des axes du BarChart */
-.axis {
-    -fx-tick-label-fill: #2c3e50; /* Couleur des étiquettes des axes */
-    -fx-tick-mark-visible: true;
-}
-
-/* Style des barres du BarChart */
-.default-color0.chart-bar {
-    -fx-bar-fill: #3498db; /* Couleur des barres */
+    -fx-spacing: 10px; /* Espacement entre les éléments réduit */
+    -fx-alignment: top-center; /* Alignement en haut et au centre */
 }

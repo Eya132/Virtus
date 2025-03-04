@@ -14,7 +14,7 @@ public class ListInscriService {
 
     private final MyConnection myConnection = MyConnection.getInstance();
 
-    // Ajouter une inscription
+    // Méthode pour ajouter une inscription à un match pour un utilisateur donné
     public void addInscription(ListInscri inscription) {
         String query = "INSERT INTO ListInscri (matchId, userId) VALUES (?, ?)";
         try (Connection conn = myConnection.getConnection();
@@ -28,7 +28,7 @@ public class ListInscriService {
         }
     }
 
-    // Récupérer toutes les inscriptions
+    // Méthode pour récupérer toutes les inscriptions de la table ListInscri
     public List<ListInscri> getAllInscriptions() {
         List<ListInscri> inscriptions = new ArrayList<>();
         String query = "SELECT * FROM ListInscri";
@@ -50,7 +50,7 @@ public class ListInscriService {
         return inscriptions;
     }
 
-    // Récupérer une inscription par son ID
+    // Méthode pour récupérer une inscription par son ID
     public ListInscri getInscriptionById(int id) {
         String query = "SELECT * FROM ListInscri WHERE id = ?";
         try (Connection conn = myConnection.getConnection();
@@ -72,7 +72,7 @@ public class ListInscriService {
         return null;
     }
 
-    // Mettre à jour une inscription
+    // Méthode pour mettre à jour une inscription existante
     public void updateInscription(ListInscri inscription) {
         String query = "UPDATE ListInscri SET matchId = ?, userId = ? WHERE id = ?";
         try (Connection conn = myConnection.getConnection();
@@ -87,7 +87,7 @@ public class ListInscriService {
         }
     }
 
-    // Supprimer une inscription par son ID
+    // Méthode pour supprimer une inscription par son ID
     public void deleteInscription(int id) {
         String query = "DELETE FROM ListInscri WHERE id = ?";
         try (Connection conn = myConnection.getConnection();
@@ -100,7 +100,7 @@ public class ListInscriService {
         }
     }
 
-    // Récupérer toutes les inscriptions pour un match spécifique
+    // Méthode pour récupérer toutes les inscriptions pour un match spécifique
     public List<ListInscri> getInscriptionsByMatchId(int matchId) {
         List<ListInscri> inscriptions = new ArrayList<>();
         String query = "SELECT * FROM ListInscri WHERE matchId = ?";
@@ -124,7 +124,7 @@ public class ListInscriService {
         return inscriptions;
     }
 
-    // Récupérer toutes les inscriptions pour un utilisateur spécifique
+    // Méthode pour récupérer toutes les inscriptions pour un utilisateur spécifique
     public List<ListInscri> getInscriptionsByUserId(int userId) {
         List<ListInscri> inscriptions = new ArrayList<>();
         String query = "SELECT * FROM ListInscri WHERE userId = ?";
@@ -148,34 +148,34 @@ public class ListInscriService {
         return inscriptions;
     }
 
-    // Récupérer une inscription par matchId et userId
-    // Méthode pour obtenir l'inscription d'un utilisateur à un match
+    // Méthode pour récupérer une inscription spécifique par matchId et userId
     public ListInscri getInscriptionByMatchAndUser(int matchId, int userId) {
-        String query = "SELECT * FROM ListInscri WHERE matchId = ? AND userId = ?"; // Correction du nom de la table
-
-        try (Connection conn = MyConnection.getInstance().getConnection();
+        String query = "SELECT * FROM ListInscri WHERE matchId = ? AND userId = ?";
+        try (Connection conn = myConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, matchId);
             pstmt.setInt(2, userId);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                return new ListInscri(rs.getInt("id"), rs.getInt("matchId"), rs.getInt("userId")); // Assurez-vous que le nom des colonnes correspond
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return new ListInscri(
+                            rs.getInt("id"),
+                            rs.getInt("matchId"),
+                            rs.getInt("userId")
+                    );
+                }
             }
         } catch (SQLException e) {
-            System.err.println("Erreur lors de la récupération de l'inscription : " + e.getMessage());
+            System.err.println("Erreur lors de la récupération de l'inscription par matchId et userId : " + e.getMessage());
         }
-
         return null;
     }
 
-    // Méthode pour annuler l'inscription d'un utilisateur à un match
+    // Méthode pour annuler la participation d'un utilisateur à un match
     public void cancelParticipation(int matchId, int userId) {
-        String deleteQuery = "DELETE FROM ListInscri WHERE matchId = ? AND userId = ?";
-
-        try (Connection conn = MyConnection.getInstance().getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(deleteQuery)) {
+        String query = "DELETE FROM ListInscri WHERE matchId = ? AND userId = ?";
+        try (Connection conn = myConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, matchId);
             pstmt.setInt(2, userId);
@@ -189,7 +189,7 @@ public class ListInscriService {
         }
     }
 
-    // Récupérer le nombre de participants pour un match donné
+    // Méthode pour récupérer le nombre de participants pour un match donné
     public int getNombreParticipants(int matchId) {
         String query = "SELECT COUNT(*) FROM ListInscri WHERE matchId = ?";
         try (Connection conn = myConnection.getConnection();
@@ -207,7 +207,7 @@ public class ListInscriService {
         return 0;
     }
 
-    // Mettre à jour le statut d'un match
+    // Méthode pour mettre à jour le statut d'un match
     public void updateStatutMatch(int matchId, String statut) {
         String query = "UPDATE Match1 SET statut = ? WHERE id = ?";
         try (Connection conn = myConnection.getConnection();
@@ -221,7 +221,7 @@ public class ListInscriService {
         }
     }
 
-    // Supprimer l'inscription d'un utilisateur pour un match spécifique
+    // Méthode pour supprimer l'inscription d'un utilisateur pour un match spécifique
     public void deleteInscriptionByMatchAndUser(int matchId, int userId) {
         String query = "DELETE FROM ListInscri WHERE matchId = ? AND userId = ?";
         try (Connection conn = myConnection.getConnection();

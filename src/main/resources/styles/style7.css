@@ -1,0 +1,39 @@
+/* styles.css */
+
+/* Style pour le titre */
+.title-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4CAF50; /* Couleur du texte */
+    -fx-padding: 10px 0; /* Espacement autour du titre */
+    -fx-alignment: center; /* Centrer le texte */
+}
+
+/* Style pour la ListView */
+.participants-list {
+    -fx-font-size: 14px;
+    -fx-background-color: #f0f0f0; /* Couleur de fond */
+    -fx-border-color: #4CAF50; /* Couleur de la bordure */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px; /* Coins arrondis */
+    -fx-padding: 10px; /* Espacement interne */
+}
+
+/* Style pour les cellules de la ListView */
+.participants-list .list-cell {
+    -fx-padding: 10px; /* Espacement interne des cellules */
+    -fx-background-color: #ffffff; /* Couleur de fond des cellules */
+    -fx-border-color: #e0e0e0; /* Couleur de la bordure des cellules */
+    -fx-border-width: 0 0 1px 0; /* Bordure uniquement en bas */
+}
+
+/* Style pour les cellules sélectionnées */
+.participants-list .list-cell:filled:selected {
+    -fx-background-color: #4CAF50; /* Couleur de fond sélectionnée */
+    -fx-text-fill: white; /* Couleur du texte sélectionné */
+}
+
+/* Style pour les cellules au survol */
+.participants-list .list-cell:filled:hover {
+    -fx-background-color: #e0f7fa; /* Couleur de fond au survol */
+}

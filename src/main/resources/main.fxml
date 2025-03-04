@@ -4,14 +4,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Region?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.MainController" stylesheets="@styles/styleMain.css">
 
     <!-- Barre de navigation en haut -->
     <top>
-        <HBox fx:id="menuBar" styleClass="menu-bar">
+        <HBox fx:id="menuBar" styleClass="menu-bar" prefHeight="60"> <!-- Hauteur réduite -->
+            <!-- Logo à gauche -->
+            <ImageView fitHeight="50" fitWidth="70" preserveRatio="true"> <!-- Taille ajustée -->
+                <Image url="@images/logo.jpeg" /> <!-- Chemin relatif vers l'image du logo -->
+            </ImageView>
+
+            <!-- Espace flexible pour pousser les boutons à droite -->
+            <Region HBox.hgrow="ALWAYS" />
+
             <!-- Bouton pour charger "Planifier match" -->
             <Button text="Planifier match" onAction="#loadPlanifierMatch" styleClass="menu-button" />
             <!-- Bouton pour charger "Tableau de bord" -->
