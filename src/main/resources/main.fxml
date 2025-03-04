@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.MainController" stylesheets="@styles/styleMain.css">
+
+    <!-- Barre de navigation en haut -->
+    <top>
+        <HBox fx:id="menuBar" styleClass="menu-bar">
+            <!-- Bouton pour charger "Planifier match" -->
+            <Button text="Planifier match" onAction="#loadPlanifierMatch" styleClass="menu-button" />
+            <!-- Bouton pour charger "Tableau de bord" -->
+            <Button text="Tableau de bord" onAction="#loadVoirPlanning" styleClass="menu-button" />
+            <!-- Bouton pour charger "Voir match dispo" -->
+            <Button text="Voir match dispo" onAction="#loadVoirMatchDispo" styleClass="menu-button" />
+        </HBox>
+    </top>
+
+    <!-- Zone centrale pour afficher les interfaces dynamiquement -->
+    <center>
+        <StackPane fx:id="contentArea" /> <!-- Conteneur pour les interfaces -->
+    </center>
+</BorderPane>

@@ -1,0 +1,75 @@
+/* Style général pour la VBox racine */
+.root {
+    -fx-background-color: #f8f9fa; /* Couleur de fond légère */
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Style pour le titre de la page */
+.title {
+    -fx-font-size: 24px;
+    -fx-text-fill: #007bff; /* Couleur du texte bleue */
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 20px 0; /* Espacement en dessous du titre */
+}
+
+/* Style pour les sous-titres des graphiques */
+.subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #343a40; /* Couleur du texte sombre */
+    -fx-font-weight: bold;
+}
+
+/* Style pour les PieChart */
+.pie-chart {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #e0e0e0; /* Bordure légère */
+    -fx-border-radius: 10px; /* Coins arrondis */
+    -fx-padding: 10px; /* Espacement intérieur */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); /* Ombre légère */
+}
+
+/* Style pour les BarChart */
+.bar-chart {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #e0e0e0; /* Bordure légère */
+    -fx-border-radius: 10px; /* Coins arrondis */
+    -fx-padding: 10px; /* Espacement intérieur */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); /* Ombre légère */
+}
+
+/* Style pour les axes des BarChart */
+.axis-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #343a40; /* Couleur du texte sombre */
+}
+
+/* Style pour les légendes des PieChart */
+.chart-legend {
+    -fx-font-size: 14px;
+    -fx-text-fill: #343a40; /* Couleur du texte sombre */
+}
+/* Style pour les boutons d'action */
+.action-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* Couleur du texte */
+    -fx-background-color: #28a745; /* Couleur de fond verte */
+    -fx-border-radius: 10px; /* Coins arrondis */
+    -fx-padding: 10px 20px; /* Espacement intérieur */
+    -fx-cursor: hand; /* Curseur de la souris */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); /* Ombre légère */
+}
+
+/* Effet au survol pour les boutons d'action */
+.action-button:hover {
+    -fx-background-color: #218838; /* Couleur de fond au survol */
+}
+
+/* Style pour le bouton d'exportation en Excel */
+#exportExcelButton {
+    -fx-background-color: #17a2b8; /* Couleur de fond bleue */
+}
+
+/* Effet au survol pour le bouton d'exportation en Excel */
+#exportExcelButton:hover {
+    -fx-background-color: #138496; /* Couleur de fond au survol */
+}

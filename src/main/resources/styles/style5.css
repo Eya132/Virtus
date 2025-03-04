@@ -1,0 +1,102 @@
+/* Style général pour la VBox racine */
+.root {
+    -fx-background-color: #f8f9fa; /* Couleur de fond légère */
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Style pour le titre de la page */
+.title {
+    -fx-font-size: 24px;
+    -fx-text-fill: #007bff; /* Couleur du texte bleue */
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 20px 0; /* Espacement en dessous du titre */
+}
+
+/* Style pour le champ de recherche */
+.search-field {
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #6c757d; /* Couleur du texte d'invite */
+    -fx-background-color: #ffffff; /* Couleur de fond */
+    -fx-border-color: #ced4da; /* Couleur de la bordure */
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);
+}
+
+/* Style pour le bouton de réinitialisation */
+.reset-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* Couleur du texte */
+    -fx-background-color: #007bff; /* Couleur de fond bleue */
+    -fx-border-radius: 10px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand; /* Curseur de la souris */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);
+}
+
+/* Effet au survol pour le bouton de réinitialisation */
+.reset-button:hover {
+    -fx-background-color: #0056b3; /* Couleur de fond au survol */
+}
+
+/* Style pour le ListView */
+.match-list {
+    -fx-font-size: 14px;
+    -fx-background-color: transparent; /* Fond transparent */
+    -fx-border-color: transparent; /* Pas de bordure */
+    -fx-padding: 10px;
+}
+
+/* Style pour les éléments du ListView */
+.match-list .list-cell {
+    -fx-padding: 15px;
+    -fx-background-color: #ffffff; /* Couleur de fond */
+    -fx-border-color: #e0e0e0; /* Couleur de la bordure */
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);
+    -fx-margin: 10px 0; /* Espacement entre les éléments */
+}
+
+/* Effet au survol pour les éléments du ListView */
+.match-list .list-cell:hover {
+    -fx-background-color: #f1f3f5; /* Couleur de fond au survol */
+    -fx-cursor: hand; /* Curseur de la souris */
+}
+
+/* Style pour les éléments sélectionnés dans le ListView */
+.match-list .list-cell:selected {
+    -fx-background-color: #007bff; /* Couleur de fond */
+    -fx-text-fill: white; /* Couleur du texte */
+}
+/* Style for the statistics button (Voir les Statistiques) */
+.statistics-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* White text color */
+    -fx-background-color: #dc3545; /* Red background color */
+    -fx-border-radius: 10px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand; /* Cursor for hovering */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0, 0, 0); /* Drop shadow effect */
+}
+
+/* Hover effect for the statistics button */
+.statistics-button:hover {
+    -fx-background-color: #c82333; /* Darker red on hover */
+}
+
+/* Style for the export Excel button (Exporter en Excel) */
+.export-excel-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* White text color */
+    -fx-background-color: #28a745; /* Green background color */
+    -fx-border-radius: 10px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand; /* Cursor for hovering */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0, 0, 0); /* Drop shadow effect */
+}
+
+/* Hover effect for the export Excel button */
+.export-excel-button:hover {
+    -fx-background-color: #218838; /* Darker green on hover */
+}

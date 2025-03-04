@@ -1,0 +1,110 @@
+/* Style général de la VBox */
+.root {
+    -fx-background-color: #f9f9f9;
+    -fx-padding: 40px;
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+/* Style des labels */
+.label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+/* Style des champs de texte et autres entrées */
+.text-field, .combo-box, .date-picker, .text-area {
+    -fx-pref-width: 280px;
+    -fx-padding: 10px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 14px;
+    -fx-focus-color: #42a5f5;
+    -fx-faint-focus-color: rgba(66, 165, 245, 0.1);
+}
+
+/* Effet de hover sur les champs */
+.text-field:hover, .combo-box:hover, .date-picker:hover, .text-area:hover {
+    -fx-border-color: #42a5f5;
+}
+
+/* Style pour le champ d'ID utilisateur (peut être unique si besoin) */
+#idUserField {
+    -fx-border-color: #66bb6a;
+}
+
+/* Style pour TextArea */
+.text-area {
+    -fx-pref-height: 80px;
+    -fx-wrap-text: true;
+}
+
+/* Style des ComboBox avec flèches personnalisées */
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+/* Style du bouton "Planifier le match" */
+.btn-primary {
+    -fx-background-color: #42a5f5;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 12px 24px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #1e88e5;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #1565c0;
+}
+
+/* Ajout d'ombre légère autour des champs de saisie */
+.text-field, .combo-box, .date-picker, .text-area {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 3, 0, 0, 0);
+}
+
+/* Style du champ non éditable */
+.text-field:disabled {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #999;
+}
+
+/* Espacement et alignement pour GridPane */
+.grid-pane {
+    -fx-hgap: 20px;
+    -fx-vgap: 20px;
+    -fx-alignment: center;
+}
+
+/* ComboBox avec des flèches adaptées */
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+/* Style général des ComboBox */
+.combo-box {
+    -fx-arrow-size: 12px;
+    -fx-padding: 10px;
+}
+
+/* Affichage des éléments de la ComboBox */
+.combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #42a5f5;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #e3f2fd;
+}

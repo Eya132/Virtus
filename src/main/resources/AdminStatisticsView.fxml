@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminStatisticsController" spacing="20" stylesheets="@styles/style6.css">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <!-- Titre de la page -->
+    <Label text="Statistiques des Matchs" styleClass="title">
+        <font>
+            <Font name="Segoe UI Bold" size="24" />
+        </font>
+    </Label>
+
+    <!-- Graphiques et statistiques -->
+    <HBox spacing="20">
+        <!-- Graphique des terrains les plus utilisés -->
+        <VBox spacing="10">
+            <Label text="Terrains les plus utilisés" styleClass="subtitle" />
+            <PieChart fx:id="mostUsedTerrainsChart" />
+        </VBox>
+
+        <!-- Graphique des types de sport les plus populaires -->
+        <VBox spacing="10">
+            <Label text="Types de sport les plus populaires" styleClass="subtitle" />
+            <PieChart fx:id="mostPopularSportsChart" />
+        </VBox>
+    </HBox>
+
+    <HBox spacing="20">
+        <!-- Graphique des localisations les plus actives -->
+        <VBox spacing="10">
+            <Label text="Localisations les plus actives" styleClass="subtitle" />
+            <BarChart fx:id="mostActiveLocalisationsChart">
+                <xAxis>
+                    <CategoryAxis label="Localisation" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Nombre de matchs" />
+                </yAxis>
+            </BarChart>
+        </VBox>
+    </HBox>
+</VBox>

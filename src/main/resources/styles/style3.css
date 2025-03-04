@@ -1,0 +1,155 @@
+/* Définition des styles de base */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #f4f7fa; /* Couleur de fond douce */
+    -fx-padding: 20px;
+}
+
+/* Style pour les titres */
+.label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50; /* Couleur de texte sombre */
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 1); /* Ombre bleue */
+}
+
+/* Style pour la TableView */
+.table-view {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 5); /* Ombre bleue */
+    -fx-padding: 10px;
+    -fx-border-color: #3498db; /* Bordure bleue */
+    -fx-border-width: 1px;
+}
+
+/* Style des colonnes de la TableView */
+.table-column {
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-padding: 5px;
+    -fx-text-fill: #2c3e50; /* Couleur de texte sombre */
+}
+
+/* Style des cellules de la TableView */
+.table-view .table-cell {
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-text-fill: #2c3e50; /* Couleur de texte sombre */
+}
+
+/* Survol des lignes de la TableView */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #ecf0f1; /* Couleur de fond au survol */
+    -fx-cursor: hand; /* Curseur en forme de main */
+}
+
+/* Alternance de couleur des lignes de la TableView */
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f9f9f9; /* Fond clair pour les lignes impaires */
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #ffffff; /* Fond blanc pour les lignes paires */
+}
+
+/* Style des boutons */
+.button {
+    -fx-background-color: #3498db; /* Fond bleu */
+    -fx-text-fill: white; /* Texte blanc */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand; /* Curseur en forme de main */
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 3); /* Ombre bleue */
+    -fx-transition: background-color 0.3s ease; /* Transition fluide */
+}
+
+.button:hover {
+    -fx-background-color: #2980b9; /* Fond bleu foncé au survol */
+}
+
+.button:pressed {
+    -fx-background-color: #1c4e88; /* Fond bleu encore plus foncé au clic */
+}
+
+/* Bouton Annuler (Orange) */
+.button-annuler {
+    -fx-background-color: #e67e22; /* Fond orange */
+    -fx-text-fill: white; /* Texte blanc */
+}
+
+.button-annuler:hover {
+    -fx-background-color: #d35400; /* Fond orange foncé au survol */
+}
+
+.button-annuler:pressed {
+    -fx-background-color: #e74c3c; /* Fond orange rouge au clic */
+}
+
+/* Bouton Modifier (Bleu) */
+.button-modifier {
+    -fx-background-color: #3498db; /* Fond bleu */
+    -fx-text-fill: white; /* Texte blanc */
+}
+
+.button-modifier:hover {
+    -fx-background-color: #2980b9; /* Fond bleu foncé au survol */
+}
+
+.button-modifier:pressed {
+    -fx-background-color: #1c4e88; /* Fond bleu encore plus foncé au clic */
+}
+
+/* Style de la boîte de dialogue */
+.dialog-pane {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-radius: 8px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 3); /* Ombre bleue */
+}
+
+/* Style de l'alerte */
+.alert {
+    -fx-font-size: 14px;
+    -fx-text-fill: #3498db; /* Texte bleu */
+}
+
+/* Style du VBox pour la disposition */
+.vbox {
+    -fx-spacing: 20px; /* Espacement entre les éléments */
+    -fx-alignment: center; /* Alignement au centre */
+}
+
+/* Style du SplitPane */
+.split-pane {
+    -fx-background-color: #f4f7fa; /* Fond doux */
+}
+
+/* Style du PieChart */
+.pie-chart {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 5); /* Ombre bleue */
+}
+
+/* Style du BarChart */
+.bar-chart {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 5, 0, 0, 5); /* Ombre bleue */
+}
+
+/* Style des axes du BarChart */
+.axis {
+    -fx-tick-label-fill: #2c3e50; /* Couleur des étiquettes des axes */
+    -fx-tick-mark-visible: true;
+}
+
+/* Style des barres du BarChart */
+.default-color0.chart-bar {
+    -fx-bar-fill: #3498db; /* Couleur des barres */
+}

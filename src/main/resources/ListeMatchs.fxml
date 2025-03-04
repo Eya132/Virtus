@@ -1,0 +1,88 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListeMatchsController" spacing="20" alignment="CENTER" stylesheets="@styles/style2.css">
+    <!-- Titre de la page -->
+    <Label text="Liste des Matchs" styleClass="title-label" />
+
+    <!-- Conteneur pour les filtres -->
+    <HBox spacing="15" alignment="CENTER_LEFT" styleClass="filter-container">
+        <!-- Filtre par localisation -->
+        <VBox spacing="5">
+            <Label text="Localisation:" styleClass="filter-label" />
+            <ComboBox fx:id="localisationFilter" promptText="Choisir une localisation" prefWidth="200" styleClass="filter-combo" />
+        </VBox>
+
+        <!-- Filtre par date -->
+        <VBox spacing="5">
+            <Label text="Date:" styleClass="filter-label" />
+            <DatePicker fx:id="dateFilter" prefWidth="200" styleClass="filter-date-picker" />
+        </VBox>
+
+        <!-- Filtre par type de sport -->
+        <VBox spacing="5">
+            <Label text="Sport:" styleClass="filter-label" />
+            <ComboBox fx:id="typeSportFilter" promptText="Choisir un sport" prefWidth="200" styleClass="filter-combo" />
+        </VBox>
+    </HBox>
+
+    <!-- Conteneur pour les boutons de tri -->
+    <HBox spacing="15" alignment="CENTER_LEFT" styleClass="tri-container">
+        <!-- MenuButton pour trier par date -->
+        <MenuButton fx:id="trierParDateButton" text="Trier par date" styleClass="tri-button">
+            <items>
+                <MenuItem text="Ascendant" styleClass="menu-item" />
+                <MenuItem text="Descendant" styleClass="menu-item" />
+            </items>
+        </MenuButton>
+
+        <!-- Bouton pour trier par type de sport -->
+        <Button text="Trier par sport" onAction="#trierParSport" styleClass="tri-button" />
+
+    </HBox>
+
+    <!-- TableView pour afficher les matchs -->
+    <TableView fx:id="matchTable" prefHeight="400" styleClass="modern-table">
+        <columns>
+            <!-- Colonne pour la date -->
+            <TableColumn fx:id="dateColumn" text="Date" prefWidth="120">
+                <cellValueFactory>
+                    <PropertyValueFactory property="date"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour l'heure -->
+            <TableColumn fx:id="heureColumn" text="Heure" prefWidth="100">
+                <cellValueFactory>
+                    <PropertyValueFactory property="heure"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour la localisation -->
+            <TableColumn fx:id="localisationColumn" text="Localisation" prefWidth="150">
+                <cellValueFactory>
+                    <PropertyValueFactory property="localisation"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour le terrain -->
+            <TableColumn fx:id="terrainColumn" text="Terrain" prefWidth="150">
+                <cellValueFactory>
+                    <PropertyValueFactory property="terrain"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour le type de sport -->
+            <TableColumn fx:id="typeSportColumn" text="Sport" prefWidth="120">
+                <cellValueFactory>
+                    <PropertyValueFactory property="typeSport"/>
+                </cellValueFactory>
+            </TableColumn>
+
+            <!-- Colonne pour le bouton Participer -->
+            <TableColumn text="Action" prefWidth="100">
+                <!-- Le bouton sera ajouté dynamiquement dans le contrôleur -->
+            </TableColumn>
+        </columns>
+    </TableView>
+</VBox>

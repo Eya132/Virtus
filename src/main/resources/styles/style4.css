@@ -1,0 +1,99 @@
+/* styles.css */
+
+/* Style général de la boîte de dialogue */
+.dialog-pane {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #d1d1d1; /* Bordure grise claire */
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px; /* Coins arrondis */
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 0); /* Ombre légère */
+}
+
+/* Style des labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50; /* Texte bleu foncé */
+}
+
+/* Style des champs de texte */
+.text-field {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #d1d1d1; /* Bordure grise claire */
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50; /* Texte bleu foncé */
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db; /* Bordure bleue lorsque le champ est sélectionné */
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.3), 5, 0, 0, 0); /* Ombre bleue */
+}
+
+/* Style des ComboBox */
+.combo-box {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #d1d1d1; /* Bordure grise claire */
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50; /* Texte bleu foncé */
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #2c3e50; /* Texte bleu foncé */
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #3498db; /* Fond bleu pour la flèche */
+    -fx-background-radius: 0 5px 5px 0; /* Coins arrondis à droite */
+}
+
+.combo-box .arrow {
+    -fx-background-color: white; /* Couleur de la flèche */
+}
+
+.combo-box:hover {
+    -fx-border-color: #3498db; /* Bordure bleue au survol */
+}
+
+/* Style des boutons */
+.button {
+    -fx-background-color: #3498db; /* Fond bleu */
+    -fx-text-fill: white; /* Texte blanc */
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.3), 5, 0, 0, 0); /* Ombre bleue */
+}
+
+.button:hover {
+    -fx-background-color: #2980b9; /* Fond bleu plus foncé au survol */
+    -fx-effect: dropshadow(gaussian, rgba(41, 128, 185, 0.4), 7, 0, 0, 0); /* Ombre plus prononcée */
+}
+
+.button:pressed {
+    -fx-background-color: #1c5980; /* Fond bleu encore plus foncé lors du clic */
+}
+
+/* Style de la zone de texte (TextArea) */
+.text-area {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #d1d1d1; /* Bordure grise claire */
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50; /* Texte bleu foncé */
+}
+
+.text-area .content {
+    -fx-background-color: #ffffff; /* Fond blanc pour le contenu */
+}
+
+.text-area:focused {
+    -fx-border-color: #3498db; /* Bordure bleue lorsque la zone de texte est sélectionnée */
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.3), 5, 0, 0, 0); /* Ombre bleue */
+}

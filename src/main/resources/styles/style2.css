@@ -1,0 +1,159 @@
+/* Style général pour la VBox */
+.vbox {
+    -fx-background-color: #f8f9fa; /* Fond gris clair */
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5); /* Ombre douce */
+}
+
+/* Style pour les labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Texte sombre */
+}
+
+/* Style pour les ComboBox */
+.combo-box {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #ced4da; /* Bordure grise */
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 3); /* Ombre douce */
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #007bff; /* Fond bleu pour la flèche */
+    -fx-background-radius: 0 5px 5px 0;
+}
+
+.combo-box .arrow {
+    -fx-background-color: white; /* Flèche blanche */
+}
+
+.combo-box .list-cell {
+    -fx-background-color: white; /* Fond blanc pour les cellules */
+    -fx-text-fill: #333333; /* Texte sombre */
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #007bff; /* Fond bleu au survol */
+    -fx-text-fill: white; /* Texte blanc au survol */
+}
+
+/* Style pour le DatePicker */
+.date-picker {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #ced4da; /* Bordure grise */
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 3); /* Ombre douce */
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #007bff; /* Fond bleu pour la flèche */
+    -fx-background-radius: 0 5px 5px 0;
+}
+
+.date-picker .arrow {
+    -fx-background-color: white; /* Flèche blanche */
+}
+
+/* Style pour les boutons */
+.button {
+    -fx-background-color: #007bff; /* Fond bleu */
+    -fx-text-fill: white; /* Texte blanc */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand; /* Curseur en forme de main */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 3); /* Ombre douce */
+    -fx-transition: all 0.3s ease; /* Animation douce */
+}
+
+.button:hover {
+    -fx-background-color: #0056b3; /* Bleu plus foncé au survol */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 5); /* Ombre plus prononcée */
+}
+
+/* Style pour le conteneur des boutons de tri */
+.tri-container {
+    -fx-padding: 10px;
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5); /* Ombre douce */
+}
+
+/* Style pour les boutons de tri */
+.tri-button {
+    -fx-background-color: #007bff; /* Fond bleu */
+    -fx-text-fill: white; /* Texte blanc */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand; /* Curseur en forme de main */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 3); /* Ombre douce */
+    -fx-transition: all 0.3s ease; /* Animation douce */
+}
+
+.tri-button:hover {
+    -fx-background-color: #0056b3; /* Bleu plus foncé au survol */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 5); /* Ombre plus prononcée */
+}
+
+/* Style pour la TableView */
+.table-view {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-color: #ced4da; /* Bordure grise */
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5); /* Ombre douce */
+}
+
+.table-view .column-header {
+    -fx-background-color: #007bff; /* Fond bleu pour les en-têtes */
+    -fx-text-fill: white; /* Texte blanc */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #007bff; /* Fond bleu pour l'arrière-plan des en-têtes */
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #333333; /* Texte sombre */
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f8f9fa; /* Fond gris clair pour les lignes impaires */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #007bff; /* Fond bleu pour les lignes sélectionnées */
+    -fx-text-fill: white; /* Texte blanc pour les lignes sélectionnées */
+}
+
+/* Style pour le bouton dans la colonne Action */
+.table-view .button {
+    -fx-background-color: #007bff; /* Fond bleu */
+    -fx-text-fill: white; /* Texte blanc */
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 3); /* Ombre douce */
+    -fx-transition: all 0.3s ease; /* Animation douce */
+}
+
+.table-view .button:hover {
+    -fx-background-color: #0056b3; /* Bleu plus foncé au survol */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 5); /* Ombre plus prononcée */
+}

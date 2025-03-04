@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.UserDashboardController" stylesheets="@styles/style3.css">
+    <children>
+        <!-- Title -->
+        <Label text="Tableau de bord de l'utilisateur" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 10;" />
+
+        <!-- Match Table -->
+        <TableView fx:id="matchTable" prefHeight="500" prefWidth="800">
+            <columns>
+                <TableColumn fx:id="dateColumn" text="Date" />
+                <TableColumn fx:id="heureColumn" text="Heure" />
+                <TableColumn fx:id="localisationColumn" text="Localisation" />
+                <TableColumn fx:id="terrainColumn" text="Terrain" />
+                <TableColumn fx:id="typeSportColumn" text="Type de Sport" />
+                <TableColumn fx:id="actionColumn" text="Actions">
+                    <!-- Add Action Buttons to the Column -->
+                    <cellFactory>
+
+                    </cellFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </children>
+</VBox>
