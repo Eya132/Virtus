@@ -39,6 +39,38 @@
     -fx-background-color: #0056b3; /* Couleur de fond au survol */
 }
 
+/* Style pour le bouton "Voir les Statistiques" */
+.statistics-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* Couleur du texte */
+    -fx-background-color: #dc3545; /* Couleur de fond rouge */
+    -fx-border-radius: 10px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand; /* Curseur de la souris */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);
+}
+
+/* Effet au survol pour le bouton "Voir les Statistiques" */
+.statistics-button:hover {
+    -fx-background-color: #c82333; /* Couleur de fond rouge foncé au survol */
+}
+
+/* Style pour le bouton "Exporter en Excel" */
+.export-excel-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* Couleur du texte */
+    -fx-background-color: #28a745; /* Couleur de fond verte */
+    -fx-border-radius: 10px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand; /* Curseur de la souris */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);
+}
+
+/* Effet au survol pour le bouton "Exporter en Excel" */
+.export-excel-button:hover {
+    -fx-background-color: #218838; /* Couleur de fond verte foncée au survol */
+}
+
 /* Style pour le ListView */
 .match-list {
     -fx-font-size: 14px;
@@ -69,34 +101,16 @@
     -fx-background-color: #007bff; /* Couleur de fond */
     -fx-text-fill: white; /* Couleur du texte */
 }
-/* Style for the statistics button (Voir les Statistiques) */
-.statistics-button {
-    -fx-font-size: 14px;
-    -fx-text-fill: #ffffff; /* White text color */
-    -fx-background-color: #dc3545; /* Red background color */
-    -fx-border-radius: 10px;
-    -fx-padding: 10px 20px;
-    -fx-cursor: hand; /* Cursor for hovering */
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0, 0, 0); /* Drop shadow effect */
+/* Style pour le bouton "Voir Participants" */
+.participants-button {
+    -fx-background-color: #007bff; /* Couleur de fond bleue */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-border-radius: 10px; /* Bordures arrondies */
+    -fx-padding: 5px 10px; /* Espacement interne */
+    -fx-cursor: hand; /* Curseur de la souris */
 }
 
-/* Hover effect for the statistics button */
-.statistics-button:hover {
-    -fx-background-color: #c82333; /* Darker red on hover */
-}
-
-/* Style for the export Excel button (Exporter en Excel) */
-.export-excel-button {
-    -fx-font-size: 14px;
-    -fx-text-fill: #ffffff; /* White text color */
-    -fx-background-color: #28a745; /* Green background color */
-    -fx-border-radius: 10px;
-    -fx-padding: 10px 20px;
-    -fx-cursor: hand; /* Cursor for hovering */
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0, 0, 0); /* Drop shadow effect */
-}
-
-/* Hover effect for the export Excel button */
-.export-excel-button:hover {
-    -fx-background-color: #218838; /* Darker green on hover */
+/* Effet au survol pour le bouton "Voir Participants" */
+.participants-button:hover {
+    -fx-background-color: #0056b3; /* Couleur de fond bleue foncée */
 }
