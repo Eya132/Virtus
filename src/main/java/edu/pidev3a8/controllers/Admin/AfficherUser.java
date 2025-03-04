@@ -14,7 +14,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AfficherUser {
-
+    //dddddd
+    //sss
     @FXML
     private Label idLabel;
 
