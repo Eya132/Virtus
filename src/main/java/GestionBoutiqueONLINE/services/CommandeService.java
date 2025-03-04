@@ -17,14 +17,23 @@ public class CommandeService implements ICommande<Commande> {
     public void addCommande(Commande commande) {
         String requete = "INSERT INTO commande (quantiteCommande, idProduit, idUser, statusCommande) VALUES (?, ?, ?, ?)";
         try {
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete,Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, commande.getQuantiteCommande());
             pst.setInt(2, commande.getIdProduit());
-            pst.setString(3, commande.getIdUser());
+            pst.setInt(3, commande.getIdUser());
             pst.setString(4, commande.getStatusCommande().name()); // Convert enum to String
             int rowsInserted = pst.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("✅ Commande ajoutée avec succès !");
+                try (ResultSet generatedKeys = pst.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int idCommande = generatedKeys.getInt(1); // Récupérer l'ID généré
+                        commande.setIdCommande(idCommande); // Mettre à jour l'objet Commande
+                        System.out.println("✅ Commande ajoutée avec succès ! ID : " + idCommande);
+                    } else {
+                        System.out.println("⚠️ Aucun ID généré.");
+                    }
+                }
             } else {
                 System.out.println("⚠️ Aucune commande insérée.");
             }
@@ -91,7 +100,7 @@ public class CommandeService implements ICommande<Commande> {
                 commande.setDateCommande(rs.getTimestamp("dateCommande").toLocalDateTime()); // Utilisation de Timestamp pour la date
                 commande.setQuantiteCommande(rs.getInt("quantiteCommande"));
                 commande.setIdProduit(rs.getInt("idProduit"));
-                commande.setIdUser(rs.getString("idUser"));
+                commande.setIdUser(rs.getInt("idUser"));
                 commande.setStatusCommande(Commande.StatusCommande.valueOf(rs.getString("statusCommande"))); // Conversion du status en Enum
 
                 result.add(commande); // Ajout de la commande à la liste
@@ -119,7 +128,7 @@ public class CommandeService implements ICommande<Commande> {
                 commande.setDateCommande(rs.getTimestamp("dateCommande").toLocalDateTime());  // Récupérer la date de la commande
                 commande.setQuantiteCommande(rs.getInt("quantiteCommande"));  // Récupérer la quantité commandée
                 commande.setIdProduit(rs.getInt("idProduit"));  // Récupérer l'ID du produit
-                commande.setIdUser(rs.getString("idUser"));  // Récupérer l'ID de l'utilisateur
+                commande.setIdUser(rs.getInt("idUser"));  // Récupérer l'ID de l'utilisateur
 
                 // Récupérer le statut de la commande et le convertir en type d'énumération
                 String status = rs.getString("statusCommande");
