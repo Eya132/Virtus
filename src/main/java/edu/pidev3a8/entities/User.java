@@ -26,6 +26,8 @@ public class User {
     private String reset_token;
     private Timestamp token_expiration ;
 
+    private static String current_user = null;
+
     public User() {
     }
     public User(String email, String password, String nom, String prenom, LocalDate dateNaissance, UserSexe sexe, String telephone, String description, int maxDistance, String adresse, UserRole role, User_Niveau niveauJoueur, Experience experience, double salaire, boolean isPremium , String piece_jointe) {
