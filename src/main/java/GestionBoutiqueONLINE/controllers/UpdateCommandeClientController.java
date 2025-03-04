@@ -114,6 +114,7 @@ public class UpdateCommandeClientController {
         produit.setQuantiteProduit(nouvelleQuantiteProduit);
         produitService.updateProduit(produit.getIdProduit(), produit);
 
+
         // Vérifier si la quantité du produit est devenue 0
         if (nouvelleQuantiteProduit == 0) {
             afficherAlerte("Information", "⚠️ La quantité du produit est maintenant épuisée. Vous ne pouvez plus modifier cette commande.");

@@ -42,7 +42,7 @@ public class AjouterCommandeClientController {
     private Produit produit; // Pour stocker le produit sélectionné
 
     // ID utilisateur statique pour le test
-    private static final int ID_USER_STATIQUE = 19;
+    private static final String ID_USER_STATIQUE = "666JJJ11111";
 
     public void initialize() {
         // Configuration du Spinner

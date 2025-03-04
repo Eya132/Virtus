@@ -20,7 +20,7 @@ public class CommandeService implements ICommande<Commande> {
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);
             pst.setInt(1, commande.getQuantiteCommande());
             pst.setInt(2, commande.getIdProduit());
-            pst.setInt(3, commande.getIdUser());
+            pst.setString(3, commande.getIdUser());
             pst.setString(4, commande.getStatusCommande().name()); // Convert enum to String
             int rowsInserted = pst.executeUpdate();
             if (rowsInserted > 0) {
@@ -91,7 +91,7 @@ public class CommandeService implements ICommande<Commande> {
                 commande.setDateCommande(rs.getTimestamp("dateCommande").toLocalDateTime()); // Utilisation de Timestamp pour la date
                 commande.setQuantiteCommande(rs.getInt("quantiteCommande"));
                 commande.setIdProduit(rs.getInt("idProduit"));
-                commande.setIdUser(rs.getInt("idUser"));
+                commande.setIdUser(rs.getString("idUser"));
                 commande.setStatusCommande(Commande.StatusCommande.valueOf(rs.getString("statusCommande"))); // Conversion du status en Enum
 
                 result.add(commande); // Ajout de la commande à la liste
@@ -119,7 +119,7 @@ public class CommandeService implements ICommande<Commande> {
                 commande.setDateCommande(rs.getTimestamp("dateCommande").toLocalDateTime());  // Récupérer la date de la commande
                 commande.setQuantiteCommande(rs.getInt("quantiteCommande"));  // Récupérer la quantité commandée
                 commande.setIdProduit(rs.getInt("idProduit"));  // Récupérer l'ID du produit
-                commande.setIdUser(rs.getInt("idUser"));  // Récupérer l'ID de l'utilisateur
+                commande.setIdUser(rs.getString("idUser"));  // Récupérer l'ID de l'utilisateur
 
                 // Récupérer le statut de la commande et le convertir en type d'énumération
                 String status = rs.getString("statusCommande");

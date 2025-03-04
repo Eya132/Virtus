@@ -16,7 +16,7 @@ public class Commande {
     private LocalDateTime dateCommande;
     private int quantiteCommande;
     private int idProduit;
-    private int idUser;  // Ajout de l'ID utilisateur sans relation avec User
+    private String idUser;  // Ajout de l'ID utilisateur sans relation avec User
     private StatusCommande statusCommande;
     public Commande() {}
 
@@ -25,7 +25,7 @@ public class Commande {
         this.statusCommande = statusCommande;
     }
 
-    public Commande(int idCommande, LocalDateTime dateCommande, int quantiteCommande, int idProduit, int idUser, StatusCommande statusCommande) {
+    public Commande(int idCommande, LocalDateTime dateCommande, int quantiteCommande, int idProduit, String idUser, StatusCommande statusCommande) {
         this.idCommande = idCommande;
         this.dateCommande = dateCommande;
         this.quantiteCommande = quantiteCommande;
@@ -34,14 +34,14 @@ public class Commande {
         this.statusCommande = statusCommande;
     }
 
-    public Commande(int quantiteCommande, int idProduit, int idUser, StatusCommande statusCommande) {
+    public Commande(int quantiteCommande, int idProduit, String idUser, StatusCommande statusCommande) {
         this.quantiteCommande = quantiteCommande;
         this.idProduit = idProduit;
         this.idUser = idUser;
         this.statusCommande = statusCommande;
     }
 
-    public Commande(LocalDateTime dateCommande, int quantiteCommande, int idProduit, int idUser, StatusCommande statusCommande) {
+    public Commande(LocalDateTime dateCommande, int quantiteCommande, int idProduit, String idUser, StatusCommande statusCommande) {
         this.dateCommande = dateCommande;
         this.quantiteCommande = quantiteCommande;
         this.idProduit = idProduit;
@@ -81,11 +81,11 @@ public class Commande {
         this.idProduit = idProduit;
     }
 
-    public int getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 

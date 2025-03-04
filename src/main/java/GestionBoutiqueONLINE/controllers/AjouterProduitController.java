@@ -144,6 +144,8 @@ public class AjouterProduitController {
         }
     }
 
+    // veiff push 
+
     // Méthode pour afficher une alerte
     private void afficherAlerte(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
