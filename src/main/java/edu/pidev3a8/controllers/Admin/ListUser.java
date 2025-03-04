@@ -184,7 +184,7 @@ public class ListUser {
         } else {
             List<User> filteredList = originalUserList.stream()
                     .filter(user -> (user.getNomUser() != null && user.getNomUser().toLowerCase().contains(searchText.toLowerCase())) ||
-                            (user.getPrenomUser() != null && user.getEmailUser().toLowerCase().contains(searchText.toLowerCase())))
+                            (user.getPrenomUser() != null && user.getPrenomUser().toLowerCase().contains(searchText.toLowerCase())))
                     .collect(Collectors.toList());
             userTable.getItems().setAll(filteredList);
         }
