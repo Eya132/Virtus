@@ -90,8 +90,8 @@ public class MainController {
     }
 
     @FXML
-    private void switchToStatistics() {
-        loadView("/StatistiquesRegime.fxml"); // Charger la vue des statistiques
+    private void switchToAjouterRegime() {
+        loadView("/AjouterRegime.fxml"); // Charger la vue d'ajout de régime
     }
 
     @FXML

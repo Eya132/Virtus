@@ -10,27 +10,32 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.paint.Color?>
 
 <BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionRegime.controller.MainController">
     <!-- Top: Navbar -->
     <top>
-        <HBox style="-fx-background-color: #0c666a; -fx-padding: 10; -fx-spacing: 10;">
-            <Button text="Liste des Joueurs" onAction="#switchToPlayerList" style="-fx-text-fill: white; -fx-font-weight: bold;" />
-            <Button text="Liste des Régimes" onAction="#switchToRegimeList" style="-fx-text-fill: white; -fx-font-weight: bold;" />
-            <Button text="Statistiques" onAction="#switchToStatistics" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+        <HBox style="-fx-background-color: #0c666a; -fx-padding: 15; -fx-spacing: 20; -fx-alignment: center-left;">
+            <Label text="Gestion des Régimes" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <HBox spacing="10">
+                <Button text="Liste des Joueurs" onAction="#switchToPlayerList" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-radius: 5; -fx-padding: 5 10;" />
+                <Button text="Liste des Régimes" onAction="#switchToRegimeList" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-radius: 5; -fx-padding: 5 10;" />
+                <Button text="Ajouter Regime" onAction="#switchToAjouterRegime" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-color: white; -fx-border-radius: 5; -fx-padding: 5 10;" />
+            </HBox>
         </HBox>
     </top>
 
     <!-- Center: Tableau des Joueurs -->
     <center>
-        <VBox spacing="10" style="-fx-padding: 20;">
+        <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #f4f4f4;">
             <Label text="Liste des Joueurs" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #0c666a;" />
-            <TableView fx:id="playerTable">
+            <TableView fx:id="playerTable" style="-fx-background-color: white; -fx-border-color: #0c666a; -fx-border-radius: 5;">
                 <columns>
-                    <TableColumn fx:id="idColumn" text="ID" />
-                    <TableColumn fx:id="nameColumn" text="Nom" />
-                    <TableColumn fx:id="ageColumn" text="Âge" />
-                    <TableColumn fx:id="actionColumn" text="Actions" />
+                    <TableColumn fx:id="idColumn" text="ID" style="-fx-background-color: #0c666a; -fx-text-fill: white;" />
+                    <TableColumn fx:id="nameColumn" text="Nom" style="-fx-background-color: #0c666a; -fx-text-fill: white;" />
+                    <TableColumn fx:id="ageColumn" text="Âge" style="-fx-background-color: #0c666a; -fx-text-fill: white;" />
+                    <TableColumn fx:id="actionColumn" text="Actions" style="-fx-background-color: #0c666a; -fx-text-fill: white;" />
                 </columns>
             </TableView>
         </VBox>
@@ -38,11 +43,11 @@
 
     <!-- Right: Chatbot du Nutritionniste -->
     <right>
-        <VBox spacing="10" style="-fx-padding: 20; -fx-background-color: #f4f4f4;">
+        <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: white; -fx-border-color: #0c666a; -fx-border-radius: 5;">
             <Label text="Chat Nutritionniste" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #0c666a;" />
-            <ListView fx:id="chatArea" style="-fx-pref-height: 300px; -fx-pref-width: 250px;" />
-            <TextField fx:id="inputField" promptText="Entrez votre message..." />
-            <Button text="Envoyer" onAction="#sendMessage" style="-fx-background-color: #0c666a; -fx-text-fill: white; -fx-font-weight: bold;" />
+            <ListView fx:id="chatArea" style="-fx-pref-height: 300px; -fx-pref-width: 250px; -fx-background-color: #f4f4f4; -fx-border-color: #0c666a; -fx-border-radius: 5;" />
+            <TextField fx:id="inputField" promptText="Entrez votre message..." style="-fx-background-color: white; -fx-border-color: #0c666a; -fx-border-radius: 5;" />
+            <Button text="Envoyer" onAction="#sendMessage" style="-fx-background-color: #c74c0a; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 5 10; -fx-border-radius: 5;" />
         </VBox>
     </right>
 </BorderPane>

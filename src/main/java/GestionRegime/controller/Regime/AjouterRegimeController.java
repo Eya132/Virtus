@@ -110,7 +110,7 @@ public class AjouterRegimeController {
     @FXML
     private void handleVoirListeButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListRegime.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainView.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) voirListButton.getScene().getWindow();
             stage.setScene(new Scene(root));
