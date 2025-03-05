@@ -328,4 +328,32 @@ public class MatchService {
         }
         return matches;
     }
+    /**
+     * Vérifie si un match avec la même date, heure et terrain existe déjà.
+     *
+     * @param date     La date du match.
+     * @param heure    L'heure du match.
+     * @param terrain  Le terrain du match.
+     * @return true si le match est unique, false sinon.
+     */
+    public boolean isMatchUnique(String date, String heure, String terrain) {
+        String query = "SELECT COUNT(*) FROM Match1 WHERE date = ? AND heure = ? AND terrain = ?";
+        try (Connection conn = MyConnection.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, date);
+            pstmt.setString(2, heure);
+            pstmt.setString(3, terrain);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) == 0; // Retourne true si aucun match n'existe avec ces critères
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Erreur lors de la vérification de l'unicité du match : " + e.getMessage(), e);
+            throw new RuntimeException("Erreur lors de la vérification de l'unicité du match", e);
+        }
+        return true; // Par défaut, considérer que le match est unique en cas d'erreur
+    }
 }

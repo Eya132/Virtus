@@ -6,6 +6,7 @@ module gestion.match1 {
     requires java.mail;
     requires org.apache.poi.ooxml;
     requires java.desktop;
+    requires activation;
 
 
     opens controller to javafx.fxml; // Ouvre le package controller à javafx.fxml

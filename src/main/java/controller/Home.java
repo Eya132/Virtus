@@ -17,7 +17,7 @@ public class Home extends Application {
     public void start(Stage primaryStage) {
         try {
             // Chargement du fichier FXML pour la première page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin_calendar.fxml"));
             Parent root = loader.load();
 
             // Création de la scène avec le root

@@ -120,7 +120,6 @@ public class PlanifierMatchController {
         terrainsParLocalisation.put("ZAGHOUAN", Arrays.asList("Stade Municipal de Zaghouan", "Terrain de Bir Mcherga"));
     }
 
-
     @FXML
     public void planifierMatch() {
         try {
@@ -150,9 +149,13 @@ public class PlanifierMatchController {
             // Récupérer l'ID utilisateur depuis le champ
             int idUtilisateur = parseUserId(idUserField.getText());
 
-            // Stocker l'ID utilisateur dans la classe statique
+            // Vérifier l'unicité du match
+            if (!matchService.isMatchUnique(date, heure, terrain)) {
+                showWarningAlert("Match existant", "Un match avec la même date, heure et terrain existe déjà.");
+                return; // Arrêter l'exécution de la méthode si le match n'est pas unique
+            }
+           // Stocker l'ID utilisateur dans la classe statique
             Session.setUserId(idUtilisateur);
-
             // Créer un nouvel objet Match1 avec le statut en_attente
             Match1 match = new Match1(0, date, heure, localisation, terrain, nbPersonne, description, typeSport, "en_attente", idUtilisateur);
 
@@ -169,7 +172,6 @@ public class PlanifierMatchController {
             showErrorAlert("Erreur", "Erreur lors de la planification du match : " + e.getMessage());
         }
     }
-
     private void redirectToUserDashboard(int userId) {
         try {
             // Charger le fichier FXML de l'interface UserDashboard

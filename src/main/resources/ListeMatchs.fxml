@@ -80,9 +80,7 @@
             </TableColumn>
 
             <!-- Colonne pour le bouton Participer -->
-            <TableColumn text="Action" prefWidth="100">
-                <!-- Le bouton sera ajouté dynamiquement dans le contrôleur -->
-            </TableColumn>
+
         </columns>
     </TableView>
 </VBox>

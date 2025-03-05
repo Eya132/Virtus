@@ -7,7 +7,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.UserDashboardController" stylesheets="@styles/style3.css" spacing="10" alignment="TOP_CENTER">
     <children>
         <!-- Title -->
-        <Label text="Tableau de bord de l'utilisateur" styleClass="title-label" />
+        <Label text="Tableau de bord de joueur" styleClass="title-label" />
 
         <!-- Match Table -->
         <TableView fx:id="matchTable" prefHeight="400" prefWidth="700">

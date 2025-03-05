@@ -18,6 +18,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.MatchService;
 import services.ListInscriService;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Session;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
@@ -31,7 +34,6 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.Multipart;
 import javax.mail.*;
 import javax.mail.internet.*;
-//import java.awt.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,15 +44,24 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import static java.util.logging.Logger.*;
+
 public class ListeMatchsController {
+    // Désactiver les avertissements de JavaMail
+    static {
+        getLogger("javax.mail").setLevel(Level.SEVERE);
+    }
     private int userId; // ID de l'utilisateur connecté
 
     // Méthode pour définir l'ID utilisateur
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
     @FXML
     private TableView<Match1> matchTable;
 
@@ -241,27 +252,16 @@ public class ListeMatchsController {
                 // Enregistrer la participation au match
                 enregistrerParticipation(match.getId(), userId);
 
-                // Demander l'adresse e-mail de l'utilisateur
-                TextInputDialog emailDialog = new TextInputDialog();
-                emailDialog.setTitle("Confirmation par e-mail");
-                emailDialog.setHeaderText("Entrez votre adresse e-mail pour recevoir une confirmation");
-                emailDialog.setContentText("E-mail:");
+                // Utiliser un e-mail statique pour le moment
+                String userEmail = "nourhenekhazri519@gmail.com"; // E-mail statique
 
-                // Afficher la boîte de dialogue et attendre la réponse
-                emailDialog.showAndWait().ifPresent(email -> {
-                    if (email.trim().isEmpty()) {
-                        showErrorAlert("Champ vide", "L'adresse e-mail ne peut pas être vide.");
-                        return;
-                    }
-
-                    // Envoyer un e-mail de confirmation
-                    try {
-                        sendConfirmationEmail(email, match, userId);
-                        showSuccessAlert("Succès", "Un e-mail de confirmation a été envoyé à " + email);
-                    } catch (Exception e) {
-                        showErrorAlert("Erreur", "Erreur lors de l'envoi de l'e-mail : " + e.getMessage());
-                    }
-                });
+                // Envoyer un e-mail de confirmation automatiquement
+                try {
+                    sendConfirmationEmail(userEmail, match, userId);
+                    showSuccessAlert("Succès", "Un e-mail de confirmation a été envoyé à " + userEmail);
+                } catch (Exception e) {
+                    showErrorAlert("Erreur", "Erreur lors de l'envoi de l'e-mail : " + e.getMessage());
+                }
             } catch (NumberFormatException e) {
                 showErrorAlert("ID utilisateur invalide", "Veuillez entrer un nombre valide pour l'ID utilisateur.");
             }
@@ -421,15 +421,15 @@ public class ListeMatchsController {
         }
     }
 
-    // Méthode pour envoyer un e-mail de confirmation
+    // Méthode pour envoyer un e-mail de confirmation avec logo
     private void sendConfirmationEmail(String email, Match1 match, int userId) throws Exception {
         // Désactiver la vérification stricte des adresses e-mail
         System.setProperty("mail.mime.address.strict", "false");
 
         // Paramètres du serveur SMTP
         String host = "smtp.gmail.com";
-        String username = "nourhenekhazri519@gmail.com";
-        String password = "yklc qmik oydl stho";
+        String username = "nourhenekhazri519@gmail.com"; // Remplacez par votre adresse e-mail
+        String password = "agoq bayo rnwm fyvq"; // Remplacez par votre mot de passe
 
         // Propriétés pour la configuration du serveur SMTP
         Properties props = new Properties();
@@ -452,21 +452,37 @@ public class ListeMatchsController {
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
         message.setSubject("Confirmation de participation au match");
 
-        // Corps du message
-        String body = "Bonjour,\n\n"
-                + "Votre participation au match suivant a été confirmée :\n"
-                + "Date : " + match.getDate() + "\n"
-                + "Heure : " + match.getHeure() + "\n"
-                + "Localisation : " + match.getLocalisation() + "\n"
-                + "Terrain : " + match.getTerrain() + "\n"
-                + "Type de sport : " + match.getTypeSport() + "\n\n"
-                + "Merci pour votre participation !\n\n"
-                + "Cordialement,\n"
-                + "Matchmate";
+        // Corps du message HTML avec le logo
+        String body = "<html>"
+                + "<body>"
+                + "<div style='text-align: center;'>"
+                + "<img src='cid:logo' alt='Logo de la société' style='width: 150px; height: auto;'/>"
+                + "<h1>Confirmation de participation</h1>"
+                + "<p>Bonjour,</p>"
+                + "<p>Votre participation au match suivant a été confirmée :</p>"
+                + "<ul>"
+                + "<li><strong>Date :</strong> " + match.getDate() + "</li>"
+                + "<li><strong>Heure :</strong> " + match.getHeure() + "</li>"
+                + "<li><strong>Localisation :</strong> " + match.getLocalisation() + "</li>"
+                + "<li><strong>Terrain :</strong> " + match.getTerrain() + "</li>"
+                + "<li><strong>Type de sport :</strong> " + match.getTypeSport() + "</li>"
+                + "</ul>"
+                + "<p>Merci pour votre participation !</p>"
+                + "<p>Cordialement,<br>Matchmate</p>"
+                + "</div>"
+                + "</body>"
+                + "</html>";
 
-        // Ajouter le corps du message
+        // Ajouter le corps du message HTML
         MimeBodyPart textPart = new MimeBodyPart();
-        textPart.setText(body);
+        textPart.setContent(body, "text/html");
+
+        // Ajouter le logo en tant que ressource
+        MimeBodyPart imagePart = new MimeBodyPart();
+        String imagePath = "src/main/resources/images/logo.jpeg"; // Chemin vers le logo
+        DataSource source = new FileDataSource(imagePath);
+        imagePart.setDataHandler(new DataHandler(source));
+        imagePart.setHeader("Content-ID", "<logo>"); // Référence dans le corps du message
 
         // Générer le PDF
         String pdfFilePath = "participation_" + match.getId() + "_" + userId + ".pdf";
@@ -478,8 +494,9 @@ public class ListeMatchsController {
 
         // Combiner les parties du message
         Multipart multipart = new MimeMultipart();
-        multipart.addBodyPart(textPart);
-        multipart.addBodyPart(attachmentPart);
+        multipart.addBodyPart(textPart); // Corps du message
+        multipart.addBodyPart(imagePart); // Logo
+        multipart.addBodyPart(attachmentPart); // Pièce jointe PDF
 
         // Ajouter le contenu au message
         message.setContent(multipart);
