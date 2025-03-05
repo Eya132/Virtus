@@ -30,7 +30,23 @@ public class User {
 
     public User() {
     }
-    public User(String email, String password, String nom, String prenom, LocalDate dateNaissance, UserSexe sexe, String telephone, String description, int maxDistance, String adresse, UserRole role, User_Niveau niveauJoueur, Experience experience, double salaire, boolean isPremium , String piece_jointe) {
+    public User(String email, String password, String nom, String prenom, LocalDate dateNaissance, UserSexe sexe, String telephone, String description, int maxDistance, String adresse, UserRole role, User_Niveau niveauJoueur, Experience experience, double salaire, boolean isPremium, String piece_jointe) {
+        this.emailUser = email;
+        this.passwordUser = password;
+        this.nomUser = nom;
+        this.prenomUser = prenom;
+        this.dateNaissanceUser = dateNaissance;
+        this.sexeUser = sexe;
+        this.telephoneUser = telephone;
+        this.descriptionUser = description;
+        this.maxDistanceUser = maxDistance;
+        this.adresseUser = adresse;
+        this.role = role; // Ensure role is initialized
+        this.niveau_joueur = niveauJoueur;
+        this.experience = experience;
+        this.salaire = salaire;
+        this.is_Premuim = isPremium;
+        this.piece_jointe = piece_jointe;
     }
 
 

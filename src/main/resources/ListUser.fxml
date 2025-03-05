@@ -45,12 +45,7 @@
                     <TableColumn fx:id="prenomColumn" text="Prénom" />
                     <TableColumn fx:id="roleColumn" text="Rôle" />
                     <TableColumn fx:id="photoColumn" text="Photo" />
-
-                    <TableColumn fx:id="actionColumn" text="Action">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="dummy" />
-                        </cellValueFactory>
-                    </TableColumn>
+                    <TableColumn fx:id="actionColumn" text="Action" />
                 </columns>
             </TableView>
         </VBox>

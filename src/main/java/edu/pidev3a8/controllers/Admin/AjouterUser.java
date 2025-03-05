@@ -203,6 +203,8 @@ public class AjouterUser {
             }
 
             // 11. Vérification du salaire (si applicable)
+
+
             double salaire = 0;
             if (role == UserRole.NUTRITIONIST) {
                 if (salaireText == null || salaireText.isEmpty()) {
@@ -240,6 +242,7 @@ public class AjouterUser {
             // Ajouter l'utilisateur via le service
             UserService userService = new UserService();
             userService.addEntity(user);
+            System.out.println("Role selected: " + role);
 
             // Afficher un message de succès
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
