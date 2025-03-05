@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane stylesheets="@Styles/Style1.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainNavigationController">
+
+    <top>
+        <HBox spacing="20" styleClass="nav-bar" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+
+            <!-- Bouton Admin -->
+            <Button onAction="#showAdminView" styleClass="nav-button" text="Administration">
+                <graphic>
+                    <ImageView fitHeight="30" fitWidth="30">
+                        <image>
+                            <Image url="@Images/admin_icon.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <!-- Bouton Jouer -->
+            <Button onAction="#showCardView" prefHeight="51.0" prefWidth="180.0" styleClass="nav-button" text="Jouer" textAlignment="CENTER">
+                <graphic>
+                    <ImageView fitHeight="24" fitWidth="24">
+                        <image>
+                            <Image url="@Images/player_icon.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane>
+            <!-- Vue Admin (main.fxml) -->
+            <fx:include fx:id="adminView" source="Main.fxml" />
+
+            <!-- Vue Joueur (card.fxml) -->
+            <fx:include fx:id="cardView" source="DashboardCard.fxml" visible="false" />
+        </StackPane>
+    </center>
+
+</BorderPane>
