@@ -1,5 +1,7 @@
 doctrine:
     dbal:
+        types:
+            uuid: Ramsey\Uuid\Doctrine\UuidType
         url: '%env(resolve:DATABASE_URL)%'
         mapping_types:
             enum: string

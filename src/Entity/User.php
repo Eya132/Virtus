@@ -1,161 +1,254 @@
 <?php
 
 namespace App\Entity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
 
 
 #[ORM\Entity]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-
+      
     #[ORM\Id]
-    #[ORM\Column(type: "string", length: 11)]
-    private string $id_user;
+    #[ORM\Column(type: "string", length: 11, unique: true)]
+    private ?string $id_user = null;
+
+    public function getRoles(): array
+    {
+        // Return the roles or permissions granted to the user
+        return [$this->role];
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Clear any sensitive data if stored temporarily
+    }
+
+    public function getUserIdentifier(): string
+    {
+        // Return the unique identifier for the user (e.g., email)
+        return $this->email_user;
+    }
+
+    public function getPassword(): string
+    {
+        // Return the hashed password
+        return $this->password_user;
+    }
+
+    public function __toString(): string
+{
+    return sprintf('%s %s (%s)', 
+        $this->getNomUser(), 
+        $this->getPrenomUser(), 
+        $this->getEmailUser()
+    );
+}
+
+public function __construct()
+{
+    $this->generateCustomId();
+}
+
+private function generateCustomId(): void
+{
+    $prefix = '';
+    $middle = '';
+    
+    // Détermine le préfixe en fonction du rôle
+    switch ($this->role) {
+        case 'PLAYER':
+            $middle = ($this->sexe_user === 'M') ? 'JMT' : 'FMT';
+            break;
+        case 'NUTRITIONIST':
+            $middle = 'NUT';
+            break;
+        case 'ADMIN':
+            $middle = 'ADM';
+            break;
+        default:
+            $middle = 'GEN'; // Générique si rôle non reconnu
+    }
+    
+    // Génère les nombres aléatoires
+    $randomPrefix = str_pad(rand(0, 999), 3, '0', STR_PAD_LEFT);
+    $randomSuffix = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+    
+    $this->id_user = $randomPrefix . $middle . $randomSuffix;
+}
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "L'email ne peut pas être vide")]
+    #[Assert\Email(message: "L'email '{{ value }}' n'est pas valide")]
     private string $email_user;
 
     #[ORM\Column(type: "string", length: 255)]
-    private string $password_user;
+    #[Assert\Length(
+        min: 6,
+        minMessage: "Le mot de passe doit contenir au moins {{ limit }} caractères",
+        groups: ["registration"]
+    )]
+    private ?string $password_user = null;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "Le nom ne peut pas être vide")]
     private string $nom_user;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "Le prenom ne peut pas être vide")]
     private string $prenom_user;
 
-    #[ORM\Column(type: "string")]
-    private string $sexe_user;
+    #[ORM\Column(type: "string", length: 255)]
+    private string $sexe_user ="M";
 
     #[ORM\Column(type: "string", length: 15)]
-    private string $telephone_user;
+    #[Assert\NotBlank(
+    message: "Le téléphone ne peut pas être vide",
+    groups: ["Default"] // Ajout du groupe
+    )]
+    #[Assert\Regex(
+    pattern: "/^[259][0-9]*$/",
+    message: "Ooredoo, Orange ou Tunisie Telecom",
+    groups: ["Default"] // Ajout du groupe
+    )]
+private string $telephone_user;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "La description ne peut pas être vide")]
     private string $description_user;
 
     #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank(message: "L'adresse ne peut pas être vide")]
     private string $adresse_user;
 
     #[ORM\Column(type: "string")]
-    private string $role;
+    private string $role ="PLAYER";
 
     #[ORM\Column(type: "string")]
     private string $experience;
 
     #[ORM\Column(type: "float")]
+    #[Assert\PositiveOrZero(message: "Le salaire ne peut pas être négatif")]
     private float $salaire;
 
     #[ORM\Column(type: "string")]
     private string $niveau_joueur;
 
     #[ORM\Column(type: "integer")]
-    private int $maxDistance_user;
+    #[Assert\PositiveOrZero(
+    message: "La distance maximale ne peut pas être négative",
+    groups: ["Default"] // Ajout du groupe
+)]
+private int $max_distance_user;
 
     #[ORM\Column(type: "string", length: 1)]
     private string $is_premium;
 
     #[ORM\Column(type: "string", length: 255)]
-    private string $photo_user;
+    private string $photo_user ;
 
     #[ORM\Column(type: "string", length: 255)]
     private string $piece_jointe;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private string $reset_token;
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private ?string $reset_token = null;
 
-    #[ORM\Column(type: "datetime")]
-    private \DateTimeInterface $token_expiration;
+    #[ORM\Column(type: "datetime", nullable: true)]
+    private ?\DateTimeInterface $token_expiration = null;
 
-    #[ORM\Column(type: "datetime")]
-    private \DateTimeInterface $dateNaissance_user;
+    #[ORM\Column(type: "datetime", nullable: true)]
+    #[Assert\NotBlank(message: "La date ne peut pas être vide")]
+    private ?\DateTimeInterface $date_naissance_user = null;
 
-    public function getId_user()
+    public function getIdUser(): ?string
     {
         return $this->id_user;
     }
 
-    public function setId_user($value)
+    public function setIdUser($value)
     {
         $this->id_user = $value;
     }
 
-    public function getEmail_user()
+    public function getEmailUser()
     {
         return $this->email_user;
     }
 
-    public function setEmail_user($value)
+    public function setEmailUser($value)
     {
         $this->email_user = $value;
     }
 
-    public function getPassword_user()
+    public function getPasswordUser()
     {
         return $this->password_user;
     }
 
-    public function setPassword_user($value)
+    public function setPasswordUser($value)
     {
         $this->password_user = $value;
     }
 
-    public function getNom_user()
+    public function getNomUser()
     {
         return $this->nom_user;
     }
 
-    public function setNom_user($value)
+    public function setNomUser($value)
     {
         $this->nom_user = $value;
     }
 
-    public function getPrenom_user()
+    public function getPrenomUser()
     {
         return $this->prenom_user;
     }
 
-    public function setPrenom_user($value)
+    public function setPrenomUser($value)
     {
         $this->prenom_user = $value;
     }
 
-    public function getSexe_user()
+    public function getSexeUser()
     {
         return $this->sexe_user;
     }
 
-    public function setSexe_user($value)
+    public function setSexeUser($value)
     {
         $this->sexe_user = $value;
     }
 
-    public function getTelephone_user()
+    public function getTelephoneUser()
     {
         return $this->telephone_user;
     }
 
-    public function setTelephone_user($value)
+    public function setTelephoneUser($value)
     {
         $this->telephone_user = $value;
     }
 
-    public function getDescription_user()
+    public function getDescriptionUser()
     {
         return $this->description_user;
     }
 
-    public function setDescription_user($value)
+    public function setDescriptionUser($value)
     {
         $this->description_user = $value;
     }
 
-    public function getAdresse_user()
+    public function getAdresseUser()
     {
         return $this->adresse_user;
     }
 
-    public function setAdresse_user($value)
+    public function setAdresseUser($value)
     {
         $this->adresse_user = $value;
     }
@@ -190,83 +283,83 @@ class User
         $this->salaire = $value;
     }
 
-    public function getNiveau_joueur()
+    public function getNiveauJoueur()
     {
         return $this->niveau_joueur;
     }
 
-    public function setNiveau_joueur($value)
+    public function setNiveauJoueur($value)
     {
         $this->niveau_joueur = $value;
     }
 
-    public function getMaxDistance_user()
+    public function getMaxDistanceUser() : ?int
     {
-        return $this->maxDistance_user;
+        return $this->max_distance_user;
     }
 
-    public function setMaxDistance_user($value)
+    public function setMaxDistanceUser($value)
     {
-        $this->maxDistance_user = $value;
+        $this->max_distance_user = $value;
     }
 
-    public function getIs_premium()
+    public function getIsPremium()
     {
         return $this->is_premium;
     }
 
-    public function setIs_premium($value)
+    public function setIsPremium($value)
     {
         $this->is_premium = $value;
     }
 
-    public function getPhoto_user()
+    public function getPhotoUser()
     {
         return $this->photo_user;
     }
 
-    public function setPhoto_user($value)
+    public function setPhotoUser($value)
     {
         $this->photo_user = $value;
     }
 
-    public function getPiece_jointe()
+    public function getPieceJointe()
     {
         return $this->piece_jointe;
     }
 
-    public function setPiece_jointe($value)
+    public function setPieceJointe($value)
     {
         $this->piece_jointe = $value;
     }
 
-    public function getReset_token()
+    public function getResetToken()
     {
-        return $this->reset_token;
+        return $this->reset_token ;
     }
 
-    public function setReset_token($value)
+    public function setResetToken($value)
     {
         $this->reset_token = $value;
     }
 
-    public function getToken_expiration()
+    public function getTokenExpiration()
     {
         return $this->token_expiration;
     }
 
-    public function setToken_expiration($value)
+    public function setTokenExpiration($value)
     {
         $this->token_expiration = $value;
     }
 
-    public function getDateNaissance_user()
+    public function getDateNaissanceUser()
     {
-        return $this->dateNaissance_user;
+        return $this->date_naissance_user;
     }
 
-    public function setDateNaissance_user($value)
+    public function setDateNaissanceUser($value)
     {
-        $this->dateNaissance_user = $value;
+        $this->date_naissance_user = $value;
     }
 }

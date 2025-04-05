@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Dashboard Utilisateurs{% endblock %}
+{% block current_page %}Utilisateurs{% endblock %}
+{% block page_title %}Tableau des Utilisateurs{% endblock %}
+
+{% block main_content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Liste des Utilisateurs</h6>
+                    <a href="{{ path('app_dashboard_user_new') }}" class="btn btn-sm btn-success">
+                        <i class="ni ni-fat-add"></i> Ajouter
+                    </a>
+                    <p class="text-sm mb-0">
+                        <i class="fa fa-users text-info"></i>
+                        <span class="font-weight-bold">{{ users|length }} utilisateurs</span> au total
+                    </p>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom & Prénom</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Téléphone</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sexe</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Niveau</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Premium</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-3 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">{{ user.idUser }}</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div>
+                                               
+
+
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">{{ user.getNomUser }} {{ user.getPrenomUser }}</h6>
+                                                <p class="text-xs text-secondary mb-0">{{ user.getAdresseUser }}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ user.getEmailUser }}</p>
+                                        <p class="text-xs text-secondary mb-0">{{ user.role }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ user.getTelephoneUser }}</p>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-sm bg-gradient-{{ user.getSexeUser == 'Male' ? 'info' : 'danger' }}">
+                                            {{ user.getSexeUser }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="text-xs font-weight-bold">{{ user.getNiveauJoueur }}</span>
+                                            <span class="text-xs text-secondary">Exp: {{ user.getExperience }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-sm bg-gradient-{{ user.getIsPremium ? 'success' : 'secondary' }}">
+                                            {{ user.getIsPremium ? 'Oui' : 'Non' }}
+                                        </span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <button type="button" class="btn btn-sm btn-info mb-0" data-bs-toggle="tooltip" data-bs-title="Voir détails">
+                                            <i class="ni ni-single-02"></i>
+                                        </button>
+                                        <a href="{{ path('app_dashboard_user_edit', {'id': user.idUser}) }}" 
+                                        class="btn btn-sm btn-warning mb-0" 
+                                        data-bs-toggle="tooltip" 
+                                        data-bs-title="Modifier">
+                                         <i class="ni ni-ruler-pencil"></i>
+                                     </a>
+                                     <form action="{{ path('app_dashboard_user_delete', {'id': user.idUser}) }}" method="post" class="d-inline">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.idUser) }}">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" 
+                                                class="btn btn-sm btn-danger mb-0"
+                                                data-bs-toggle="tooltip" 
+                                                data-bs-title="Supprimer"
+                                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur?');">
+                                            <i class="ni ni-fat-remove"></i>
+                                        </button>
+                                    </form>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="8" class="text-center py-4">Aucun utilisateur trouvé</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    // Initialiser les tooltips Bootstrap
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    
+</script>
+{% endblock %}
