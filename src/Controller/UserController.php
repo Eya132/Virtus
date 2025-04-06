@@ -106,28 +106,21 @@ class UserController extends AbstractController
             }
 
 
-            #[Route('/dashboard/user/edit/{id}', name: 'app_dashboard_user_edit')]
-public function edit(
-    Request $request,
-    User $user,
-    EntityManagerInterface $entityManager,
-    UserPasswordHasherInterface $passwordHasher
-): Response {
-    $form = $this->createForm(UserType::class, $user, [
-        'is_edit' => true // Ajout de cette option
-    ]);
-    
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-        // Si le mot de passe a été modifié
-        if ($form->get('password_user')->getData()) {
-            $hashedPassword = $passwordHasher->hashPassword(
-                $user,
-                $form->get('password_user')->getData()
-            );
-            $user->setPasswordUser($hashedPassword);
-        }
+        #[Route('/dashboard/user/edit/{id}', name: 'app_dashboard_user_edit')]
+        public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+        {
+            $form = $this->createForm(UserType::class, $user, ['is_edit' => true]);
+            $form->handleRequest($request);
+        
+            if ($form->isSubmitted() && $form->isValid()) {
+                // Gestion du mot de passe seulement s'il a été modifié
+                if ($form->get('password_user')->getData()) {
+                    $hashedPassword = $passwordHasher->hashPassword(
+                        $user,
+                        $form->get('password_user')->getData()
+                    );
+                    $user->setPasswordUser($hashedPassword);
+                }
 
         // Gestion des fichiers
         $photoFile = $form->get('photo_user')->getData();

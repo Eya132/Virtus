@@ -31,26 +31,36 @@ class UserType extends AbstractType
                 'label' => 'Email',
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'exemple@domaine.com' // Placeholder dans attr
                 ],
-                'required' => true
             ])
             ->add('password_user', PasswordType::class, [
                 'label' => 'Mot de passe',
-                'mapped' => false,
-                'required' => !$isEdit,
+                'required' => !$isEdit, // Obligatoire seulement en création
                 'attr' => [
                     'class' => 'form-control',
                     'minlength' => 6,
-                    'data-validation' => 'password',
+                    'data-password-validation' => 'true'
                 ],
+                'constraints' => $isEdit ? [] : [
+                    new NotBlank([
+                        'message' => 'Le mot de passe est obligatoire',
+                        'groups' => ['registration']
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Le mot de passe doit contenir au moins {{ limit }} caractères',
+                        'groups' => ['registration']
+                    ])
+                ]
             ])
             ->add('nom_user', TextType::class, [
                 'label' => 'Nom',
+                'empty_data' => '',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('prenom_user', TextType::class, [
                 'label' => 'Prénom',
+                'empty_data' => '',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('sexe_user', ChoiceType::class, [
@@ -63,6 +73,7 @@ class UserType extends AbstractType
             ])
             ->add('telephone_user', TextType::class, [
                 'label' => 'Téléphone',
+                'empty_data' => '',
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'ooredoo, orange, telecom.',
@@ -70,11 +81,13 @@ class UserType extends AbstractType
             ])
             ->add('description_user', TextareaType::class, [
                 'label' => 'Description',
+                'empty_data' => '',
                 'required' => false,
                 'attr' => ['class' => 'form-control', 'rows' => 3]
             ])
             ->add('adresse_user', TextType::class, [
                 'label' => 'Adresse',
+                'empty_data' => '',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('role', ChoiceType::class, [
@@ -98,6 +111,7 @@ class UserType extends AbstractType
             ])
             ->add('salaire', NumberType::class, [
                 'label' => 'Salaire',
+                'empty_data' => '',
                 'attr' => [
                     'class' => 'form-control',
                     'min' => 0
@@ -114,6 +128,7 @@ class UserType extends AbstractType
             ])
             ->add('max_distance_user', NumberType::class, [
                 'label' => 'Distance maximale (km)',
+                'empty_data' => '',
                 'required' => false,
                 'attr' => [
                     'min' => 0,
@@ -142,6 +157,7 @@ class UserType extends AbstractType
             ])
             ->add('date_naissance_user', DateType::class, [
                 'label' => 'Date de naissance',
+                'empty_data' => '',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-control']
             ]);
@@ -152,18 +168,7 @@ class UserType extends AbstractType
     $resolver->setDefaults([
         'data_class' => User::class,
         'is_edit' => false,
-        'validation_groups' => function (FormInterface $form) {
-            $user = $form->getData();
-            $groups = ['Default'];
-            
-            // Si c'est une création ou si le mot de passe est fourni en modification
-            if (!$form->getConfig()->getOption('is_edit') || 
-                ($form->getConfig()->getOption('is_edit') && $form->get('password_user')->getData())) {
-                $groups[] = 'registration';
-            }
-            
-            return $groups;
-        }
+        'validation_groups' => ['Default']
     ]);
 }
 }

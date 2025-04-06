@@ -23,61 +23,101 @@
                     {# Champ Email #}
                     <div class="col-md-6">
                         {{ form_label(form.email_user, 'Email', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.email_user, {'attr': {
-                            'class': 'form-control',
-                            'placeholder': 'exemple@domaine.com'
-                        }}) }}
+                        {{ form_widget(form.email_user, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'exemple@domaine.com',
+                                'data-validation': 'email'  
+                            }
+                        }) }}
+                        <div class="invalid-feedback" id="email_user_error"></div>
                         {{ form_errors(form.email_user) }}
                     </div>
                     
-                    {# Champ Mot de passe #}
+                    
                     <div class="col-md-6">
-                        {{ form_label(form.password_user, 'Nouveau mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_label(form.password_user, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
                         {{ form_widget(form.password_user, {'attr': {
                             'class': 'form-control',
-                            'placeholder': 'Laisser vide pour ne pas changer'
+                            'data-password-validation': 'true',
+                            'placeholder': (is_edit is defined and is_edit) ? 'Laisser vide pour ne pas modifier' : 'Minimum 6 caractères dont un chiffre'
                         }}) }}
-                        <small class="form-text text-muted">6 caractères minimum dont un chiffre</small>
+                        <div class="invalid-feedback" id="user_password_user_error"></div>
                         {{ form_errors(form.password_user) }}
+                        {% if is_edit is defined and is_edit %}
+                            <small class="form-text text-muted">Laisser vide pour conserver le mot de passe actuel</small>
+                        {% endif %}
                     </div>
                     
                     {# Champ Nom #}
                     <div class="col-md-6">
                         {{ form_label(form.nom_user, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.nom_user, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.nom_user, {
+                            'attr': {
+                                'class': 'form-control',
+                                'data-validation': 'text' 
+                            }
+                        }) }}
+                        <div class="invalid-feedback" id="nom_user_error"></div>
                         {{ form_errors(form.nom_user) }}
                     </div>
                     
                     {# Champ Prénom #}
                     <div class="col-md-6">
-                        {{ form_label(form.prenom_user, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.prenom_user, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_label(form.prenom_user, 'Prenom', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.prenom_user, {
+                            'attr': {
+                                'class': 'form-control',
+                                'data-validation': 'text' 
+                            }
+                        }) }}
+                        <div class="invalid-feedback" id="prenom_user_error"></div>
                         {{ form_errors(form.prenom_user) }}
                     </div>
                     
-                    {# Champ Sexe #}
-                    <div class="col-md-6">
-                        {{ form_label(form.sexe_user, 'Sexe', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.sexe_user, {'attr': {'class': 'form-control'}}) }}
-                        {{ form_errors(form.sexe_user) }}
-                    </div>
+                        {# Champ Sexe #}
+                        <div class="col-md-6">
+                            {{ form_label(form.sexe_user, 'Sexe', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.sexe_user, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'data-validation': 'select'
+                                }
+                            }) }}
+                            <div class="invalid-feedback" id="sexe_user_error"></div>
+                            {{ form_errors(form.sexe_user) }}
+                        </div>
                     
-                    {# Champ Téléphone #}
-                    <div class="col-md-6">
-                        {{ form_label(form.telephone_user, 'Téléphone', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.telephone_user, {'attr': {
-                            'class': 'form-control',
-                            'placeholder': 'Commence par 2, 5 ou 9'
-                        }}) }}
-                        {{ form_errors(form.telephone_user) }}
-                    </div>
+                        {# Champ Téléphone #}
+                        <div class="col-md-6">
+                            {{ form_label(form.telephone_user, 'Téléphone', {'label_attr': {
+                                'class': 'form-label'  # ← COMMA ADDED HERE (if adding more label attributes)
+                            }}) }}
+                            {{ form_widget(form.telephone_user, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'placeholder': 'Commence par 2, 5 ou 9',
+                                    'data-validation': 'phone'  # ← MOVED HERE (correct placement)
+                                }
+                            }) }}
+                            <div class="invalid-feedback" id="telephone_user_error"></div>
+                            {{ form_errors(form.telephone_user) }}
+                        </div>
                     
-                    {# Champ Adresse #}
-                    <div class="col-12">
-                        {{ form_label(form.adresse_user, 'Adresse', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.adresse_user, {'attr': {'class': 'form-control'}}) }}
-                        {{ form_errors(form.adresse_user) }}
-                    </div>
+                        {# Champ Adresse #}
+                        <div class="col-12">
+                            {{ form_label(form.adresse_user, 'Adresse', {'label_attr': {
+                                'class': 'form-label'  
+                            }}) }}
+                            {{ form_widget(form.adresse_user, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'data-validation': 'text'  
+                                }
+                            }) }}
+                            <div class="invalid-feedback" id="adresse_user_error"></div>
+                            {{ form_errors(form.adresse_user) }}
+                        </div>
                     
                     {# Champ Rôle #}
                     <div class="col-md-6">
@@ -110,29 +150,47 @@
                     {# Champ Date de Naissance #}
                     <div class="col-md-6">
                         {{ form_label(form.date_naissance_user, 'Date de naissance', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.date_naissance_user, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.date_naissance_user, {
+                            'attr': {
+                                'class': 'form-control',
+                                'data-validation': 'date' 
+                            }
+                        }) }}
+                        <div class="invalid-feedback" id="date_naissance_user_error"></div>
                         {{ form_errors(form.date_naissance_user) }}
                     </div>
                     
                     {# Champ Salaire #}
                     <div class="col-md-6">
-                        {{ form_label(form.salaire, 'Salaire', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.salaire, {'attr': {
-                            'class': 'form-control',
-                            'min': 0
+                        {{ form_label(form.salaire, 'Salaire', {'label_attr': {
+                            'class': 'form-label'
                         }}) }}
+                        {{ form_widget(form.salaire, {
+                            'attr': {
+                                'class': 'form-control',
+                                'min': 0,
+                                'data-validation': 'number'
+                            }
+                        }) }}
+                        <div class="invalid-feedback" id="salaire_error"></div>
                         {{ form_errors(form.salaire) }}
                     </div>
                     
                     {# Champ Distance Maximale #}
-                    <div class="col-md-6">
-                        {{ form_label(form.max_distance_user, 'Distance maximale (km)', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.max_distance_user, {'attr': {
-                            'class': 'form-control',
-                            'min': 0
-                        }}) }}
-                        {{ form_errors(form.max_distance_user) }}
-                    </div>
+                        <div class="col-md-6">
+                            {{ form_label(form.max_distance_user, 'Distance maximale (km)', {'label_attr': {
+                                'class': 'form-label'
+                            }}) }}
+                            {{ form_widget(form.max_distance_user, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'min': 0,
+                                    'data-validation': 'number'
+                                }
+                            }) }}
+                            <div class="invalid-feedback" id="max_distance_user_error"></div>
+                            {{ form_errors(form.max_distance_user) }}
+                        </div>
                     
                     {# Champ Photo #}
                     <div class="col-md-6">
@@ -166,11 +224,17 @@
                     
                     {# Champ Description #}
                     <div class="col-12">
-                        {{ form_label(form.description_user, 'Description', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.description_user, {'attr': {
-                            'class': 'form-control',
-                            'rows': 3
+                        {{ form_label(form.description_user, 'Description', {'label_attr': {
+                            'class': 'form-label'
                         }}) }}
+                        {{ form_widget(form.description_user, {
+                            'attr': {
+                                'class': 'form-control',
+                                'rows': 3,
+                                'data-validation': 'text'
+                            }
+                        }) }}
+                        <div class="invalid-feedback" id="description_user_error"></div>
                         {{ form_errors(form.description_user) }}
                     </div>
                     

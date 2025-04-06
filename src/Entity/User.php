@@ -80,88 +80,87 @@ private function generateCustomId(): void
     $this->id_user = $randomPrefix . $middle . $randomSuffix;
 }
 
-    #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank(message: "L'email ne peut pas être vide")]
-    #[Assert\Email(message: "L'email '{{ value }}' n'est pas valide")]
-    private string $email_user;
+        #[ORM\Column(type: "string", length: 255)]
+        #[Assert\NotBlank(message: "L'email ne peut pas être vide")]
+        #[Assert\Email(message: "L'email '{{ value }}' n'est pas valide")]
+        private ?string $email_user = null; // Rendons nullable avec valeur par défaut null
 
-    #[ORM\Column(type: "string", length: 255)]
-    #[Assert\Length(
-        min: 6,
-        minMessage: "Le mot de passe doit contenir au moins {{ limit }} caractères",
-        groups: ["registration"]
-    )]
-    private ?string $password_user = null;
+        #[ORM\Column(type: "string", length: 255)]
+        #[Assert\NotBlank(message: "Le mot de passe est obligatoire", groups: ["registration"])]
+        #[Assert\Length(
+            min: 6,
+            minMessage: "Le mot de passe doit contenir au moins {{ limit }} caractères",
+            groups: ["registration"]
+        )]
+        #[Assert\Regex(
+            pattern: "/\d/",
+            message: "Le mot de passe doit contenir au moins un chiffre",
+            groups: ["registration"]
+        )]
+        private ?string $password_user = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank(message: "Le nom ne peut pas être vide")]
-    private string $nom_user;
+        #[ORM\Column(type: "string", length: 255)]
+        #[Assert\NotBlank(message: "Le nom ne peut pas être vide")]
+        private ?string $nom_user = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank(message: "Le prenom ne peut pas être vide")]
-    private string $prenom_user;
+        #[ORM\Column(type: "string", length: 255)]
+        #[Assert\NotBlank(message: "Le prénom ne peut pas être vide")]
+        private ?string $prenom_user = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private string $sexe_user ="M";
+        #[ORM\Column(type: "string", length: 255)]
+        private ?string $sexe_user = "M";
 
-    #[ORM\Column(type: "string", length: 15)]
-    #[Assert\NotBlank(
-    message: "Le téléphone ne peut pas être vide",
-    groups: ["Default"] // Ajout du groupe
-    )]
-    #[Assert\Regex(
-    pattern: "/^[259][0-9]*$/",
-    message: "Ooredoo, Orange ou Tunisie Telecom",
-    groups: ["Default"] // Ajout du groupe
-    )]
-private string $telephone_user;
+        #[ORM\Column(type: "string", length: 15)]
+        #[Assert\NotBlank(message: "Le téléphone ne peut pas être vide")]
+        #[Assert\Regex(
+            pattern: "/^[259][0-9]*$/",
+            message: "Le téléphone doit commencer par 2, 5 ou 9"
+        )]
+        private ?string $telephone_user = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank(message: "La description ne peut pas être vide")]
-    private string $description_user;
+        #[ORM\Column(type: "string", length: 255)]
+        #[Assert\NotBlank(message: "La description ne peut pas être vide")]
+        private ?string $description_user = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank(message: "L'adresse ne peut pas être vide")]
-    private string $adresse_user;
+        #[ORM\Column(type: "string", length: 255)]
+        #[Assert\NotBlank(message: "L'adresse ne peut pas être vide")]
+        private ?string $adresse_user = null;
 
-    #[ORM\Column(type: "string")]
-    private string $role ="PLAYER";
+        #[ORM\Column(type: "string")]
+        private ?string $role = "PLAYER";
 
-    #[ORM\Column(type: "string")]
-    private string $experience;
+        #[ORM\Column(type: "string")]
+        private ?string $experience = null;
 
-    #[ORM\Column(type: "float")]
-    #[Assert\PositiveOrZero(message: "Le salaire ne peut pas être négatif")]
-    private float $salaire;
+        #[ORM\Column(type: "float")]
+        #[Assert\PositiveOrZero(message: "Le salaire ne peut pas être négatif")]
+        private ?float $salaire = null;
 
-    #[ORM\Column(type: "string")]
-    private string $niveau_joueur;
+        #[ORM\Column(type: "string")]
+        private ?string $niveau_joueur = null;
 
-    #[ORM\Column(type: "integer")]
-    #[Assert\PositiveOrZero(
-    message: "La distance maximale ne peut pas être négative",
-    groups: ["Default"] // Ajout du groupe
-)]
-private int $max_distance_user;
+        #[ORM\Column(type: "integer")]
+        #[Assert\PositiveOrZero(message: "La distance maximale ne peut pas être négative")]
+        private ?int $max_distance_user = null;
 
-    #[ORM\Column(type: "string", length: 1)]
-    private string $is_premium;
+        #[ORM\Column(type: "string", length: 1)]
+        private ?string $is_premium = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private string $photo_user ;
+        #[ORM\Column(type: "string", length: 255)]
+        private ?string $photo_user = null;
 
-    #[ORM\Column(type: "string", length: 255)]
-    private string $piece_jointe;
+        #[ORM\Column(type: "string", length: 255)]
+        private ?string $piece_jointe = null;
 
-    #[ORM\Column(type: "string", length: 255, nullable: true)]
-    private ?string $reset_token = null;
+        #[ORM\Column(type: "string", length: 255, nullable: true)]
+        private ?string $reset_token = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    private ?\DateTimeInterface $token_expiration = null;
+        #[ORM\Column(type: "datetime", nullable: true)]
+        private ?\DateTimeInterface $token_expiration = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
-    #[Assert\NotBlank(message: "La date ne peut pas être vide")]
-    private ?\DateTimeInterface $date_naissance_user = null;
+        #[ORM\Column(type: "datetime", nullable: true)]
+        #[Assert\NotBlank(message: "La date de naissance ne peut pas être vide")]
+        private ?\DateTimeInterface $date_naissance_user = null;
 
     public function getIdUser(): ?string
     {
