@@ -48,6 +48,8 @@
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sexe</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Niveau</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Premium</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Photo</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Statut</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
                                 </tr>
                             </thead>
@@ -60,6 +62,9 @@
                                                 <h6 class="mb-0 text-sm">{{ user.idUser }}</h6>
                                             </div>
                                         </div>
+                                        <span class="badge badge-sm bg-gradient-{{ user.isActive ? 'success' : 'secondary' }}">
+                                            {{ user.isActive ? 'Actif' : 'Inactif' }}
+                                        </span>
                                     </td>
                                     <td>
                                         <div class="d-flex px-2 py-1">
@@ -92,13 +97,56 @@
                                             {{ user.isPremium ? 'Oui' : 'Non' }}
                                         </span>
                                     </td>
-                                    <td class="align-middle">
-                                        <!-- Actions... -->
+                                    <td>
+                                        <div class="avatar-group">
+                                            {% if user.photoUser %}
+                                                <div class="avatar avatar-sm position-relative">
+                                                    <img src="{{ asset('uploads/' ~ user.photoUser) }}" 
+                                                         alt="Photo de profil" 
+                                                         class="border-radius-lg shadow"
+                                                         style="width: 40px; height: 40px; object-fit: cover;">
+                                                </div>
+                                            {% else %}
+                                                <div class="avatar avatar-sm bg-gradient-dark rounded-circle position-relative">
+                                                    <span class="avatar-text" style="font-size: 14px;">
+                                                        {{ user.nomUser|first|upper }}{{ user.prenomUser|first|upper }}
+                                                    </span>
+                                                </div>
+                                            {% endif %}
+                                        </div>
                                     </td>
+                                    <td class="align-middle">
+                                        <div class="d-flex">
+                                            {# Bouton Édition #}
+                                            <a href="{{ path('app_dashboard_user_edit', {'id': user.idUser}) }}" 
+                                               class="btn btn-sm btn-outline-info me-2" 
+                                               data-bs-toggle="tooltip" 
+                                               data-bs-placement="top" 
+                                               title="Modifier">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            
+
+                                                    
+                                            <form method="post" 
+                                            action="{{ path('app_dashboard_user_toggle', {'id': user.idUser}) }}" 
+                                            class="toggle-form">
+                                          <input type="hidden" name="_token" value="{{ csrf_token('toggle' ~ user.idUser) }}">
+                                          <button type="submit" 
+                                                  class="btn btn-sm {{ user.isActive ? 'btn-outline-danger' : 'btn-outline-success' }}" 
+                                                  data-bs-toggle="tooltip" 
+                                                  data-bs-placement="top" 
+                                                  title="{{ user.isActive ? 'Désactiver' : 'Activer' }}">
+                                              <i class="fas {{ user.isActive ? 'fa-user-slash' : 'fa-user-check' }}"></i>
+                                              {{ user.isActive ? 'Désactiver' : 'Activer' }}
+                                          </button>
+                                      </form>
+                                  </div>
+                                            </td>
                                 </tr>
                                 {% else %}
                                 <tr>
-                                    <td colspan="8" class="text-center py-4">Aucun utilisateur trouvé</td>
+                                    <td colspan="9" class="text-center py-4">Aucun utilisateur trouvé</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -113,11 +161,102 @@
 
 {% block javascripts %}
 <script>
-   document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     const userRows = document.querySelectorAll('.user-row');
     const userCount = document.getElementById('userCount');
+    const formatDuration = (minutes) => {
+        if (minutes < 60) return `${minutes} min`;
+        const hours = Math.floor(minutes / 60);
+        const remainingMinutes = minutes % 60;
+        if (remainingMinutes === 0) return `${hours}h`;
+        return `${hours}h${remainingMinutes}`;
+    };
+
+
+        // Gestion des sliders de durée
+    // Mettez à jour votre JavaScript comme ceci
+    document.querySelectorAll('.deactivate-range').forEach(range => {
+        const userId = range.id.replace('range', '');
+        const rangeValue = document.getElementById(`rangeValue${userId}`);
+        
+        // Mise à jour initiale
+        rangeValue.textContent = formatDuration(range.value);
+        
+        // Mise à jour dynamique
+        range.addEventListener('input', function() {
+            rangeValue.textContent = formatDuration(this.value);
+            updateSliderStyle(this);
+        });
+        
+        // Style initial
+        updateSliderStyle(range);
+    });
+
+    function updateSliderStyle(slider) {
+        const percent = (slider.value / slider.max) * 100;
+        slider.style.background = `
+            linear-gradient(to right, #0d6efd 0%, #0d6efd ${percent}%, 
+            #dee2e6 ${percent}%, #dee2e6 100%)
+        `;
+    }
+
+    // Désactivation temporaire
+    document.querySelectorAll('.deactivate-temp').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const userId = this.dataset.userId;
+            const minutes = document.getElementById(`range${userId}`).value;
+            
+            fetch(`/dashboard/user/deactivate/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({
+                    minutes: minutes,
+                    _token: document.querySelector('meta[name="csrf-token"]').content
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                }
+            });
+        });
+    });
+
+    // Désactivation manuelle
+    document.querySelectorAll('.deactivate-manual').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (confirm('Désactiver définitivement ce compte ?')) {
+                const userId = this.dataset.userId;
+                
+                fetch(`/dashboard/user/deactivate/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        manual: true,
+                        _token: document.querySelector('meta[name="csrf-token"]').content
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    });
+});
+
     
+    // Recherche
     searchInput.addEventListener('input', function() {
         const searchTerm = this.value.toLowerCase().trim();
         let visibleCount = 0;
@@ -126,7 +265,6 @@
             const searchData = row.getAttribute('data-search');
             let match = false;
             
-            // Vérifie la séquence exacte de caractères contigus
             if (searchTerm === '' || searchData.includes(searchTerm)) {
                 match = true;
             }
@@ -142,11 +280,36 @@
         userCount.textContent = visibleCount;
     });
     
+    // Gestion des formulaires de toggle
+    document.querySelectorAll('.toggle-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Recharge la page pour voir les changements
+                    window.location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+    
     // Tooltips Bootstrap
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
-});
+;
 </script>
 {% endblock %}

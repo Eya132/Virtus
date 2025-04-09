@@ -134,3 +134,51 @@ alert.fixed-top {
     animation: slideIn 0.3s ease-out;
 }
 
+/* Style moderne pour le slider */
+.deactivate-range {
+    --track-height: 6px;
+    --thumb-size: 18px;
+    --track-color: #e9ecef;
+    --thumb-color: #0d6efd;
+    --highlight-color: #0d6efd;
+    
+    -webkit-appearance: none;
+    width: 100%;
+    height: var(--track-height);
+    border-radius: 3px;
+    background: var(--track-color);
+    outline: none;
+}
+
+.deactivate-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: var(--thumb-size);
+    height: var(--thumb-size);
+    border-radius: 50%;
+    background: var(--thumb-color);
+    cursor: pointer;
+    margin-top: calc((var(--track-height) - var(--thumb-size)) / 2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+.deactivate-range:active::-webkit-slider-thumb {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.3);
+}
+
+.deactivate-range::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.2);
+}
+
+/* Animation du dropdown */
+.dropdown-menu {
+    animation: fadeIn 0.2s ease-out;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

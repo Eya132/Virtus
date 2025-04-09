@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\FormInterface;
 
 class UserType extends AbstractType
@@ -160,15 +161,30 @@ class UserType extends AbstractType
                 'empty_data' => '',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-control']
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Image (JPG, PNG)',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPG ou PNG)',
+                    ]),
+                ],
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
-{
-    $resolver->setDefaults([
-        'data_class' => User::class,
-        'is_edit' => false,
-        'validation_groups' => ['Default']
-    ]);
-}
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class,
+            'is_edit' => false,
+            'validation_groups' => ['Default']
+        ]);
+    }
 }

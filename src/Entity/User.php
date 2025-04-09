@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 #[ORM\Entity]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface 
 {
       
     #[ORM\Id]
@@ -18,8 +18,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        // Return the roles or permissions granted to the user
-        return [$this->role];
+        return $this->roles ?? ['ROLE_USER']; // Ensure a default role is provided
     }
 
     public function eraseCredentials(): void
@@ -29,14 +28,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUserIdentifier(): string
     {
-        // Return the unique identifier for the user (e.g., email)
-        return $this->email_user;
+        return $this->email_user; // Corrected property name
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
-        // Return the hashed password
-        return $this->password_user;
+        return $this->password_user; // Corrected property name
     }
 
     public function __toString(): string
@@ -146,7 +143,7 @@ private function generateCustomId(): void
         #[ORM\Column(type: "string", length: 1)]
         private ?string $is_premium = null;
 
-        #[ORM\Column(type: "string", length: 255)]
+        #[ORM\Column(type: "string", length: 255, nullable: true)]
         private ?string $photo_user = null;
 
         #[ORM\Column(type: "string", length: 255)]
@@ -161,6 +158,16 @@ private function generateCustomId(): void
         #[ORM\Column(type: "datetime", nullable: true)]
         #[Assert\NotBlank(message: "La date de naissance ne peut pas être vide")]
         private ?\DateTimeInterface $date_naissance_user = null;
+
+        // src/Entity/User.php
+
+        #[ORM\Column(type: 'boolean')]
+        private bool $isActive = true;
+
+        #[ORM\Column(type: 'datetime', nullable: true)]
+        private ?\DateTimeInterface $reactivateAt = null;
+
+       
 
     public function getIdUser(): ?string
     {
@@ -312,12 +319,12 @@ private function generateCustomId(): void
         $this->is_premium = $value;
     }
 
-    public function getPhotoUser()
+    public function getPhotoUser(): ?string
     {
         return $this->photo_user;
     }
 
-    public function setPhotoUser($value)
+    public function setPhotoUser(?string $value): void
     {
         $this->photo_user = $value;
     }
@@ -360,5 +367,25 @@ private function generateCustomId(): void
     public function setDateNaissanceUser($value)
     {
         $this->date_naissance_user = $value;
+    }
+    public function isActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+        return $this;
+    }
+
+    public function getReactivateAt(): ?\DateTimeInterface
+    {
+        return $this->reactivateAt;
+    }
+    public function setReactivateAt(?\DateTimeInterface $reactivateAt): self
+    {
+        $this->reactivateAt = $reactivateAt;
+        return $this;
     }
 }
