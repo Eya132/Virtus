@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Services\ReferenceGenerator;
 use App\Services\PdfGenerator;
+use App\Entity\Commande;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 final class ProduitController extends AbstractController
 {
@@ -131,6 +134,8 @@ public function edit(
 }
 
 
+
+
 #[Route('/produits/front', name: 'app_produit_front')]
 public function frontProduit(EntityManagerInterface $em): Response
 {
@@ -142,6 +147,9 @@ public function frontProduit(EntityManagerInterface $em): Response
         'page_title' => 'Produits - MatchMate'
     ]);
 }
+
+
+
 #[Route('/produit/export-pdf', name: 'app_produit_export_pdf')]
 public function exportToPdf(EntityManagerInterface $em, PdfGenerator $pdfGenerator): Response
 {
@@ -156,6 +164,89 @@ public function exportToPdf(EntityManagerInterface $em, PdfGenerator $pdfGenerat
     
     // Générer et retourner le PDF
     return $pdfGenerator->generatePdfFromHtml($html, 'liste_produits_'.date('Y-m-d').'.pdf');
+}
+
+
+
+#[Route('/api/generate-product-description', name: 'app_generate_product_description', methods: ['POST'])]
+public function generateProductDescription(Request $request): JsonResponse
+{
+    $data = json_decode($request->getContent(), true);
+    
+    // Validation basique
+    if (!isset($data['nomProduit'])) {
+        return $this->json(['error' => 'Le nom du produit est requis'], 400);
+    }
+
+    $nomProduit = trim($data['nomProduit']);
+    $currentDescription = $data['currentDescription'] ?? '';
+
+    // Option 1: Génération simple (concaténation)
+    $generatedDescription = $this->generateSmartDescription($nomProduit, $currentDescription);
+    
+  
+    return $this->json([
+        'generatedDescription' => $generatedDescription,
+        'timestamp' => (new \DateTime())->format('Y-m-d H:i:s')
+    ]);
+}
+
+
+private function generateSmartDescription(string $nomProduit, string $currentDescription = ''): string
+{
+    // Détecter le type de produit basé sur le nom
+    $typeProduit = $this->detectProductType($nomProduit);
+    
+    // Templates de description par catégorie
+    $templates = [
+        'sport' => [
+            "Découvrez notre équipement sportif %s, conçu pour les performances. %s",
+            "Caractéristiques :\n- Matériaux techniques\n- Confort optimal\n- Durabilité accrue"
+        ],
+        'electronique' => [
+            "%s - La technologie au service de votre quotidien. %s",
+            "Spécifications :\n- Haute performance\n- Design ergonomique\n- Garantie 2 ans"
+        ],
+        'mode' => [
+            "Collection %s : élégance et style intemporel. %s",
+            "Détails :\n- Tissus de qualité\n- Coupe moderne\n- Entretien facile"
+        ],
+        'default' => [
+            "Découvrez notre produit %s. %s",
+            "Points forts :\n- Qualité garantie\n- Fabrication soignée\n- Satisfaction client"
+        ]
+    ];
+
+    $template = $templates[$typeProduit] ?? $templates['default'];
+    
+    $baseDescription = sprintf(
+        $template[0],
+        $nomProduit,
+        $currentDescription ? "Inspiré par : " . substr($currentDescription, 0, 80) . "..." : ""
+    );
+
+    return $baseDescription . "\n\n" . $template[1];
+}
+
+private function detectProductType(string $productName): string
+{
+    $keywords = [
+        'sport' => ['ballon', 'raquette', 'running', 'sport', 'fitness'],
+        'electronique' => ['smartphone', 'écran', 'pc', 'ordinateur', 'câble'],
+        'mode' => ['chemise', 'robe', 'pantalon', 'chaussure', 'sac']
+    ];
+
+    $productNameLower = strtolower($productName);
+    
+    foreach ($keywords as $type => $terms) {
+        foreach ($terms as $keyword) {
+            if (str_contains($productNameLower, $keyword)) {
+                return $type;
+            }
+        }
+    }
+    
+    return 'default';
 }
 
 

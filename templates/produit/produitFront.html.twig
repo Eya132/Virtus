@@ -80,6 +80,8 @@
                             </div>
                         </div>
                     </div>
+                  
+                       
 
                     <div class="row" id="productsContainer">
                         {% for produit in produits %}
@@ -88,7 +90,10 @@
                              data-description="{{ produit.descriptionProduit|lower }}"
                              data-ref="{{ produit.refProduit|lower }}"
                              data-price="{{ produit.prixProduit }}">
-                            <div class="item-wrapper h-100 shadow-sm rounded-3 overflow-hidden bg-white">
+                            <div class="item-wrapper h-100 shadow-sm rounded-3 overflow-hidden bg-white position-relative">
+      
+                           
+                            
                                 <div class="item-img">
                                     <img src="{{ produit.imageProduit ? asset('uploads/' ~ produit.imageProduit) : asset('front/images/default-product.jpg') }}" 
                                          alt="{{ produit.nomProduit }}" 
@@ -560,6 +565,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = false;
         }
     }
+
     
     function updateTotalPrice() {
         const quantite = parseInt(quantiteInput.value) || 0;
@@ -651,6 +657,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('successModal').addEventListener('hidden.bs.modal', function() {
         window.location.href = "{{ path('app_commande_commandeFront') }}";
     });
+
+    
 
     /***********************/
     /* INITIALISATION */
@@ -890,5 +898,14 @@ document.addEventListener('DOMContentLoaded', function() {
         top: 0;
     }
 }
+
+
+
+
+
+
+
+
+
 </style>
 {% endblock %}

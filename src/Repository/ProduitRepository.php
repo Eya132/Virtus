@@ -13,5 +13,17 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+    public function findMostOrderedProducts(int $maxResults = 5): array
+{
+    return $this->createQueryBuilder('p')
+        ->select('p as produit', 'COUNT(c.id) as orderCount')
+        ->leftJoin('p.commandes', 'c')
+        ->groupBy('p.id')
+        ->orderBy('orderCount', 'DESC')
+        ->setMaxResults($maxResults)
+        ->getQuery()
+        ->getResult();
+}
+
     // Add custom methods as needed
 }

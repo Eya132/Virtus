@@ -143,6 +143,11 @@ private string $imageProduit;
     $this->commandes = new ArrayCollection();
     }
 
+    public function getOrderCount(): int
+    {
+        return $this->commandes->count();
+    }
+
         public function getCommandes(): Collection
         {
             return $this->commandes;
