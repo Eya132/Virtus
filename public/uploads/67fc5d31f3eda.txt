@@ -1,0 +1,31 @@
+algorithme 
+type : tab=tableai de [1..50]d'entier
+var: A,B:tab
+i,N:entier
+ P:pointeur sur entier
+
+
+debut 
+lire (n)
+pour p allant de 1 a A+N-1 FAIRE
+
+lire (*p)
+fin pour 
+lire (n)
+pour p allant de de B a B+n-1 faire
+lire (*p)
+
+fin pour
+	i<=0
+
+pour p allant de A+N a A+N+M-1 faire
+  
+	*p <= *(B+i)
+	i<=i+1
+FIN POUR
+
+
+
+
+
+
