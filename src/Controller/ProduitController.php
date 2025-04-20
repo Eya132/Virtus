@@ -15,15 +15,41 @@ use App\Entity\Commande;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+
 final class ProduitController extends AbstractController
 {
     #[Route('/produit/ProduitDashboard', name: 'app_produit_dashboard')]
     public function dashboard(EntityManagerInterface $em): Response
     {
         $produits = $em->getRepository(Produit::class)->findAll();
+        $topProducts = $em->getRepository(Commande::class)
+        ->createQueryBuilder('c')
+        ->select([
+            'p.nomProduit as productName', 
+            'SUM(c.quantiteCommande) as totalQuantity'
+        ])
+        ->join('c.produit', 'p')
+        ->where('c.statusCommande = :status')
+        ->setParameter('status', 'VALIDEE')
+        ->groupBy('p.idProduit')
+        ->orderBy('totalQuantity', 'DESC')
+        ->setMaxResults(5)
+        ->getQuery()
+        ->getResult();
+    
+    // Si aucun produit commandé, créer un tableau vide avec les noms des produits
+    if (empty($topProducts)) {
+        $topProducts = array_map(function($produit) {
+            return [
+                'productName' => $produit->getNomProduit(),
+                'totalQuantity' => 0
+            ];
+        }, array_slice($produits, 0, 5));
+    }
         
         return $this->render('produit/ProduitDashboard.html.twig', [
             'produits' => $produits,
+            'topProducts' => $topProducts,
         ]);
     }
 
@@ -140,22 +166,12 @@ public function edit(
 public function frontProduit(EntityManagerInterface $em): Response
 {
     $produits = $em->getRepository(Produit::class)->findAll();
-    $topProducts = $em->getRepository(Commande::class)
-    ->createQueryBuilder('c')
-    ->select('p.nomProduit as productName', 'COUNT(c.idCommande) as orderCount', 'SUM(c.quantiteCommande) as totalQuantity')
-    ->join('c.produit', 'p')
-    ->where('c.statusCommande = :status')
-    ->setParameter('status', 'VALIDEE')
-    ->groupBy('p.idProduit')
-    ->orderBy('totalQuantity', 'DESC')
-    ->setMaxResults(5)
-    ->getQuery()
-    ->getResult();
+    
 
     
     return $this->render('produit/produitFront.html.twig', [
         'produits' => $produits,
-         'topProducts' => $topProducts ?: [],
+       
         'current_page' => 'produits',
         'page_title' => 'Produits - MatchMate'
     ]);
