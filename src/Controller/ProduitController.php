@@ -140,9 +140,11 @@ public function edit(
 public function frontProduit(EntityManagerInterface $em): Response
 {
     $produits = $em->getRepository(Produit::class)->findAll();
+
     
     return $this->render('produit/produitFront.html.twig', [
         'produits' => $produits,
+      
         'current_page' => 'produits',
         'page_title' => 'Produits - MatchMate'
     ]);
@@ -233,7 +235,7 @@ private function detectProductType(string $productName): string
     $keywords = [
         'sport' => ['ballon', 'raquette', 'running', 'sport', 'fitness'],
         'electronique' => ['smartphone', 'écran', 'pc', 'ordinateur', 'câble'],
-        'mode' => ['chemise', 'robe', 'pantalon', 'chaussure', 'sac']
+        'mode' => ['chemise', 'robe', 'pantalon', 'chaussure', 'sac','tenue', 'vêtement']
     ];
 
     $productNameLower = strtolower($productName);
