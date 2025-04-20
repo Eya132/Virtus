@@ -140,11 +140,22 @@ public function edit(
 public function frontProduit(EntityManagerInterface $em): Response
 {
     $produits = $em->getRepository(Produit::class)->findAll();
+    $topProducts = $em->getRepository(Commande::class)
+    ->createQueryBuilder('c')
+    ->select('p.nomProduit as productName', 'COUNT(c.idCommande) as orderCount', 'SUM(c.quantiteCommande) as totalQuantity')
+    ->join('c.produit', 'p')
+    ->where('c.statusCommande = :status')
+    ->setParameter('status', 'VALIDEE')
+    ->groupBy('p.idProduit')
+    ->orderBy('totalQuantity', 'DESC')
+    ->setMaxResults(5)
+    ->getQuery()
+    ->getResult();
 
     
     return $this->render('produit/produitFront.html.twig', [
         'produits' => $produits,
-      
+         'topProducts' => $topProducts ?: [],
         'current_page' => 'produits',
         'page_title' => 'Produits - MatchMate'
     ]);

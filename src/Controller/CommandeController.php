@@ -193,12 +193,14 @@ public function list(EntityManagerInterface $em): Response
 {
     // Debug: vérifiez d'abord ce que vous récupérez
     $commandes = $em->getRepository(Commande::class)->findAll();
-    
+
+      
     // Ajoutez temporairement ce dump pour vérification
     dump($commandes); 
     
     return $this->render('commande/listBack.html.twig', [
-        'commandes' => $commandes
+        'commandes' => $commandes,
+        
     ]);
 }
 
