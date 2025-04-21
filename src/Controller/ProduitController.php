@@ -13,7 +13,9 @@ use App\Services\ReferenceGenerator;
 use App\Services\PdfGenerator;
 use App\Entity\Commande;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Services\CurrencyConverter;
+
+
 
 
 final class ProduitController extends AbstractController
@@ -163,7 +165,7 @@ public function edit(
 
 
 #[Route('/produits/front', name: 'app_produit_front')]
-public function frontProduit(EntityManagerInterface $em): Response
+public function frontProduit(EntityManagerInterface $em,Request $request, CurrencyConverter $currencyConverter): Response
 {
     $produits = $em->getRepository(Produit::class)->findAll();
       // Récupérer les produits les plus commandés
@@ -182,15 +184,25 @@ public function frontProduit(EntityManagerInterface $em): Response
       ->setMaxResults(3) // On prend les 3 meilleurs
       ->getQuery()
       ->getResult();
+
+      $currency = $request->getSession()->get('currency', 'TND');
     
 
     
     return $this->render('produit/produitFront.html.twig', [
         'produits' => $produits,
         'topProducts' => $topProducts,
+        'current_currency' => $currency,
+        'currencyConverter' => $currencyConverter,
         'current_page' => 'produits',
         'page_title' => 'Produits - MatchMate'
     ]);
+}
+#[Route('/convert/{currency}', name: 'convert_currency')]
+public function convertCurrency(string $currency, Request $request): Response
+{
+    $request->getSession()->set('currency', $currency);
+    return $this->redirectToRoute('app_produit_front');
 }
 
 

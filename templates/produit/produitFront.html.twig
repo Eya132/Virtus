@@ -49,6 +49,28 @@
                         </label>
                     </div>
                 </div>
+  <!-- Convertisseur de devises -->
+<div class="mb-4">
+    <h5 class="fw-bold mb-3">Devise</h5>
+    <div class="btn-group w-100" role="group">
+        <a href="{{ path('convert_currency', {'currency': 'EUR'}) }}" 
+           class="btn btn-outline-secondary {% if current_currency == 'EUR' %}active{% endif %}"
+           title="Convertir en Euros">
+            <img src="{{ asset('front/images/euro.png') }}" alt="EUR" style="width: 20px; height: 20px;">
+        </a>
+        <a href="{{ path('convert_currency', {'currency': 'USD'}) }}" 
+           class="btn btn-outline-secondary {% if current_currency == 'USD' %}active{% endif %}"
+           title="Convertir en Dollars">
+            <img src="{{ asset('front/images/dollar.png') }}" alt="USD" style="width: 20px; height: 20px;">
+        </a>
+        <a href="{{ path('convert_currency', {'currency': 'TND'}) }}" 
+           class="btn btn-outline-secondary {% if current_currency == 'TND' %}active{% endif %}"
+           title="Revenir en Dinars Tunisiens">
+            <img src="{{ asset('front/images/TND.png') }}" alt="TND" style="width: 20px; height: 20px;">
+        </a>
+    </div>
+    <small class="text-muted mt-2 d-block">Devise actuelle: {{ current_currency }}</small>
+</div>
             </div>
         </div>
 
@@ -127,7 +149,15 @@
                                         </div>
 
                                         <div class="mb-2">
-                                            <span class="text-warning fw-bold fs-5">{{ produit.prixProduit }} DT</span>
+                                            {% if current_currency == 'TND' %}
+                                                <span class="text-warning fw-bold fs-5">{{ produit.prixProduit }} TND</span>
+                                            {% else %}
+                                                {% set converted_price = currencyConverter.convert(produit.prixProduit, 'TND', current_currency) %}
+                                                <span class="text-warning fw-bold fs-5">
+                                                    {{ converted_price|number_format(2) }} {{ current_currency }}
+                                                    <small class="text-muted">({{ produit.prixProduit }} TND)</small>
+                                                </span>
+                                            {% endif %}
                                         </div>
 
                                         <p class="mbr-text mbr-fonts-style text-muted mb-3" style="font-size: 0.9rem;">
@@ -193,7 +223,15 @@
                                     </div>
 
                                     <div class="mb-2">
-                                        <span class="text-warning fw-bold fs-5">{{ produit.prixProduit }} DT</span>
+                                        {% if current_currency == 'TND' %}
+                                            <span class="text-warning fw-bold fs-5">{{ produit.prixProduit }} TND</span>
+                                        {% else %}
+                                            {% set converted_price = currencyConverter.convert(produit.prixProduit, 'TND', current_currency) %}
+                                            <span class="text-warning fw-bold fs-5">
+                                                {{ converted_price|number_format(2) }} {{ current_currency }}
+                                                <small class="text-muted">({{ produit.prixProduit }} TND)</small>
+                                            </span>
+                                        {% endif %}
                                     </div>
 
                                     <p class="mbr-text mbr-fonts-style text-muted mb-3" style="font-size: 0.9rem;">
@@ -1069,7 +1107,28 @@ commandeForm.addEventListener('submit', async function(e) {
         border-width: 1px;
     }
 }
+/* Boutons devise */
+.btn-group .btn-outline-secondary {
+    padding: 0.25rem;
+    border-radius: 0;
+}
 
+.btn-group .btn-outline-secondary:first-child {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.btn-group .btn-outline-secondary:last-child {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.btn-group .btn-outline-secondary.active {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-group img {
+    vertical-align: middle;
+}
 
 
 

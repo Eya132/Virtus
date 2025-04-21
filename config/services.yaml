@@ -13,6 +13,9 @@ services:
     Symfony\Component\Finder\Finder:
         class: Symfony\Component\Finder\Finder
         shared: false
+    App\Services\CurrencyConverter:
+        arguments:
+            $apiKey: '%env(EXCHANGE_RATE_API_KEY)%'
     # default configuration for services in *this* file
    
     _defaults:
