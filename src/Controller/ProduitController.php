@@ -198,6 +198,30 @@ public function frontProduit(EntityManagerInterface $em,Request $request, Curren
         'page_title' => 'Produits - MatchMate'
     ]);
 }
+
+#[Route('/api/produit/{id}/details', name: 'api_produit_details', methods: ['GET'])]
+public function getProduitDetails(Produit $produit, CurrencyConverter $currencyConverter, Request $request): JsonResponse
+{
+    $currentCurrency = $request->getSession()->get('currency', 'TND');
+    $prix = $produit->getPrixProduit();
+    
+    if ($currentCurrency !== 'TND') {
+        $prix = $currencyConverter->convert($prix, 'TND', $currentCurrency);
+    }
+
+    return $this->json([
+        'id' => $produit->getIdProduit(),
+        'nom' => $produit->getNomProduit(),
+        'ref' => $produit->getRefProduit(),
+        'prix' => $prix,
+        'prixOriginal' => $produit->getPrixProduit(),
+        'currency' => $currentCurrency,
+        'image' => $produit->getImageProduit() ? 
+                  $this->getParameter('uploads_directory').'/'.$produit->getImageProduit() : 
+                  null,
+        'stock' => $produit->getQuantiteProduit()
+    ]);
+}
 #[Route('/convert/{currency}', name: 'convert_currency')]
 public function convertCurrency(string $currency, Request $request): Response
 {
