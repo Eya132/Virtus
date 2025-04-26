@@ -1,0 +1,28 @@
+
+
+{% block title %}Paiement annulé{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">Paiement annulé</h3>
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-times-circle text-danger mb-4" style="font-size: 5rem;"></i>
+                    <h4 class="card-title">Paiement non abouti</h4>
+                    <p class="card-text">Vous avez annulé le processus de paiement.</p>
+                    
+                    <div class="mt-4">
+                        <a href="{{ productsUrl }}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left me-2"></i> Retour aux produits
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

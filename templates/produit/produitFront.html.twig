@@ -327,6 +327,55 @@
         </div>
     </div>
 </div>
+<!-- Modal pour le choix du mode de paiement -->
+<div class="modal fade" id="paiementChoiceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
+        <div class="modal-content" style="border-radius: 10px; overflow: hidden; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
+            <div class="modal-header" style="background-color: #6a7d91; color: #fff; border-bottom: none; padding: 2rem 2.5rem;">
+                <h5 class="modal-title">Choisissez votre mode de paiement</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body" style="padding: 2rem;">
+                <div class="row g-4 justify-content-center">
+                    <!-- Option Paiement en espèces -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 choix-paiement" data-paiement-type="espece" 
+                             style="cursor: pointer; border-radius: 10px; transition: all 0.3s; border: none; background: #f8f9fa;">
+                            <div class="card-body text-center p-4 d-flex flex-column align-items-center">
+                                <div class="mb-3" style="width: 80px; height: 80px; background-color: #e9f5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <img src="{{ asset('front/images/espece.png') }}" alt="Espèces" style="width: 50px; height: 50px;">
+                                </div>
+                                <h5 class="card-title mb-2" style="font-weight: 700; color: #333;">Payer en espèces</h5>
+                                <p class="card-text text-muted mb-0">Payez à la livraison en cash</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Option Paiement en ligne -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 choix-paiement" data-paiement-type="enligne" onclick="processOnlinePayment()" 
+                             style="cursor: pointer; border-radius: 10px; transition: all 0.3s; border: none; background: #f8f9fa;">
+                            <div class="card-body text-center p-4 d-flex flex-column align-items-center">
+                                <div class="mb-3" style="width: 80px; height: 80px; background-color: #e6f0fa; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <img src="{{ asset('front/images/onligne.png') }}" alt="En ligne" style="width: 50px; height: 50px;">
+                                </div>
+                                <h5 class="card-title mb-2"style="font-weight: 700; color: #333;">Payer en ligne</h5>
+                                <p class="card-text text-muted mb-0">Paiement sécurisé par carte</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                        style="padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 1rem;">
+                        <i class="fas fa-arrow-left me-2"></i> Retour
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal de succès -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
@@ -355,7 +404,7 @@
                         </div>
                         <div class="d-flex align-items-center mt-3">
                             <i class="fas fa-clock me-2 text-muted"></i>
-                            <small class="text-muted">Redirection dans <span id="successCountdown">5</span>s</small>
+                            <small class="text-muted"> <span id="successCountdown"></span></small>
                         </div>
                     </div>
                 </div>
@@ -397,10 +446,7 @@
                             <i class="fas fa-exclamation-triangle me-2"></i>
                             <span id="errorDetails">Veuillez réessayer ou contacter notre support.</span>
                         </div>
-                        <div class="d-flex align-items-center mt-3">
-                            <i class="fas fa-clock me-2 text-muted"></i>
-                            <small class="text-muted">Fermeture dans <span id="errorCountdown">20</span>s</small>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -417,6 +463,7 @@
 </div>
 
 <script>
+    
 document.addEventListener('DOMContentLoaded', function() {
  /***********************/
     /* SYSTEME DE FILTRAGE COMBINE */
@@ -431,6 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     const searchSuggestions = document.getElementById('searchSuggestions');
     const productCards = Array.from(document.querySelectorAll('.product-card'));
+    const stripe = Stripe('{{ stripe_public_key }}');
     
     // Initialisation
     minPriceValue.textContent = `${priceMin.value} DT`;
@@ -545,6 +593,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         searchSuggestions.style.display = 'block';
     }
+
+       /***********************/
+    /* Paiement*/
+    /***********************/
+    
     
     /***********************/
     /* ECOUTEURS D'EVENEMENTS */
@@ -710,19 +763,48 @@ function updateTotalPrice() {
     }
 
 // Gestion de la soumission du formulaire
-commandeForm.addEventListener('submit', async function(e) {
+// Gestion de la soumission du formulaire
+commandeForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const originalBtnText = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Traitement...';
+    // Fermer le modal de commande
+    bsCommandeModal.hide();
+    
+    // Afficher le modal de choix de paiement
+    const paiementChoiceModal = new bootstrap.Modal(document.getElementById('paiementChoiceModal'));
+    paiementChoiceModal.show();
+    
+    // Stocker les données du formulaire pour plus tard
+    const formData = new FormData(commandeForm);
+    window.pendingCommandeData = {
+        idProduit: formData.get('idProduit'),
+        quantiteCommande: formData.get('quantiteCommande'),
+        _token: formData.get('_token')
+    };
+});
 
+// Gestion du choix de paiement
+document.querySelectorAll('.choix-paiement').forEach(card => {
+    card.addEventListener('click', function() {
+        const paiementType = this.getAttribute('data-paiement-type');
+        const paiementChoiceModal = bootstrap.Modal.getInstance(document.getElementById('paiementChoiceModal'));
+        
+        if (paiementType === 'espece') {
+            processEspecePayment();
+        } else if (paiementType === 'enligne') {
+            processOnlinePayment();
+        }
+    });
+});
+
+// Traitement du paiement en espèces
+async function processEspecePayment() {
+    const submitBtn = document.getElementById('submitBtn');
+    const originalBtnText = submitBtn.innerHTML;
+    
     try {
-        const formData = {
-            idProduit: document.getElementById('modalProduitId').value,
-            quantiteCommande: quantiteInput.value,
-            _token: document.querySelector('input[name="_token"]').value
-        };
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Traitement...';
 
         const response = await fetch(commandeForm.action, {
             method: 'POST',
@@ -730,7 +812,7 @@ commandeForm.addEventListener('submit', async function(e) {
                 'Content-Type': 'application/json',
                 'X-Requested-With': 'XMLHttpRequest'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(window.pendingCommandeData)
         });
 
         const responseData = await response.json();
@@ -739,8 +821,7 @@ commandeForm.addEventListener('submit', async function(e) {
             throw new Error(responseData.message || 'Erreur lors de la commande');
         }
 
-        document.getElementById('successMessage').textContent = responseData.message;
-        bsCommandeModal.hide();
+        document.getElementById('successMessage').textContent = responseData.message || 'Votre commande a été enregistrée avec succès';
         bsSuccessModal.show();
 
         // Compte à rebours pour la redirection
@@ -751,7 +832,7 @@ commandeForm.addEventListener('submit', async function(e) {
             
             if (seconds < 0) {
                 clearInterval(countdown);
-                window.location.href = responseData.redirectUrl;
+                window.location.href = responseData.redirectUrl || "{{ path('app_commande_commandeFront') }}";
             }
         }, 1000);
 
@@ -771,22 +852,68 @@ commandeForm.addEventListener('submit', async function(e) {
                 bsErrorModal.hide();
             }
         }, 1000);
-        
-        if (error.message.includes('Token') || error.message.includes('CSRF')) {
-            document.getElementById('errorDetails').innerHTML = `
-                Le token de sécurité a expiré. <a href="javascript:window.location.reload()" class="btn btn-sm btn-warning ms-2">
-                    <i class="fas fa-sync-alt me-1"></i> Rafraîchir
-                </a>
-            `;
-        }
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
     }
-});
+}
 
 
+async function processOnlinePayment() {
+    const submitBtn = document.getElementById('submitBtn');
+    const originalText = submitBtn.innerHTML;
     
+    try {
+        // 1. Préparation
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Traitement...';
+        
+        // 2. Données du produit
+        const productId = document.getElementById('modalProduitId').value;
+        const quantity = document.getElementById('quantiteCommande').value;
+        
+        // 3. Appel API
+        const response = await fetch('/create-checkout-session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity: quantity
+            })
+        });
+
+        // 4. Gestion réponse
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Erreur serveur');
+        }
+
+        const { id: sessionId } = await response.json();
+        
+        // 5. Redirection Stripe
+        const stripe = Stripe('{{ stripe_public_key }}');
+        const { error } = await stripe.redirectToCheckout({ sessionId });
+        
+        if (error) {
+            throw error;
+        }
+
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert(`Erreur: ${error.message}`);
+        
+        // Réafficher le modal de choix de paiement
+        const modal = new bootstrap.Modal(document.getElementById('paiementChoiceModal'));
+        modal.show();
+        
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    }
+}
     // Redirection après succès
     closeSuccessBtn.addEventListener('click', function() {
         window.location.href = "{{ path('app_commande_commandeFront') }}";
@@ -796,7 +923,6 @@ commandeForm.addEventListener('submit', async function(e) {
         window.location.href = "{{ path('app_commande_commandeFront') }}";
     });
 
-    
 
     /***********************/
     /* INITIALISATION */
@@ -807,6 +933,9 @@ commandeForm.addEventListener('submit', async function(e) {
 });
 
 </script>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{{ asset('js/payment.js') }}"></script>
 
 <style>
 /* Styles pour la sidebar de filtrage */

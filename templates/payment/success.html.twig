@@ -1,0 +1,36 @@
+
+
+{% block title %}Paiement réussi{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">Paiement réussi</h3>
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-check-circle text-success mb-4" style="font-size: 5rem;"></i>
+                    <h4 class="card-title">Merci pour votre achat!</h4>
+                    <p class="card-text">Votre paiement a été traité avec succès.</p>
+                    <p>ID de transaction: <strong>{{ session.id }}</strong></p>
+                    
+                    <div class="mt-4">
+                        <a href="{{ redirectUrl }}" class="btn btn-primary">
+                            <i class="fas fa-shopping-bag me-2"></i> Voir mes commandes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    setTimeout(function() {
+        window.location.href = "{{ redirectUrl }}";
+    }, 5000);
+</script>
+{% endblock %}
