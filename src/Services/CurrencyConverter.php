@@ -12,7 +12,8 @@ class CurrencyConverter
         private HttpClientInterface $client,
         #[Autowire('%env(EXCHANGE_RATE_API_KEY)%')]
         private string $apiKey    ) {
-    }
+            
+        }
 
     public function convert(float $amount, string $from, string $to): float
     {
