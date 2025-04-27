@@ -15,6 +15,8 @@ use App\Entity\Commande;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Services\CurrencyConverter;
 use App\Services\ExcelGenerator;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 
 
@@ -337,6 +339,37 @@ public function exportToExcel(EntityManagerInterface $em, ExcelGenerator $excelG
     $filename = 'liste_produits_'.date('Y-m-d').'.xlsx';
     
     return $excelGenerator->generateExcelFromProduits($produits, $filename);
+}
+#[Route('/produit/send-email/{id}', name: 'app_produit_send_email')]
+public function sendProductEmail(
+    Produit $produit, 
+    MailerInterface $mailer,
+    \Psr\Log\LoggerInterface $logger
+): Response {
+    try {
+        $email = (new Email())
+            ->from('doghmenesabee@gmail.com') // Email statique d'envoi
+            ->to('amenallahkochrad@gmail.com') // Email admin statique
+            ->subject('Détails du produit '.$produit->getNomProduit())
+            ->html($this->renderView(
+                'emails/product_details.html.twig',
+                [
+                    'produit' => $produit,
+                    'date' => (new \DateTime())->format('d/m/Y H:i'),
+                ]
+            ));
+
+        $mailer->send($email);
+        $this->addFlash('success', 'Email envoyé avec succès à l\'administrateur!');
+    } catch (\Exception $e) {
+        $logger->error('Erreur envoi email produit', [
+            'error' => $e->getMessage(),
+            'produit_id' => $produit->getIdProduit()
+        ]);
+        $this->addFlash('warning', 'Erreur lors de l\'envoi de l\'email à l\'admin.');
+    }
+
+    return $this->redirectToRoute('app_produit_front');
 }
 
 
