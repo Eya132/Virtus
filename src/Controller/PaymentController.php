@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Commande;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\Stripe;
+
 
 class PaymentController extends AbstractController
 {
@@ -25,6 +27,7 @@ class PaymentController extends AbstractController
     #[Route('/api/payment/create-session', name: 'payment_create_session', methods: ['POST'])]
     public function createSession(Request $request, ProduitRepository $produitRepo): JsonResponse
     {
+        
         try {
             $data = json_decode($request->getContent(), true);
             
