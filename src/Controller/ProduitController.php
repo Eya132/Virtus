@@ -14,6 +14,7 @@ use App\Services\PdfGenerator;
 use App\Entity\Commande;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Services\CurrencyConverter;
+use App\Services\ExcelGenerator;
 
 
 
@@ -329,8 +330,14 @@ private function detectProductType(string $productName): string
     
     return 'default';
 }
-
-
+#[Route('/produit/export-excel', name: 'app_produit_export_excel')]
+public function exportToExcel(EntityManagerInterface $em, ExcelGenerator $excelGenerator): Response
+{
+    $produits = $em->getRepository(Produit::class)->findAll();
+    $filename = 'liste_produits_'.date('Y-m-d').'.xlsx';
+    
+    return $excelGenerator->generateExcelFromProduits($produits, $filename);
+}
 
 
 }
