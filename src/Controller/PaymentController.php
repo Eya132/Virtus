@@ -19,51 +19,48 @@ class PaymentController extends AbstractController
     {
         $this->logger = $logger;
     }
-    #[Route('/create-checkout-session', name: 'create_checkout_session', methods: ['POST'])]
-public function createCheckoutSession(Request $request, ProduitRepository $produitRepository): JsonResponse
-{
-    try {
-        $data = json_decode($request->getContent(), true);
-        $productId = $data['product_id'] ?? null;
-        $quantity = $data['quantity'] ?? 1;
-
-        if (!$productId) {
-            throw new \InvalidArgumentException('Product ID is required');
+    #[Route('/api/payment/create-session', name: 'payment_create_session', methods: ['POST'])]
+    public function createSession(Request $request, ProduitRepository $produitRepo): JsonResponse
+    {
+        // Loggueur de débogage
+        file_put_contents('payment.log', date('[Y-m-d H:i:s]')." Requête reçue\n", FILE_APPEND);
+    
+        try {
+            $data = json_decode($request->getContent(), true);
+            file_put_contents('payment.log', print_r($data, true), FILE_APPEND);
+    
+            if (empty($data['product_id'])) {
+                throw new \Exception('Product ID manquant');
+            }
+    
+            $produit = $produitRepo->find($data['product_id']);
+            if (!$produit) {
+                throw new \Exception('Produit introuvable');
+            }
+    
+            \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'product_data' => ['name' => $produit->getNomProduit()],
+                        'unit_amount' => (int)($produit->getPrixProduit() * 100),
+                    ],
+                    'quantity' => $data['quantity'] ?? 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => $request->getSchemeAndHttpHost().$this->generateUrl('payment_success'),
+                'cancel_url' => $request->getSchemeAndHttpHost().$this->generateUrl('payment_cancel'),
+            ]);
+    
+            return new JsonResponse(['id' => $session->id]);
+    
+        } catch (\Exception $e) {
+            file_put_contents('payment.log', "ERREUR: ".$e->getMessage()."\n", FILE_APPEND);
+            return new JsonResponse(['error' => $e->getMessage()], 400);
         }
-
-        $produit = $produitRepository->find($productId);
-        if (!$produit) {
-            throw $this->createNotFoundException('Product not found');
-        }
-
-        \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
-
-        $session = \Stripe\Checkout\Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'eur',
-                    'product_data' => ['name' => $produit->getNomProduit()],
-                    'unit_amount' => (int)($produit->getPrixProduit() * 100),
-                ],
-                'quantity' => $quantity,
-            ]],
-            'mode' => 'payment',
-            'success_url' => $this->generateUrl('payment_success', [], UrlGeneratorInterface::ABSOLUTE_URL),
-            'cancel_url' => $this->generateUrl('payment_cancel', [], UrlGeneratorInterface::ABSOLUTE_URL),
-        ]);
-
-        return new JsonResponse([
-            'id' => $session->id,
-            'url' => $session->url
-        ]);
-
-    } catch (\Exception $e) {
-        return new JsonResponse([
-            'error' => $e->getMessage()
-        ], Response::HTTP_BAD_REQUEST);
     }
-}
 
 
 
@@ -92,7 +89,7 @@ public function createCheckoutSession(Request $request, ProduitRepository $produ
     public function cancel(): Response
     {
         return $this->render('payment/cancel.html.twig', [
-            'productsUrl' => $this->generateUrl('app_produits')
+            'productsUrl' => $this->generateUrl('app_produit_front')
         ]);
     }
 }

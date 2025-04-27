@@ -860,58 +860,79 @@ async function processEspecePayment() {
 
 
 async function processOnlinePayment() {
-    const submitBtn = document.getElementById('submitBtn');
-    const originalText = submitBtn.innerHTML;
+    const log = (...args) => console.log('[Payment]', ...args);
+    log('Début du processus');
+
+    const btn = document.getElementById('submitBtn');
+    const originalText = btn.innerHTML;
     
     try {
         // 1. Préparation
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Traitement...';
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Initialisation...';
+
+        // 2. Récupération des données
+        const productId = document.getElementById('modalProduitId')?.value;
+        const quantity = document.getElementById('quantiteCommande')?.value || 1;
         
-        // 2. Données du produit
-        const productId = document.getElementById('modalProduitId').value;
-        const quantity = document.getElementById('quantiteCommande').value;
-        
-        // 3. Appel API
-        const response = await fetch('/create-checkout-session', {
+        if (!productId) throw new Error('ID produit manquant');
+        log('Données:', {productId, quantity});
+
+        // 3. Construction de la requête
+        const url = '/api/payment/create-session';
+        const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'X-Requested-With': 'XMLHttpRequest'
             },
             body: JSON.stringify({
                 product_id: productId,
                 quantity: quantity
             })
-        });
+        };
+        log('Requête préparée:', {url, options});
 
-        // 4. Gestion réponse
+        // 4. Envoi de la requête
+        const response = await fetch(url, options);
+        log('Réponse reçue', response);
+
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.error || 'Erreur serveur');
+            const error = await response.text();
+            throw new Error(`Erreur serveur (${response.status}): ${error}`);
         }
 
-        const { id: sessionId } = await response.json();
-        
+        const data = await response.json();
+        log('Données reçues:', data);
+
+        if (!data?.id) throw new Error('ID de session manquant');
+
         // 5. Redirection Stripe
-        const stripe = Stripe('{{ stripe_public_key }}');
-        const { error } = await stripe.redirectToCheckout({ sessionId });
-        
-        if (error) {
-            throw error;
+        if (typeof Stripe === 'undefined') {
+            throw new Error('Bibliothèque Stripe non chargée');
         }
+
+        const stripe = Stripe('{{ stripe_public_key }}');
+        log('Initialisation Stripe OK');
+
+        const result = await stripe.redirectToCheckout({
+            sessionId: data.id
+        });
+        log('Redirection Stripe:', result);
+
+        if (result.error) throw result.error;
 
     } catch (error) {
-        console.error('Erreur:', error);
-        alert(`Erreur: ${error.message}`);
+        log('ERREUR:', error);
+        alert(`Échec du paiement : ${error.message}`);
         
-        // Réafficher le modal de choix de paiement
+        // Réafficher le modal
         const modal = new bootstrap.Modal(document.getElementById('paiementChoiceModal'));
         modal.show();
-        
+
     } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
+        btn.disabled = false;
+        btn.innerHTML = originalText;
     }
 }
     // Redirection après succès

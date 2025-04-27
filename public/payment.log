@@ -1,0 +1,18 @@
+[2025-04-26 21:21:07] Requête reçue
+Array
+(
+    [product_id] => 49
+    [quantity] => 1
+)
+[2025-04-27 16:48:03] Requête reçue
+Array
+(
+    [product_id] => 49
+    [quantity] => 2
+)
+[2025-04-27 16:52:07] Requête reçue
+Array
+(
+    [product_id] => 43
+    [quantity] => 2
+)
