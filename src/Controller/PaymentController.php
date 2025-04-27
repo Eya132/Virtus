@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\Response;
+use App\Entity\Commande;
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PaymentController extends AbstractController
 {
@@ -22,13 +25,9 @@ class PaymentController extends AbstractController
     #[Route('/api/payment/create-session', name: 'payment_create_session', methods: ['POST'])]
     public function createSession(Request $request, ProduitRepository $produitRepo): JsonResponse
     {
-        // Loggueur de débogage
-        file_put_contents('payment.log', date('[Y-m-d H:i:s]')." Requête reçue\n", FILE_APPEND);
-    
         try {
             $data = json_decode($request->getContent(), true);
-            file_put_contents('payment.log', print_r($data, true), FILE_APPEND);
-    
+            
             if (empty($data['product_id'])) {
                 throw new \Exception('Product ID manquant');
             }
@@ -39,6 +38,7 @@ class PaymentController extends AbstractController
             }
     
             \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
+            
             $session = \Stripe\Checkout\Session::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
@@ -50,14 +50,17 @@ class PaymentController extends AbstractController
                     'quantity' => $data['quantity'] ?? 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => $request->getSchemeAndHttpHost().$this->generateUrl('payment_success'),
-                'cancel_url' => $request->getSchemeAndHttpHost().$this->generateUrl('payment_cancel'),
+                'success_url' => $this->generateUrl('payment_success', [], UrlGeneratorInterface::ABSOLUTE_URL).'?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => $this->generateUrl('payment_cancel', [], UrlGeneratorInterface::ABSOLUTE_URL),
+                'metadata' => [
+                    'product_id' => $data['product_id'],
+                    'quantity' => $data['quantity'] ?? 1
+                ]
             ]);
     
             return new JsonResponse(['id' => $session->id]);
     
         } catch (\Exception $e) {
-            file_put_contents('payment.log', "ERREUR: ".$e->getMessage()."\n", FILE_APPEND);
             return new JsonResponse(['error' => $e->getMessage()], 400);
         }
     }
@@ -65,22 +68,55 @@ class PaymentController extends AbstractController
 
 
     #[Route('/payment/success', name: 'payment_success')]
-    public function success(Request $request): Response
-    {
+    public function success(
+        Request $request,
+        EntityManagerInterface $em,
+        ProduitRepository $produitRepository
+    ): Response {
         $sessionId = $request->query->get('session_id');
         
         try {
             \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
             $session = \Stripe\Checkout\Session::retrieve($sessionId);
             
-            // Ici vous pourriez enregistrer la commande en base de données
-            
+            // 1. Récupération des données
+            $productId = $session->metadata->product_id;
+            $quantity = $session->metadata->quantity;
+            $user = $this->getUser();
+    
+            if (!$user instanceof User) {
+                return $this->redirectToRoute('app_login');
+            }
+    
+            // 2. Récupération du produit
+            $produit = $produitRepository->find($productId);
+            if (!$produit) {
+                throw new \Exception("Produit introuvable");
+            }
+    
+            // 3. Création de la commande (sans stripeSessionId)
+            $commande = (new Commande())
+                ->setProduit($produit)
+                ->setQuantiteCommande($quantity)
+                ->setDateCommande(new \DateTime())
+                ->setStatusCommande('VALIDEE') // Statut différent pour paiement en ligne
+                ->setUser($user);
+    
+            // 4. Mise à jour du stock
+            $produit->setQuantiteProduit($produit->getQuantiteProduit() - $quantity);
+    
+            // 5. Sauvegarde
+            $em->persist($commande);
+            $em->persist($produit);
+            $em->flush();
+    
             return $this->render('payment/success.html.twig', [
                 'session' => $session,
                 'redirectUrl' => $this->generateUrl('app_commande_commandeFront')
             ]);
-
+    
         } catch (\Exception $e) {
+            // Vous pouvez logger l'erreur ici si besoin
             return $this->redirectToRoute('payment_cancel');
         }
     }

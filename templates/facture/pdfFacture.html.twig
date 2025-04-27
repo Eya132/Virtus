@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Facture #{{ commande.id }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h1 { color: #333; margin-bottom: 5px; }
+        .info { margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { background-color: #f2f2f2; text-align: left; padding: 8px; }
+        td { padding: 8px; border-bottom: 1px solid #ddd; }
+        .total { text-align: right; font-weight: bold; font-size: 1.2em; }
+        .footer { margin-top: 30px; font-size: 0.8em; text-align: center; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Facture #{{ commande.id }}</h1>
+        <p>Date: {{ commande.dateCommande|date('d/m/Y H:i') }}</p>
+    </div>
+
+    <div class="info">
+        <h3>Client</h3>
+        <p>{{ commande.user.nom }} {{ commande.user.prenom }}</p>
+        <p>{{ commande.user.email }}</p>
+    </div>
+
+    <h3>Détails de la commande</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Référence</th>
+                <th>Prix unitaire</th>
+                <th>Quantité</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ commande.produit.nomProduit }}</td>
+                <td>{{ commande.produit.refProduit }}</td>
+                <td>{{ commande.produit.prixProduit|number_format(2, ',', ' ') }} DT</td>
+                <td>{{ commande.quantiteCommande }}</td>
+                <td>{{ (commande.produit.prixProduit * commande.quantiteCommande)|number_format(2, ',', ' ') }} DT</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="total">
+        <p>Total: {{ (commande.produit.prixProduit * commande.quantiteCommande)|number_format(2, ',', ' ') }} DT</p>
+    </div>
+
+    <div class="footer">
+        <p>Merci pour votre confiance</p>
+        <p>{{ app.request.schemeAndHttpHost }}</p>
+    </div>
+</body>
+</html>
