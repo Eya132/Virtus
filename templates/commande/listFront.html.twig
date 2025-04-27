@@ -33,7 +33,7 @@
                                 Référence : {{ commande.produit.refProduit }}
                             </div>
                             <div class="product-price mt-2">
-                                Prix unitaire : {{ (commande.produit.prixProduit )|number_format(2, '.', ' ') }} DT
+                                Prix unitaire : {{ commande.produit.prixProduit|number_format(2, '.', ' ') }} DT
                             </div>
                             <div class="product-price mt-2">
                                 Prix total : {{ (commande.produit.prixProduit * commande.quantiteCommande)|number_format(2, '.', ' ') }} DT
@@ -42,46 +42,7 @@
                                 Quantité commandée : <span class="badge bg-secondary">{{ commande.quantiteCommande }}</span>
                             </div>
                         </div>
-                        <div class="col-md-2 text-center">
-                            <!-- Bouton pour ouvrir la modal -->
-                            <button class="btn btn-sm btn-outline-primary mb-2" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#qrModal{{ commande.idCommande }}">
-                                <i class="fas fa-qrcode me-1"></i> Voir QR Code
-                            </button>
-                            
-                            <!-- Lien de téléchargement direct -->
-                            <a href="{{ path('facture_qr_code', {'id': commande.idCommande, 'download': 1}) }}"
-                               class="btn btn-sm btn-success"
-                               download="facture-{{ commande.idCommande }}.png">
-                                <i class="fas fa-download me-1"></i> Télécharger
-                            </a>
                         
-                            <!-- Modal pour afficher le QR code -->
-                            <div class="modal fade" id="qrModal{{ commande.idCommande }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary text-white">
-                                            <h5 class="modal-title">QR Code Facture #{{ commande.idCommande }}</h5>
-                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body text-center">
-                                            <img src="{{ path('facture_qr_code', {'id': commande.idCommande}) }}" 
-                                                 alt="QR Code Facture"
-                                                 class="img-fluid"
-                                                 style="max-width: 300px; height: auto;">
-                                            <div class="mt-3">
-                                                <p class="text-muted mb-1">Scannez pour voir les détails</p>
-                                                <p class="small">{{ commande.produit.nomProduit }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-
                         <!-- Statut & action -->
                         <div class="col-md-4">
                             <div class="d-flex flex-column">
@@ -96,14 +57,14 @@
                                         {% else %}bg-secondary{% endif %}">
                                         {{ commande.statusCommande }}
                                     </span>
-                                    
                                 </div>
+                                
+                               
+            
                                 {% set now = date('now') %}
                                 {% set diff = now.diff(commande.dateCommande) %}
                                 {% set hours = diff.h + (diff.days * 24) %}
-                                </div>
-                                </div>
-                                </div>
+                                
                                 {% if hours <= 48 and commande.statusCommande != 'ANNULEE' %}
                                     <button type="button" 
                                             class="btn btn-outline-danger btn-sm" 
@@ -114,54 +75,58 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="modal fade" id="deleteModal-{{ commande.idCommande }}" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-danger text-white">
-                                        <h5 class="modal-title">Confirmer l'annulation</h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+
+
+                
+                <!-- Modal Annulation -->
+                <div class="modal fade" id="deleteModal-{{ commande.idCommande }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger text-white">
+                                <h5 class="modal-title">Confirmer l'annulation</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {% set now = date('now') %}
+                                {% set diff = now.diff(commande.dateCommande) %}
+                                {% set hours = diff.h + (diff.days * 24) %}
+                                
+                                {% if hours > 48 %}
+                                    <div class="alert alert-danger">
+                                        <i class="fas fa-exclamation-circle me-2"></i>
+                                        Impossible d'annuler la commande après 48 heures
                                     </div>
-                                    <div class="modal-body">
-                                        {% set now = date('now') %}
-                                        {% set diff = now.diff(commande.dateCommande) %}
-                                        {% set hours = diff.h + (diff.days * 24) %}
-                                        
-                                        {% if hours > 48 %}
-                                            <div class="alert alert-danger">
-                                                <i class="fas fa-exclamation-circle me-2"></i>
-                                                Impossible d'annuler la commande après 48 heures
-                                            </div>
-                                        {% else %}
-                                            <p>Êtes-vous sûr de vouloir annuler cette commande ?</p>
-                                            <div class="alert alert-warning">
-                                                <i class="fas fa-exclamation-triangle me-2"></i>
-                                                Le produit sera réapprovisionné
-                                            </div>
-                                            
-                                            <form id="deleteForm-{{ commande.idCommande }}" 
-                                                  action="{{ path('app_commande_delete', {'idCommande': commande.idCommande}) }}" 
-                                                  method="post">
-                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.idCommande) }}">
-                                            </form>
-                                        {% endif %}
+                                {% else %}
+                                    <p>Êtes-vous sûr de vouloir annuler cette commande ?</p>
+                                    <div class="alert alert-warning">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                        Le produit sera réapprovisionné
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                        {% if hours <= 48 %}
-                                            <button type="submit" form="deleteForm-{{ commande.idCommande }}" class="btn btn-danger">
-                                                <i class="fas fa-trash-alt me-1"></i> Confirmer
-                                            </button>
-                                        {% endif %}
-                                    </div>
-                                </div>
+                                    
+                                    <form id="deleteForm-{{ commande.idCommande }}" 
+                                          action="{{ path('app_commande_delete', {'idCommande': commande.idCommande}) }}" 
+                                          method="post">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.idCommande) }}">
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                {% if hours <= 48 %}
+                                    <button type="submit" form="deleteForm-{{ commande.idCommande }}" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt me-1"></i> Confirmer
+                                    </button>
+                                {% endif %}
                             </div>
                         </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>
     {% endif %}
-
-
+</div>
 
 <style>
     .product-image {
@@ -169,14 +134,14 @@
         object-fit: contain;
     }
     .product-title {
-        font-size: 2rem;
+        font-size: 1.25rem;
         font-weight: 600;
         color: #333;
     }
     .product-price {
         font-size: 1rem;
-        color: #7190bf;
-        font-weight: 300;
+        color: #2c3e50;
+        font-weight: bold;
     }
     .status-badge {
         padding: 0.35em 0.65em;
@@ -191,46 +156,24 @@
     .commande-card:hover {
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     }
-    .bg-gradient-danger {
-        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-    }
     .modal-content {
         border-radius: 0.8rem;
         overflow: hidden;
     }
-    .delete-btn {
-        transition: all 0.2s ease;
-    }
-    .delete-btn:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
 </style>
 {% endblock %}
 
-
 {% block javascripts %}
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- À la fin du body -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+{{ parent() }}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion des tooltips (optionnel)
+    // Gestion des tooltips
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
     
-    // Vérification en temps réel des 48h (pour sécurité supplémentaire)
+    // Vérification en temps réel des 48h
     document.querySelectorAll('[data-bs-toggle="modal"]').forEach(btn => {
         btn.addEventListener('click', function() {
             const commandeDate = new Date(this.dataset.commandeDate);
@@ -246,5 +189,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-    </script>
 {% endblock %}
