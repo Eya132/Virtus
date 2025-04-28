@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
-use App\Form\CommandeType;
+
 use App\Entity\Produit;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,9 +10,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use DateTimeImmutable;
+
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use App\Services\OrderMailer;
+
 
 #[Route('/commande', name: 'app_commande_')]
 class CommandeController extends AbstractController
@@ -23,7 +28,7 @@ class CommandeController extends AbstractController
         // Vérifier que la requête est AJAX
         if (!$request->isXmlHttpRequest()) {
             return $this->json([
-                'success' => false,
+                'success' => false,      
                 'message' => 'Requête invalide'
             ], Response::HTTP_BAD_REQUEST);
         }
@@ -110,6 +115,8 @@ class CommandeController extends AbstractController
             $em->persist($commande);
             $em->persist($produit);
             $em->flush();
+
+           
 
             return $this->json([
                 'success' => true,
@@ -243,4 +250,7 @@ public function deleteAnnulees(Request $request, EntityManagerInterface $em): Re
 
     return $this->redirectToRoute('app_commande_listBack');
 }
+
+ 
+
 }

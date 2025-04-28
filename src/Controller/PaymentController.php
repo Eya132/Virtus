@@ -14,6 +14,10 @@ use App\Entity\Commande;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Stripe;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use App\Services\OrderMailer;
+
 
 
 class PaymentController extends AbstractController
@@ -112,6 +116,7 @@ class PaymentController extends AbstractController
             $em->persist($commande);
             $em->persist($produit);
             $em->flush();
+
     
             return $this->render('payment/success.html.twig', [
                 'session' => $session,
@@ -123,6 +128,8 @@ class PaymentController extends AbstractController
             return $this->redirectToRoute('payment_cancel');
         }
     }
+    
+
 
     #[Route('/payment/cancel', name: 'payment_cancel')]
     public function cancel(): Response
