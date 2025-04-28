@@ -78,7 +78,8 @@ class PaymentController extends AbstractController
     public function success(
         Request $request,
         EntityManagerInterface $em,
-        ProduitRepository $produitRepository
+        ProduitRepository $produitRepository,
+        OrderMailer $orderMailer
     ): Response {
         $sessionId = $request->query->get('session_id');
         
@@ -116,8 +117,9 @@ class PaymentController extends AbstractController
             $em->persist($commande);
             $em->persist($produit);
             $em->flush();
+            // 6. Envoi de l'email de confirmation
+            $orderMailer->sendConfirmation($commande);
 
-    
             return $this->render('payment/success.html.twig', [
                 'session' => $session,
                 'redirectUrl' => $this->generateUrl('app_commande_commandeFront')

@@ -21,12 +21,12 @@
         </div>
         
         <div class="content">
-            <p>Bonjour {{ user.prenom }},</p>
+            <p>Bonjour {% if user.prenomUser is defined %}{{ user.prenomUser }}{% endif %},</p>
             <p>Votre commande <strong>#{{ commande.idCommande }}</strong> a bien été enregistrée.</p>
             
             <div class="order-details">
                 <h3>Détails de la commande</h3>
-                <p><strong>Date:</strong> {{ date }}</p>
+                <p><strong>Date:</strong> {{ commande.dateCommande|date('d/m/Y H:i') }}</p>
                 <p><strong>Produit:</strong> {{ produit.nomProduit }}</p>
                 <p><strong>Référence:</strong> {{ produit.refProduit }}</p>
                 <p><strong>Quantité:</strong> {{ commande.quantiteCommande }}</p>

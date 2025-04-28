@@ -18,10 +18,7 @@ services:
     App\Services\CurrencyConverter:
         arguments:
             $apiKey: '%env(EXCHANGE_RATE_API_KEY)%'
-    App\Service\HuggingFaceGenerator:
-        arguments:
-            - '@http_client'
-            - '@parameter_bag'
+ 
    
     # default configuration for services in *this* file
    

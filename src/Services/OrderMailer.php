@@ -37,7 +37,7 @@ class OrderMailer
                 'error' => $e->getMessage(),
                 'commande' => $commande->getIdCommande()
             ]);
-            throw $e;
+            // Ne pas propager l'exception pour ne pas interrompre le flux
         }
     }
 }

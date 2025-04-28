@@ -23,7 +23,7 @@ use App\Services\OrderMailer;
 class CommandeController extends AbstractController
 {
     #[Route('/new', name: 'new', methods: ['POST'])]
-    public function new(Request $request, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse
+    public function new(Request $request, EntityManagerInterface $em, LoggerInterface $logger,OrderMailer $orderMailer): JsonResponse
     {
         // Vérifier que la requête est AJAX
         if (!$request->isXmlHttpRequest()) {
@@ -115,7 +115,8 @@ class CommandeController extends AbstractController
             $em->persist($commande);
             $em->persist($produit);
             $em->flush();
-
+            
+            $orderMailer->sendConfirmation($commande);
            
 
             return $this->json([
@@ -124,6 +125,7 @@ class CommandeController extends AbstractController
                 'redirectUrl' => $this->generateUrl('app_commande_commandeFront'),
                 'commandeId' => $commande->getIdCommande()
             ]);
+    
 
         } catch (\Exception $e) {
             $logger->error('Erreur commande: '.$e->getMessage(), [
