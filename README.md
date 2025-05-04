@@ -83,13 +83,23 @@ symfony server:start
 
 ## 🖥️ Technologies utilisées
 
-- **Back-end** : Symfony 6, PHP 8.x
-- **Front-end** : Twig, HTML5, CSS3 (design turquoise & orangé)
-- **Base de données** : MySQL
-- **ORM** : Doctrine
-- **Gestion des assets** : Webpack Encore
-- **Sécurité** : Gestion des rôles, encodage des mots de passe, CSRF
-- **Webpack Encore / Vite**
+- **Back-end** :
+  - [Symfony 6](https://symfony.com/download) - Framework PHP
+  - [PHP 8.x](https://www.php.net/downloads.php) - Langage serveur
+
+- **Front-end** :
+  - [Twig](https://twig.symfony.com/) - Moteur de templates
+  - [HTML5](https://developer.mozilla.org/fr/docs/Web/HTML) - Structure des pages
+  - [CSS3](https://developer.mozilla.org/fr/docs/Web/CSS) - Style et design (couleurs turquoise & orangé)
+
+- **Base de données** :
+  - [MySQL](https://dev.mysql.com/downloads/) - Système de gestion de base de données
+  - [Doctrine](https://www.doctrine-project.org/) - ORM
+
+- **Outils de développement** :
+  - [Webpack Encore](https://symfony.com/doc/current/frontend.html) - Gestion des assets
+  - [Composer](https://getcomposer.org/download/) - Gestion des dépendances PHP
+  - [Node.js](https://nodejs.org/) - Environnement JavaScript (pour le frontend)
 
 ## 📂 Utilisation
 
