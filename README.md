@@ -1,14 +1,14 @@
-# 🎾 MatchMate
+#  MatchMate
 
 **MatchMate** est une application web développée avec le framework Symfony. Elle vise à simplifier la gestion et l'organisation d'événements sportifs, en particulier pour les amateurs de sports de raquette (tennis, padel, badminton, etc.).
 
-## 📌 Description du projet
+##  Description du projet
 
 MatchMate est une plateforme complète qui offre une expérience enrichie aux sportifs. Elle intègre un large éventail de fonctionnalités pour favoriser l'organisation, la participation et le suivi de l'activité sportive.
 
 ### Fonctionnalités principales :
 
-- **Authentification** : Création de compte, connexion et gestion des rôles (`ROLE_USER`, `ROLE_ADMIN`).
+- **Authentification** : Création de compte, connexion et gestion des rôles (`ROLE_USER`, `ROLE_ADMIN`,'ROLE_NUTR').
 - **Participation à des événements** : Inscription à des événements sportifs organisés par l' administrateur avec gestion des participants.
 - **Participation à des matchs** : Engagement direct dans des matchs sportifs, avec gestion des participants et des matches .
 - **Suivi alimentaire personnalisé** : Suivie alimentaire permettant aux utilisateurs de suivre leurs habitudes nutritionnelles et d’améliorer leur hygiène de vie.
@@ -22,7 +22,7 @@ MatchMate est une plateforme complète qui offre une expérience enrichie aux sp
 - **Navigation fluide** : Interface utilisateur ergonomique et responsive pour une meilleure expérience.
 - **Sécurité renforcée** : Accès sécurisé et gestion précise des droits des utilisateurs.
 
-## 🗂 Table des matières
+##  Table des matières
 
 - [Installation](#installation)
 - [Utilisation](#utilisation)
@@ -32,7 +32,7 @@ MatchMate est une plateforme complète qui offre une expérience enrichie aux sp
 - [Contribution](#contribution)
 - [Licence](#licence)
 
-## ⚙️ Installation
+##  Installation
 
 1. **Cloner le dépôt Git**
 ```bash
@@ -68,20 +68,20 @@ npm run build
 symfony server:start
 ```
 
-## 🚀 Utilisation
+##  Utilisation
 
-### 👤 Gestion des utilisateurs
+###  Gestion des utilisateurs
 - Inscription/Connexion via une interface simple.
 - Rôles utilisateurs : `ROLE_USER` pour les sportifs, `ROLE_ADMIN` pour les gestionnaires.
 
-### 🏓 Fonctionnalités
+###  Fonctionnalités
 - Création et participation aux événements et matchs.
 - Consultation du calendrier sportif.
 - Enregistrement et suivi alimentaire.
 - Accès à la boutique en ligne.
 - Envoi et gestion des réclamations.
 
-## 🖥️ Technologies utilisées
+##  Technologies utilisées
 
 - **Back-end** :
   - [Symfony 6](https://symfony.com/download) - Framework PHP
@@ -101,7 +101,7 @@ symfony server:start
   - [Composer](https://getcomposer.org/download/) - Gestion des dépendances PHP
   - [Node.js](https://nodejs.org/) - Environnement JavaScript (pour le frontend)
 
-## 📂 Utilisation
+##  Utilisation
 
 Une fois installé, rendez-vous sur [http://localhost:8000](http://localhost:8000)
 
@@ -111,7 +111,7 @@ Une fois installé, rendez-vous sur [http://localhost:8000](http://localhost:800
 
 ---
 
-## 🤝 Contribution
+##  Contribution
 
 Les contributions sont les bienvenues !
 
