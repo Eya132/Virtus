@@ -8,7 +8,7 @@ MatchMate est une plateforme complète qui offre une expérience enrichie aux sp
 
 ### Fonctionnalités principales :
 
-- **Authentification** : Création de compte, connexion et gestion des rôles (`ROLE_USER`, `ROLE_ADMIN`,'ROLE_NUTR`.
+- **Authentification** : Création de compte, connexion et gestion des rôles (`ROLE_USER`, `ROLE_ADMIN`, `ROLE_NUT`.
 - **Participation à des événements** : Inscription à des événements sportifs organisés par l' administrateur avec gestion des participants.
 - **Participation à des matchs** : Engagement direct dans des matchs sportifs, avec gestion des participants et des matches .
 - **Suivi alimentaire personnalisé** : Suivie alimentaire permettant aux utilisateurs de suivre leurs habitudes nutritionnelles et d’améliorer leur hygiène de vie.
