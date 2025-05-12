@@ -1,142 +1,95 @@
-#  MatchMate
+🎾 MatchMate
 
-**MatchMate** est une application web développée avec le framework Symfony. Elle vise à simplifier la gestion et l'organisation d'événements sportifs, en particulier pour les amateurs de sports de raquette (tennis, padel, badminton, etc.).
+MatchMate est une application de bureau développée en Java avec JavaFX 21 et Scene Builder 23.
+Elle vise à simplifier la gestion et l'organisation d'événements sportifs, en particulier pour les amateurs de sports de raquette (tennis, padel, badminton, etc.).
 
-##  Description du projet
+📌 Description du projet
 
-MatchMate est une plateforme complète qui offre une expérience enrichie aux sportifs. Elle intègre un large éventail de fonctionnalités pour favoriser l'organisation, la participation et le suivi de l'activité sportive.
+MatchMate offre une expérience fluide et intuitive aux utilisateurs grâce à une interface moderne, tout en intégrant de nombreuses fonctionnalités pour organiser, gérer et suivre des événements sportifs.
 
-### Fonctionnalités principales :
+Fonctionnalités principales :
+- Authentification : création de compte, connexion, gestion des rôles (utilisateur/admin).
+- Gestion des événements : création, affichage et inscription à des événements sportifs.
+- Gestion des matchs : participation à des matchs, organisation des joueurs, enregistrement des résultats.
+- Suivi alimentaire : module permettant à l’utilisateur de noter et suivre son alimentation au quotidien.
+- Boutique intégrée : visualisation et achat de produits liés aux sports de raquette.
+- Réclamations : espace dédié à la soumission et au suivi des réclamations.
+- Espace administrateur : tableau de bord complet pour gérer les utilisateurs, événements, produits, etc.
 
-- **Authentification** : Création de compte, connexion et gestion des rôles (`ROLE_USER`, `ROLE_ADMIN`, `ROLE_NUT`.
-- **Participation à des événements** : Inscription à des événements sportifs organisés par l' administrateur avec gestion des participants.
-- **Participation à des matchs** : Engagement direct dans des matchs sportifs, avec gestion des participants et des matches .
-- **Suivi alimentaire personnalisé** : Suivie alimentaire permettant aux utilisateurs de suivre leurs habitudes nutritionnelles et d’améliorer leur hygiène de vie.
-- **Boutique e-commerce intégrée** : Vente de produits liés au sport (équipements, accessoires, etc.).
-- **Espace réclamations** : Les utilisateurs peuvent soumettre des réclamations, assurant un canal de communication avec les administrateurs.
-- **Espace administrateur** : Tableau de bord centralisé pour gérer les utilisateurs, événements, produits, réclamations, etc.
+Points forts :
+- Interface moderne : design élaboré avec Scene Builder, couleurs vives (turquoise et orangé).
+- Navigation fluide : ergonomie pensée pour l’expérience utilisateur.
+- Sécurité renforcée : gestion des rôles et stockage sécurisé des données.
 
-### Points forts :
+🗂 Table des matières
+- Installation
+- Utilisation
+  - Gestion des utilisateurs
+  - Fonctionnalités
+- Technologies utilisées
+- Contribution
+- Licence
 
-- **Interface moderne** : Design attrayant basé sur Twig et CSS personnalisé avec des couleurs vives (turquoise et orangé).
-- **Navigation fluide** : Interface utilisateur ergonomique et responsive pour une meilleure expérience.
-- **Sécurité renforcée** : Accès sécurisé et gestion précise des droits des utilisateurs.
+⚙️ Installation
 
-##  Table des matières
+1. Cloner le dépôt :
+   git clone https://github.com/votre-utilisateur/matchmate-javafx.git
+   cd matchmate-javafx
 
-- [Installation](#installation)
-- [Utilisation](#utilisation)
-  - [Gestion des utilisateurs](#gestion-des-utilisateurs)
-  - [Fonctionnalités](#fonctionnalités)
-- [Technologies utilisées](#technologies-utilisées)
-- [Contribution](#contribution)
-- [Licence](#licence)
+2. Ouvrir le projet dans un IDE compatible Java 21 (IntelliJ, Eclipse, etc.)
 
-##  Installation
+3. Configurer le SDK Java 21 et JavaFX (chemins vers les bibliothèques nécessaires)
 
-1. **Cloner le dépôt Git**
-```bash
-git clone https://github.com/votre-utilisateur/matchmate.git
-cd matchmate
-```
+4. Lancer l’application depuis la classe principale (Main.java)
 
-2. **Installer les dépendances PHP**
-```bash
-composer install
-```
+🚀 Utilisation
 
-3. **Configurer l'environnement**
-Créer un fichier `.env.local` et y ajouter vos paramètres :
-```dotenv
-DATABASE_URL="mysql://user:password@127.0.0.1:3306/matchmate"
-```
+👤 Gestion des utilisateurs :
+- Inscription / connexion
+- Droits attribués selon le rôle (utilisateur ou administrateur)
 
-4. **Créer la base de données et exécuter les migrations**
-```bash
-php bin/console doctrine:database:create
-php bin/console doctrine:migrations:migrate
-```
+🏓 Fonctionnalités :
+- Création et consultation d’événements et de matchs
+- Suivi personnalisé de l’alimentation
+- Accès à une boutique de produits sportifs
+- Envoi de réclamations
+- Interface d’administration complète
 
-5. **Installer les dépendances front-end (optionnel)**
-```bash
-npm install
-npm run build
-```
+🖥️ Technologies utilisées :
+- Java 21
+- JavaFX 21
+- Scene Builder 23
+- MySQL (ou autre SGBD)
+- JDBC (connexion base de données)
+- CSS pour le design de l’interface
+- MVC pour l’architecture
 
-6. **Démarrer le serveur**
-```bash
-symfony server:start
-```
+📂 Lancement
+- Après configuration, exécutez la classe Main.java
+- Naviguez dans l'application via les interfaces graphiques
+- L’administrateur peut se connecter via un compte spécial pour gérer l’ensemble du système
 
-##  Utilisation
+👥 Contributeurs :
+Projet développé par une équipe d’élèves ingénieurs :
+- Eya Dhaouadi – Back-end & Front-end
+- Hbiba [Nom] – Gestion des événements
+- Nourhene [Nom] – Module boutique
+- Mariem [Nom] – Suivi alimentaire
+- Sabee [Nom] – UI/UX & design
+- Amine [Nom] – Authentification & base de données
 
-###  Gestion des utilisateurs
-- Inscription/Connexion via une interface simple.
-- Rôles utilisateurs : `ROLE_USER` pour les sportifs, `ROLE_ADMIN` pour les gestionnaires.
+🤝 Contribution :
+1. Fork du dépôt
+2. Création d'une branche :
+   git checkout -b feature/NouvelleFonctionnalité
+3. Ajout des modifications
+4. Commit :
+   git commit -m "Ajout d'une nouvelle fonctionnalité"
+5. Push :
+   git push origin feature/NouvelleFonctionnalité
+6. Création d'une Pull Request
 
-###  Fonctionnalités
-- Création et participation aux événements et matchs.
-- Consultation du calendrier sportif.
-- Enregistrement et suivi alimentaire.
-- Accès à la boutique en ligne.
-- Envoi et gestion des réclamations.
+📄 Licence :
+Ce projet est sous licence MIT – voir le fichier LICENSE pour plus d’informations.
 
-##  Technologies utilisées
-
-- **Back-end** :
-  - [Symfony 6](https://symfony.com/download) - Framework PHP
-  - [PHP 8.x](https://www.php.net/downloads.php) - Langage serveur
-
-- **Front-end** :
-  - [Twig](https://twig.symfony.com/) - Moteur de templates
-  - [HTML5](https://developer.mozilla.org/fr/docs/Web/HTML) - Structure des pages
-  - [CSS3](https://developer.mozilla.org/fr/docs/Web/CSS) - Style et design (couleurs turquoise & orangé)
-
-- **Base de données** :
-  - [MySQL](https://dev.mysql.com/downloads/) - Système de gestion de base de données
-  - [Doctrine](https://www.doctrine-project.org/) - ORM
-
-- **Outils de développement** :
-  - [Webpack Encore](https://symfony.com/doc/current/frontend.html) - Gestion des assets
-  - [Composer](https://getcomposer.org/download/) - Gestion des dépendances PHP
-  - [Node.js](https://nodejs.org/) - Environnement JavaScript (pour le frontend)
-
-##  Utilisation
-
-Une fois installé, rendez-vous sur [http://localhost:8000](http://localhost:8000)
-
-- Inscrivez-vous en tant qu’utilisateur
-- Accédez aux différentes sections via le menu principal
-- L’admin peut se connecter via des identifiants spéciaux pour gérer l’ensemble du système
-
----
-
-##  Contribution
-
-Les contributions sont les bienvenues !
-
-1. Forkez ce dépôt
-2. Créez une branche :
-```bash
-git checkout -b feature/NouvelleFonctionnalité
-```
-3. Faites vos modifications
-4. Commitez :
-```bash
-git commit -m "Ajout d'une nouvelle fonctionnalité"
-```
-5. Poussez :
-```bash
-git push origin feature/NouvelleFonctionnalité
-```
-6. Ouvrez une Pull Request
-
----
-
-## Licence
-
-Ce projet est sous licence **MIT** – voir le fichier `LICENSE` pour plus d'informations.
-
----
-
-Merci de votre intérêt pour MatchMate ! 
+Merci de votre intérêt pour MatchMate ! 🎾
