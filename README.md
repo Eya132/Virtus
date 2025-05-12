@@ -1,9 +1,9 @@
-🎾 MatchMate
+ MatchMate
 
 MatchMate est une application de bureau développée en Java avec JavaFX 21 et Scene Builder 23.
 Elle vise à simplifier la gestion et l'organisation d'événements sportifs, en particulier pour les amateurs de sports de raquette (tennis, padel, badminton, etc.).
 
-📌 Description du projet
+Description du projet
 
 MatchMate offre une expérience fluide et intuitive aux utilisateurs grâce à une interface moderne, tout en intégrant de nombreuses fonctionnalités pour organiser, gérer et suivre des événements sportifs.
 
@@ -21,7 +21,7 @@ Points forts :
 - Navigation fluide : ergonomie pensée pour l’expérience utilisateur.
 - Sécurité renforcée : gestion des rôles et stockage sécurisé des données.
 
-🗂 Table des matières
+Table des matières
 - Installation
 - Utilisation
   - Gestion des utilisateurs
@@ -30,7 +30,7 @@ Points forts :
 - Contribution
 - Licence
 
-⚙️ Installation
+ Installation
 
 1. Cloner le dépôt :
    git clone https://github.com/votre-utilisateur/matchmate-javafx.git
@@ -41,21 +41,20 @@ Points forts :
 3. Configurer le SDK Java 21 et JavaFX (chemins vers les bibliothèques nécessaires)
 
 4. Lancer l’application depuis la classe principale (Main.java)
+ Utilisation
 
-🚀 Utilisation
-
-👤 Gestion des utilisateurs :
+ Gestion des utilisateurs :
 - Inscription / connexion
 - Droits attribués selon le rôle (utilisateur ou administrateur)
 
-🏓 Fonctionnalités :
+ Fonctionnalités :
 - Création et consultation d’événements et de matchs
 - Suivi personnalisé de l’alimentation
 - Accès à une boutique de produits sportifs
 - Envoi de réclamations
 - Interface d’administration complète
 
-🖥️ Technologies utilisées :
+Technologies utilisées :
 - Java 21
 - JavaFX 21
 - Scene Builder 23
@@ -64,21 +63,21 @@ Points forts :
 - CSS pour le design de l’interface
 - MVC pour l’architecture
 
-📂 Lancement
+ Lancement
 - Après configuration, exécutez la classe Main.java
 - Naviguez dans l'application via les interfaces graphiques
 - L’administrateur peut se connecter via un compte spécial pour gérer l’ensemble du système
 
-👥 Contributeurs :
+ Contributeurs :
 Projet développé par une équipe d’élèves ingénieurs :
-- Eya Dhaouadi – Back-end & Front-end
-- Hbiba [Nom] – Gestion des événements
-- Nourhene [Nom] – Module boutique
-- Mariem [Nom] – Suivi alimentaire
-- Sabee [Nom] – UI/UX & design
-- Amine [Nom] – Authentification & base de données
+- Eya Dhaouadi – Gestion Event
+- Hbib [Nom] – Gestion USER 
+- Nourhene [Nom] – Gestion  Match
+- Mariem [Nom] – Gestion Suivi alimentaire
+- Sabee [Nom] – Gestion boutique 
+- Amine [Nom] – gestion  reclamation 
 
-🤝 Contribution :
+Contribution :
 1. Fork du dépôt
 2. Création d'une branche :
    git checkout -b feature/NouvelleFonctionnalité
